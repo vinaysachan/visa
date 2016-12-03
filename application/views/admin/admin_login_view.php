@@ -7,12 +7,8 @@
         <?= /* Page CSS */ (!empty($css)) ? $this->util->cssList($css) : NULL ?>
     </head>
     <body>
-        
-        
-        
-        
         <div class="login_box">
-            <form autocomplete="off" name="adminLogin" id="adminLogin" action="<?= base_url('ops-admin/login') ?>" method="post" class="form-horizontal">
+            <form autocomplete="off" name="adminLogin" id="adminLogin" action="<?= base_url('admin/login') ?>" method="post" class="form-horizontal">
                 <h2 class="form-signin-heading"><?= $heading ?></h2>
                 <div class="form-group">
                     <label for="username" class="col-sm-4 control-label">Username :</label>
