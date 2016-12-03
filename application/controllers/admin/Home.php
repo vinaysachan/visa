@@ -26,10 +26,10 @@ class Home extends Admin_Controller {
 //            }
 //            exit();
 //        }
-//        $this->append_jc(
-//                ['js' => ['public/js/admin/home/login.js'], 'css' => ['public/css/admin/login.css']]);
+        $this->append_jc([
+            'js' => ['public/js/admin/home/login.js'],
+            'css' => ['public/css/admin/login.css']]);
 
-        $this->data = [];
         $data = [
             'title' => 'Admin Login',
             'heading' => 'Please sign in',

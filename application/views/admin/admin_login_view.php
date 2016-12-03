@@ -6,7 +6,11 @@
         <title><?= $title ?></title> 
         <?= /* Page CSS */ (!empty($css)) ? $this->util->cssList($css) : NULL ?>
     </head>
-    <body> 
+    <body>
+        
+        
+        
+        
         <div class="login_box">
             <form autocomplete="off" name="adminLogin" id="adminLogin" action="<?= base_url('ops-admin/login') ?>" method="post" class="form-horizontal">
                 <h2 class="form-signin-heading"><?= $heading ?></h2>
