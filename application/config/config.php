@@ -523,3 +523,11 @@ spl_autoload_register(function ($class) {
         @include_once(APPPATH . 'core/' . $class . '.php');
     }
 });
+/**
+ * Native COllection Consatnt
+ * 
+ * for a file that hold all collections as conants
+ */
+if (file_exists(APPPATH . 'config/db_tables.php')) {
+    require_once(APPPATH . 'config/db_tables.php');
+}

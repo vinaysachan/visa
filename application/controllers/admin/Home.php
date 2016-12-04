@@ -17,13 +17,10 @@ class Home extends Admin_Controller {
         }
         if (!empty($this->input->post('submit')) && ($this->input->post('submit') == 'login')) {
             $post = $this->input->post();
-            
-            print_r($post);
-            
             unset($post['submit']);
             if ($this->operation_model->do_login($post)) {
                 $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton! Login successfull', 'Congratulaton! Login successfull']);
-                echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Congratulaton Login successfull.', 'url' => base_url('ops-admin')]);
+                echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Congratulaton Login successfull.', 'url' => base_url('admin')]);
             } else {
                 echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Password and username not match']);
             }
@@ -38,6 +35,12 @@ class Home extends Admin_Controller {
             'heading' => 'Please sign in',
         ];
         $this->load->view('admin/admin_login_view', array_merge($this->data, $data));
+    }
+
+    public function logout() {
+        $this->session->unset_userdata(SESSION_ADMIN);
+        redirect(base_url('admin/login'));
+        exit();
     }
 
 }

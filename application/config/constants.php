@@ -88,9 +88,28 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 
-define('SITE_NAME', 'Online PHP Study');
+define('SITE_NAME', '**** Site Name ****');
 /* Project Enc Keys */
 define('HASH_PASSWORD_KEY', 'ABDJ5345345BMNM,XC32487236423');
 define('HASH_MYSQL_KEY', 'KVL42EPMDWMQTB5644ONOJYCC8350US5');
+
+
 /* Project Custom Constant */
 define('SESSION_ADMIN', 'admin_user');
+
+
+
+define('STATUS_SUCCESS', 'success');
+define('STATUS_ERROR', 'error');
+define('STATUS_PENDING', 'pending');
+define('FLAG_Y', 'Y');
+define('FLAG_N', 'N');
+define('STATUS_ACTIVE', 1);
+define('STATUS_IN_ACTIVE', 0);
+
+ 
+/* SHOW FLASH MESSAGE */
+define('SUCCESS_MSG', 'alert-success');
+define('ERROR_MSG', 'alert-error');
+define('WARNING_MSG', 'alert-warning');
+define('INFO_MSG', 'alert-info');
