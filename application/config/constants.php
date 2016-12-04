@@ -89,6 +89,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 define('SITE_NAME', '**** Site Name ****');
+define('SITE_MIN_NAME', 'SN');
 /* Project Enc Keys */
 define('HASH_PASSWORD_KEY', 'ABDJ5345345BMNM,XC32487236423');
 define('HASH_MYSQL_KEY', 'KVL42EPMDWMQTB5644ONOJYCC8350US5');
@@ -113,3 +114,6 @@ define('SUCCESS_MSG', 'alert-success');
 define('ERROR_MSG', 'alert-error');
 define('WARNING_MSG', 'alert-warning');
 define('INFO_MSG', 'alert-info');
+
+/*File Upload Location */
+define('ADMIN_PHOTO_PATH', './uploads/admin/profile_photo/'); 

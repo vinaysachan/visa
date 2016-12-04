@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/visa/application/core/Admin_Controller.php</file>
-            <file>file:/var/www/html/visa/application/config/config.php</file>
-            <file>file:/var/www/html/visa/application/controllers/admin/Home.php</file>
-            <file>file:/var/www/html/visa/application/views/admin/admin_login_view.php</file>
-            <file>file:/var/www/html/visa/application/config/routes.php</file>
-            <file>file:/var/www/html/visa/application/config/constants.php</file>
+            <file>file:/var/www/html/visa/application/views/includes/front_header.php</file>
+            <file>file:/var/www/html/visa/application/views/includes/front_footer.php</file>
+            <file>file:/var/www/html/visa/application/views/templates/front.tpl</file>
+            <file>file:/var/www/html/visa/public/css/main.css</file>
+            <file>file:/var/www/html/visa/application/controllers/Main.php</file>
+            <file>file:/var/www/html/visa/public/css/style.css</file>
+            <file>file:/var/www/html/visa/application/core/FRONT_Controller.php</file>
         </group>
     </open-files>
 </project-private>

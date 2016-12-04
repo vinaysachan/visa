@@ -13,10 +13,12 @@ class Admin_Controller extends CORE_Controller {
         parent::__construct();
 
         $this->append_jc(['js' => [
-            'public/jquery-ui/jquery-ui.min.js',               
+                'public/jquery-ui/jquery-ui.min.js',
                 'public/plugins/jquery_validation/jquery.validate.min.js',
                 'public/plugins/jq-confirm/jquery-confirm.min.js',
                 'public/js/main.js',
+                'public/js/admin/admin.js',
+                'public/themes/admin/js/script.js'
             ],
             'css' => [
                 'public/jquery-ui/jquery-ui.css',
@@ -26,14 +28,15 @@ class Admin_Controller extends CORE_Controller {
             ]
         ]);
 
+
+
         //Check for Login 
         if ($this->checkLogin()) {
             redirect(base_url('admin/login'));
             exit();
         }
     }
-  
-    
+
     protected function checkLogin() {
         return ((!in_array($this->router->fetch_method(), ['login', 'logout'])) && (empty($this->session->userdata(SESSION_ADMIN))));
     }
