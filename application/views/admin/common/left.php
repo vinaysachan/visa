@@ -14,8 +14,20 @@
             <li class="<?= ($class == 'home' && $method == 'index') ? 'active' : '' ?>">
                 <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard</span>') ?>
             </li>
+            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">  
+                <a href="javascript:void(0)">
+                    <i class="fa fa-internet-explorer"></i>
+                    <span>Website Management</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">
+                       <?= anchor(base_url('admin/setting'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
+                    </li>
+                </ul>
+            </li>
 <!--            <li class="<?= ($class == 'home' && $method == 'index1') ? 'active' : '' ?>">
-                <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard wqewqe</span>') ?>
+            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard wqewqe</span>') ?>
             </li>
             <li class="treeview active">
                 <a href="javascript:void(0)">
@@ -63,13 +75,13 @@
                 </ul>
             </li>
             <li class="<?= ($class == 'home' && $method == 'index2') ? 'active' : '' ?>">
-                <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard we</span>') ?>
+            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard we</span>') ?>
             </li>
             <li class="<?= ($class == 'home' && $method == 'index3') ? 'active' : '' ?>">
-                <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span> er dfgd</span>') ?>
+            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span> er dfgd</span>') ?>
             </li>
             <li class="<?= ($class == 'home' && $method == 'index4') ? 'active' : '' ?>">
-                <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>dfgdfg fd</span>') ?>
+            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>dfgdfg fd</span>') ?>
             </li>-->
         </ul>
     </section>		
