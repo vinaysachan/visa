@@ -22,10 +22,23 @@ class Main extends FRONT_Controller {
     }
 
     public function page() {
+		
         $this->load->view('html/first_page');
     }
+	function apply_visa(){
+		if(!$this->input->post('form1')=="")
+		{
+		print_r($this->input->post());	
+		}
+		$this->load->view('html/form1');
+	}
+	function test()
+	{
+		print_r($_post);
+	}
 
-    public function front() {
+
+	public function front() {
         $this->load->view('html/first_page');
     }
 
