@@ -14,21 +14,19 @@
             <li class="<?= ($class == 'home' && $method == 'index') ? 'active' : '' ?>">
                 <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard</span>') ?>
             </li>
-            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">  
+            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index','banner','banner_ae']))) ? 'active' : '' ?>">  
                 <a href="javascript:void(0)">
                     <i class="fa fa-internet-explorer"></i>
                     <span>Website Management</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">
-                       <?= anchor(base_url('admin/setting'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['banner','banner_ae']))) ? 'active' : '' ?>">
+                       <?= anchor(base_url('admin/setting/banner'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
                     </li>
                 </ul>
             </li>
-<!--            <li class="<?= ($class == 'home' && $method == 'index1') ? 'active' : '' ?>">
-            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard wqewqe</span>') ?>
-            </li>
+<!--            
             <li class="treeview active">
                 <a href="javascript:void(0)">
                     <i class="fa fa-book"></i>
