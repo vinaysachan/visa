@@ -5,6 +5,7 @@
     </head>
     <body>
         <?php /* Top Menu */ $this->load->view('includes/front_header'); ?>
+        <div class="brred"></div>
         <br/>
         <br/>
         <br/>

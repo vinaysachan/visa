@@ -40,49 +40,20 @@
         </nav>
     </div>
 </header>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img class="img-responsive" style="height: 300px; width: 100% " title="" alt="" src="https://www.dewionline.com/uploads/banner/home_slider/slide_2_1458914526home-banner3.jpg">
-        </div>
-        <div class="item">
-            <img class="img-responsive" style="height: 300px; width: 100%" title="" alt="" src="http://localhost/visa/public/themes/images/banner4.jpg">
-        </div>
-        <div class="item">
-            <img class="img-responsive" style="height: 300px; width: 100%" title="" alt="" src="http://localhost/visa/public/themes/images/banner5.jpg">
-        </div>
-        
-        
-    </div>
-</div>
 
-
-
-<?php /*if (!empty($page_name) && $page_name == 'home' && !empty($banners)) : ?>
+<?php if (!empty($banners)) : ?>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <?php foreach ($banners as $key => $val) : ?>
-                <li data-target="#carousel-example-generic" data-slide-to="<?= $key ?>" class="<?= ($key == 0) ? 'active' : '' ?>"></li>
+            <?php foreach ($banners as $k => $b) : ?>
+                <li data-target="#carousel-example-generic" data-slide-to="<?= $k ?>" class="<?= ($k == 0) ? 'active' : '' ?>"></li>
             <?php endforeach; ?>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <?php foreach ($banners as $key => $val) : ?>
-                <div class="item <?= ($key == 0) ? 'active' : '' ?>">
-                    <img title="<?= $val['banner_desc'] ?>" alt="<?= $val['title'] ?>" src="<?= base_url(BANNER_PHOTO_PATH . $val['image']) ?>" />
+            <?php foreach ($banners as $k => $b) : ?>
+                <div class="item <?= ($k == 0) ? 'active' : '' ?>">
+                    <img  class="img-responsive" style="height: 300px; width: 100% " title="<?= $b->title ?>" alt="<?= $b->title ?>" src="<?= base_url(BANNER_PATH . $b->img) ?>">
                 </div>
             <?php endforeach; ?>
-        </div>  
+        </div>
     </div>
-<?php endif; */?>
-
-
-
-
-
-
-<div class="brred"></div>
+<?php endif; ?>

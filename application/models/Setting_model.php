@@ -12,9 +12,30 @@ class Setting_model extends CORE_Model {
         return FALSE;
     }
 
+    public function update_banner($data, $b_id) {
+        if ($this->db->update(TBL_BANNERS, $data, ['id' => $b_id]))
+            return TRUE;
+        return FALSE;
+    }
+
+    public function delete_banner($b_id) {
+        if ($this->db->delete(TBL_BANNERS,['id' => $b_id]))
+            return TRUE;
+        return FALSE;
+    }
+    
     public function get_banners($data = NULL) {
         $this->db->select();
         $this->db->from(TBL_BANNERS . ' as b');
+
+        if (!empty($data['where']['id'])) {
+            $this->db->where('id', $data['where']['id']);
+        }
+        if (!empty($data['where']['status'])) {
+            $this->db->where('status', $data['where']['status']);
+        }
+         
+
         $this->db->order_by("order", "ASC");
         return $this->db->get()->result();
     }

@@ -34,12 +34,8 @@
                         <td><?= ($b->status == 1) ? 'Active' : 'In-Active' ?></td>
                         <td class="text-right">
                             <div class="btn-group">
-                              
-
                                 <a href="<?= base_url('admin/setting/banner_ae/' . $b->id) ?>" class="btn bg-blue btn-sm btn-flat"><i class="fa fa-pencil"></i></a>
-                                <button data-action="http://localhost/ops/ops-admin/blog/blog_category/delete_category" class="btn btn-danger btn-sm btn-flat bc_del" data-id="1" type="button">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                <a href="<?= base_url('admin/setting/del_banner/' . $b->id) ?>" class="btn bg-red btn-sm btn-flat confirm_a" data-title="Delete Banner?"><i class="fa fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>

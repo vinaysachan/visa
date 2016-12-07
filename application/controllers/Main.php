@@ -17,28 +17,28 @@ class Main extends FRONT_Controller {
                 base_url() => 'Home',
             ],
             'heading' => 'Basic Intro & History of PHP',
+            'banners' => $this->setting_model->get_banners(['where' => ['status' => STATUS_ACTIVE]])
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
 
     public function page() {
-		
+
         $this->load->view('html/first_page');
     }
-	function apply_visa(){
-		if(!$this->input->post('form1')=="")
-		{
-		print_r($this->input->post());	
-		}
-		$this->load->view('html/form1');
-	}
-	function test()
-	{
-		print_r($_post);
-	}
 
+    function apply_visa() {
+        if (!$this->input->post('form1') == "") {
+            print_r($this->input->post());
+        }
+        $this->load->view('html/form1');
+    }
 
-	public function front() {
+    function test() {
+        print_r($_post);
+    }
+
+    public function front() {
         $this->load->view('html/first_page');
     }
 
