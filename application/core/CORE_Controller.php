@@ -20,7 +20,7 @@ class CORE_Controller extends CI_Controller {
             'public/plugins/bootstrap/js/bootstrap.min.js'
         ];
 
-        $this->load->model(['operation_model','setting_model']);
+        $this->load->model(['operation_model','setting_model','global_model']);
     }
 
     protected function append_jc($jc) {

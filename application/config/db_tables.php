@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /* Project Database Tables Name */
 define('TBL_ADMIN_USER', 'admin_users');
 define('TBL_BANNERS', 'banners');
+define('TBL_ENQUIRY', 'enquiry');
 //define('TBL_OPS_ROLES', 'ops_roles');
 //define('TBL_OPS_USER_ACCESS', 'ops_users_access');
 //define('TBL_OPS_MODULES', 'ops_modules');
