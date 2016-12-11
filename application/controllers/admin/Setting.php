@@ -44,7 +44,7 @@ class setting extends Admin_Controller {
                     redirect('admin/setting/banner');
                 }
             } elseif ($post['submit'] == 'update') {
-               $post['status'] = ($post['status'] == STATUS_ACTIVE) ? STATUS_ACTIVE : STATUS_IN_ACTIVE ;
+                $post['status'] = ($post['status'] == STATUS_ACTIVE) ? STATUS_ACTIVE : STATUS_IN_ACTIVE;
                 unset($post['submit']);
                 if ($img) {
                     $post['img'] = $img;
@@ -102,6 +102,78 @@ class setting extends Admin_Controller {
             }
             $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Banner Deleted successfully']);
             redirect('admin/setting/banner');
+        }
+    }
+
+    public function page($page = NULL) {
+        $this->load->library('paginator');
+        $this->paginator->initialize([
+            'base_url' => base_url('admin/setting/page'),
+            'total_items' => (int) $this->setting_model->getPages(NULL, NULL, 'count'),
+            'current_page' => $page
+        ]);
+        $limit = $this->paginator->limit_end;
+        $offset = $this->paginator->limit_start;
+        $data = [
+            'heading' => '<i class="fa fa-television"></i> Manage Page\'s Data',
+            'sub_heading' => '',
+            'page' => $offset,
+            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Pages'],
+            'pages' => $this->setting_model->getPages($offset, $limit, NULL)
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+
+    public function page_ae($pid = NULL) {
+        $this->append_jc(['js' => ['public/plugins/ckeditor/ckeditor.js']]);
+        if (!empty($pid)) {
+            $heading = '<i class="fa fa-television"></i> Update Page Detail';
+            $page_data = $this->setting_model->page_data($pid);
+        } else {
+            $heading = '<i class="fa fa-television"></i> Add Page Detail';
+            $page_data = '';
+        }
+        if (!empty($this->input->post('save_page'))) {
+            $post = $this->input->post();
+            if ($post['save_page'] == 'add') {
+                unset($post['save_page']);
+                if ($this->setting_model->save_page($post)) {
+                    $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Added Successfully']);
+                    redirect('admin/setting/page');
+                    exit();
+                }
+            } else if ($post['save_page'] == 'update') {
+                unset($post['save_page']);
+                if ($this->setting_model->update_page($post, $pid)) {
+                    $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Update Successfully']);
+                    redirect('admin/setting/page');
+                    exit();
+                }
+            }
+        }
+        $data = [
+            'heading' => $heading,
+            'sub_heading' => '',
+            'breadcrumb' => [
+                base_url('admin') => '<i class="fa fa-dashboard"></i> Home',
+                $heading
+            ],
+            'pid' => $pid,
+            'all_pages' => $this->setting_model->all_available_pages(),
+            'all_saved_page' => $this->setting_model->all_saved_page(),
+            'page_data' => $page_data
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+
+    public function trash_page($id = NULL) {
+        if (empty($id)) {
+            $this->session->set_flashdata(WARNING_MSG, ['Warning!', 'Bad URL']);
+            redirect('admin/setting/page');
+        }
+        if ($this->setting_model->delete_page($id)) {
+            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Deleted successfully']);
+            redirect('admin/setting/page');
         }
     }
 

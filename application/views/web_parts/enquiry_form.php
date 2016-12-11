@@ -12,7 +12,7 @@
                 <input type="text" name="mobile" class="form-control cntgrp onlyNumeric" minlength="9" maxlength="15" placeholder="Mobile" value="">
             </div>
             <div class="form-group">
-                <textarea name="message" placeholder="Enter Message" class="form-control" rows="3"></textarea>
+                <textarea maxlength="1000" name="message" placeholder="Enter Message" class="form-control" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>

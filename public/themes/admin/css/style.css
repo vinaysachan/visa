@@ -5688,3 +5688,31 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, in
 .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"], .radio input[type="radio"], .radio-inline input[type="radio"] {
     margin: 1px 0 0 -23px;
 }
+
+
+
+.paging_list .paginate:first-child, .paging_list .inactive:first-child {
+    border-left: 1px solid #ddd;
+}
+.paging_list .paginate,.paging_list .paginatecurrent {
+    border: 1px solid #ddd;
+    border-left: 0px;
+    padding: 8px; 
+}
+.paging_list .inactive {
+    background: #efefef none repeat scroll 0 0;
+    color: inherit;
+    cursor: default;
+    padding: 8px; 
+    border: 1px solid #ddd;
+    border-left: 0px;
+}
+
+.paging_list .paginatecurrent {
+    cursor: default;
+    background: #efefef none repeat scroll 0 0;
+}
+.paging_list a.paginate{
+    color: inherit;
+}
+ 

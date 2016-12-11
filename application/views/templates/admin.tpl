@@ -31,7 +31,7 @@
         <p id="overlay" class="text-center load-overlay"  >
             <i class="fa fa-spinner fa-pulse fa-5x"></i>
         </p>
-        <script type="text/javascript"> base_url = '<?= base_url() ?>';</script> 
+        <script type="text/javascript"> base_url = '<?= base_url() ?>';</script>
         <?= /* Page Js */ (!empty($js)) ? $this->util->jsList($js) : NULL ?>
     </body>
 </html>

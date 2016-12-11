@@ -109,18 +109,18 @@ class Util {
                 @chmod($upload_img_data['upload_data']['full_path'], 0777);
                 if (!empty($resize)) {
 //                    if ($upload_img_data['upload_data']['image_width'] > $resize['w']) {
-                        $resize_config = array();
-                        $resize_config['image_library'] = 'gd2';
-                        $resize_config['source_image'] = $upload_img_data['upload_data']['full_path'];
-                        $resize_config['maintain_ratio'] = TRUE;
-                        if (!empty($resize['w']))
-                            $resize_config['width'] = $resize['w'];
-                        if (!empty($resize['h']))
-                            $resize_config['height'] = $resize['h'];
-                        $this->CI->image_lib->initialize($resize_config);
-                        if (!$this->CI->image_lib->resize()) {
-                            echo $this->CI->image_lib->display_errors();
-                        }
+                    $resize_config = array();
+                    $resize_config['image_library'] = 'gd2';
+                    $resize_config['source_image'] = $upload_img_data['upload_data']['full_path'];
+                    $resize_config['maintain_ratio'] = TRUE;
+                    if (!empty($resize['w']))
+                        $resize_config['width'] = $resize['w'];
+                    if (!empty($resize['h']))
+                        $resize_config['height'] = $resize['h'];
+                    $this->CI->image_lib->initialize($resize_config);
+                    if (!$this->CI->image_lib->resize()) {
+                        echo $this->CI->image_lib->display_errors();
+                    }
 //                    }
                 }
                 if (!empty($thumb)) {
@@ -302,6 +302,10 @@ class Util {
      */
     public function get_concatenated_string($arr, $im = ' ') {
         return implode($im, array_filter(array_map('trim', $arr)));
+    }
+
+    public function all_page_list() {
+        
     }
 
 }
