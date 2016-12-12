@@ -5,10 +5,6 @@
     </head>
     <body>
         <?php /* Top Menu */ $this->load->view('includes/front_header'); ?>
-        <div class="brred"></div>
-        <br/>
-        <br/>
-
         <div class="container  ">
             <div class="row">
                 <div class="col-sm-9">
@@ -19,14 +15,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-        <br/>
-        <br/>
         <?php /* Footer */ $this->load->view('includes/front_footer'); ?>
     </body>
 </html>

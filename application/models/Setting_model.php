@@ -47,7 +47,7 @@ class Setting_model extends CORE_Model {
     }
 
     public function page_data($pid) {
-        $sql = 'SELECT p.id,p.slug,p.heading,p.title,p.description,p.keywords, p.page_content,p.is_active, (SELECT GROUP_CONCAT(slug) FROM pages) as all_slugs FROM pages p WHERE p.id = "' . $pid . '"';
+        $sql = 'SELECT *, (SELECT GROUP_CONCAT(slug) FROM pages) as all_slugs FROM pages p WHERE p.id = "' . $pid . '"';
         if ($query = $this->db->query($sql)) {
             return $query->result();
         }

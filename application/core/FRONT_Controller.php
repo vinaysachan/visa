@@ -27,6 +27,9 @@ class FRONT_Controller extends CORE_Controller {
                 'public/css/main.css'
             ]
         ]);
+
+        $this->load->library('pages');
+        $this->data['page_list'] = $this->pages->get_data();
     }
 
 }

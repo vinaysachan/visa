@@ -31,6 +31,22 @@ class Global_model extends CORE_Model {
         return FALSE;
     }
 
+    public function page_data($slug) {
+        $sql = 'SELECT * FROM pages WHERE slug = "' . $slug . '"';
+        if ($query = $this->db->query($sql)) {
+            return $query->result();
+        }
+        return FALSE;
+    }
+
+    public function all_saved_page() {
+        $sql = 'SELECT GROUP_CONCAT(slug) as all_slugs FROM pages WHERE is_active = "' . STATUS_ACTIVE . '"';
+        if ($query = $this->db->query($sql)) {
+            return $query->result();
+        }
+        return FALSE;
+    }
+
     /* public function update_banner($data, $b_id) {
       if ($this->db->update(TBL_BANNERS, $data, ['id' => $b_id]))
       return TRUE;

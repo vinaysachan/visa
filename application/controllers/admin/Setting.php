@@ -133,11 +133,14 @@ class setting extends Admin_Controller {
             $heading = '<i class="fa fa-television"></i> Add Page Detail';
             $page_data = '';
         }
+         $this->load->library('pages');
         if (!empty($this->input->post('save_page'))) {
             $post = $this->input->post();
+            $post['menu_location'] = json_encode($post['menu_location']);
             if ($post['save_page'] == 'add') {
                 unset($post['save_page']);
                 if ($this->setting_model->save_page($post)) {
+                    $this->pages->savefile();
                     $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Added Successfully']);
                     redirect('admin/setting/page');
                     exit();
@@ -145,6 +148,7 @@ class setting extends Admin_Controller {
             } else if ($post['save_page'] == 'update') {
                 unset($post['save_page']);
                 if ($this->setting_model->update_page($post, $pid)) {
+                    $this->pages->savefile();
                     $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Update Successfully']);
                     redirect('admin/setting/page');
                     exit();

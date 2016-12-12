@@ -22,7 +22,7 @@
             $i = $page + 1;
             if (!empty($pages)) : foreach ($pages as $p) :
                     ?>
-                    <tr>
+                    <tr class="<?= ($p->is_active == STATUS_ACTIVE) ? '' : 'warning' ?>">  
                         <td><?= $i ?></td>
                         <td><?= $this->setting_model->page_name_by_slug($p->slug) ?></td>
                         <td><?= $p->heading ?></td> 

@@ -17,7 +17,8 @@ class Main extends FRONT_Controller {
                 base_url() => 'Home',
             ],
             'heading' => 'Basic Intro & History of PHP',
-            'banners' => $this->setting_model->get_banners(['where' => ['status' => STATUS_ACTIVE]])
+            'banners' => $this->setting_model->get_banners(['where' => ['status' => STATUS_ACTIVE]]),
+            'page_data' => $this->global_model->page_data('home')
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }

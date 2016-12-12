@@ -61,14 +61,33 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label require">Page Status</label>			
+            <?php $location = (!empty($page_data[0])) ? json_decode($page_data[0]->menu_location) : ''; ?>
+            <label class="col-sm-2 control-label require">Menu Location</label>
+            <div class="col-sm-4">
+                <div class="checkbox">
+                    <label>
+                        <input required="" label-name="Menu Location" name="menu_location[]" id="menu_location_top" <?= (!empty($location)) ? (in_array('top', $location)) ? 'checked=""' : '' : '' ?>  value="top" type="checkbox"> Top Menu
+                    </label>
+                    <label class="ml20">
+                        <input required="" label-name="Menu Location" name="menu_location[]" id="menu_location_buttom" <?= (!empty($location)) ? ( in_array('left', $location)) ? 'checked=""' : '' : '' ?> value="left" type="checkbox"> Left Part
+                    </label>
+                </div>
+            </div>
+            <label class="col-sm-2 control-label">Page Order</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control onlyNumeric" name="order" id="order" placeholder="" value="<?= (!empty($page_data[0]->order)) ? $page_data[0]->order : '' ?>" maxlength="3" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label require">Page Status</label>
+            <?php $sts = (!empty($page_data[0]->is_active)) ? $page_data[0]->is_active : ''; ?>
             <div class="col-sm-4">
                 <div class="form-group ml0">
                     <label for="status_y" class="radio-inline">
-                        <input <?= (empty($page_data[0]->is_active)) ? 'checked=""' : '' ?> <?= (!empty($page_data[0]->is_active) && $page_data[0]->is_active == STATUS_ACTIVE) ? 'checked=""' : '' ?> type="radio" value="<?= STATUS_ACTIVE ?>" name="is_active" id="status_y" > Active
+                        <input <?= ($sts == STATUS_ACTIVE) ? 'checked=""' : '' ?> type="radio" value="<?= STATUS_ACTIVE ?>" name="is_active" id="status_y" > Active
                     </label>
                     <label for="status_n" class="radio-inline">
-                        <input <?= (!empty($page_data[0]->is_active) && $page_data[0]->is_active == STATUS_IN_ACTIVE) ? 'checked=""' : '' ?> type="radio" value="<?= STATUS_IN_ACTIVE ?>" name="is_active" id="status_n"> In-active 
+                        <input <?= ($sts == STATUS_IN_ACTIVE) ? 'checked=""' : '' ?> type="radio" value="<?= STATUS_IN_ACTIVE ?>" name="is_active" id="status_n"> In-active 
                     </label>
                 </div>
             </div>
