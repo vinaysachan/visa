@@ -13,7 +13,7 @@ class FRONT_Controller extends CORE_Controller {
         parent::__construct();
 
         $this->append_jc(['js' => [
-                'public/jquery-ui/jquery-ui.min.js',
+                'public/jquery-ui/jquery-ui.min.js', 
                 'public/plugins/jquery_validation/jquery.validate.min.js',
                 'public/plugins/jq-confirm/jquery-confirm.min.js',
                 'public/js/main.js',

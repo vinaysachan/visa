@@ -33,9 +33,8 @@ class Global_model extends CORE_Model {
 
     public function page_data($slug) {
         $sql = 'SELECT * FROM pages WHERE slug = "' . $slug . '"';
-        if ($query = $this->db->query($sql)) {
-            return $query->result();
-        }
+        if ($query = $this->db->query($sql))
+            return $query->row();
         return FALSE;
     }
     function getApplication()

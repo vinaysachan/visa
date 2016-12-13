@@ -119,6 +119,10 @@ define('INFO_MSG', 'alert-info');
 define('ADMIN_PHOTO_PATH', './uploads/admin/profile_photo/'); 
 define('BANNER_PATH', './uploads/banner/'); 
 
+define('CAPTCHA_PATH', './uploads/captcha/'); 
+
+
+
 
 
 

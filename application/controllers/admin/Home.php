@@ -108,5 +108,34 @@ class Home extends Admin_Controller {
         redirect(base_url('admin/login'));
         exit();
     }
+    
+    public function my_profile() {
+        $this->append_jc(['js' => ['public/js/admin/profile.js']]);
+//        Update Admin Profile
+        if (!empty($this->input->post('update_profile'))) {
+            $post = $this->input->post();
+            unset($post['update_profile']);
+            if ($this->operation_model->update_account($post,$this->session->userdata(SESSION_ADMIN)['id'])) {
+                $this->session->set_flashdata(SUCCESS_MSG, 'You have successfully updated your profile.');
+                redirect(base_url('admin/home/my_profile'));
+            }
+        }
+//        //Update Admin password
+        if (!empty($this->input->post('update_password'))) {
+            $post = $this->input->post();
+            unset($post['update_password']);
+            echo json_encode($this->operation_model->update_account_password($post,$this->session->userdata(SESSION_ADMIN)['id']));
+            exit();
+        }
+        $data = [
+            'heading' => 'Update Profile',
+            'breadcrumb' => [
+                base_url('ops-admin') => '<i class="fa fa-dashboard"></i> Home',
+                'Update Profile'
+            ],
+            'profile' => $this->operation_model->getAdminById($this->session->userdata(SESSION_ADMIN)['id'])
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
 
 }
