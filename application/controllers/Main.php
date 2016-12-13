@@ -74,6 +74,10 @@ class Main extends FRONT_Controller {
             redirect(base_url('main/apply_visa'));
         }
 	}
+	function payment()
+	{
+		$this->load->view('html/payment');
+	}
 
 
 	 
