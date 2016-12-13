@@ -50,6 +50,27 @@ class Main extends FRONT_Controller {
             $this->session->set_userdata('application_id', $application_id);
             redirect(base_url('main/visa_reg'));
         }
+
+        $data = [
+            'title' => 'title',
+            'meta_description' => 'description',
+            'meta_keywords' => 'keywords',
+            'heading' => 'e-Tourist Visa (eTV) Application',
+            'getCounrty' => $this->operation_model->getCounrty()
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+
+//          $this->load->view('html/common/header');
+//        $this->load->view('html/form1', $data);
+//        $this->load->view('html/common/footer');
+    }
+
+    function apply_visa_old() {
+        if (!$this->input->post('step1') == "") {
+            $application_id = $this->operation_model->app_step1();
+            $this->session->set_userdata('application_id', $application_id);
+            redirect(base_url('main/visa_reg'));
+        }
         $data['getCounrty'] = $this->operation_model->getCounrty();
         $this->load->view('html/common/header');
         $this->load->view('html/form1', $data);
@@ -89,4 +110,5 @@ class Main extends FRONT_Controller {
             redirect(base_url('main/apply_visa'));
         }
     }
+
 }

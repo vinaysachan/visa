@@ -1,5 +1,3 @@
-
-
 $("#enqFrm").validate({
     rules: {email: {require_from_group: [1, ".cntgrp"]},
         mobile: {

@@ -58,6 +58,6 @@ $route['admin'] = 'admin/home/index';
 $route['admin/login'] = 'admin/home/login';
 $route['admin/logout'] = 'admin/home/logout';
 
-
-
+$route['apply_visa'] = 'main/apply_visa';
+ 
 $route['(:any)'] = 'main/page/$1';

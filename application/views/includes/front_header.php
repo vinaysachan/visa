@@ -66,7 +66,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-orange">
                     <span class="step">Step 1</span>
-                    <a href="">
+                    <a href="<?= base_url('apply_visa') ?>">
                         <div class="mt5">Click Here to</div>
                         <h4 class="fs18 m0 p0 mt5">Apply for Visa</h4>
                     </a>

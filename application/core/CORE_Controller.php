@@ -18,7 +18,6 @@ class CORE_Controller extends CI_Controller {
         ];
         // Load JS Files :-
         $this->data['js'] = [
-			'public/jquery-ui/jquery-ui.min.js',
             'public/js/jquery.min.js',
             'public/plugins/bootstrap/js/bootstrap.min.js'
         ];
