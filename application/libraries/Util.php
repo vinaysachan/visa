@@ -7,7 +7,7 @@ class Util {
     public function __construct() {
         $this->CI = & get_instance();
     }
-    
+
     public function cssList($a) {
         $c = '';
         foreach ($a as $s) :
@@ -76,7 +76,7 @@ class Util {
      * @param type $file_name Name of File
      * @return boolean
      */
-    public function fileUpload($path, $input_name, $title, $allowed_types = NULL, $resize = NULL, $thumb = NULL, $file_name = NULL) {        
+    public function fileUpload($path, $input_name, $title, $allowed_types = NULL, $resize = NULL, $thumb = NULL, $file_name = NULL) {
         if (empty($_FILES[$input_name]['name'])) {
             return FALSE;
         } else {
@@ -90,7 +90,7 @@ class Util {
                     $fname = $file_name;
                 }
             } else {
-                $fname = underscore($title . '_' . time() . $_FILES[$input_name]['name']);
+                $fname = underscore($title . '_' . date('YmdHis') . $_FILES[$input_name]['name']);
             }
             $config = [
                 'upload_path' => $path,
@@ -99,28 +99,29 @@ class Util {
                 'remove_spaces' => true,
                 'file_name' => $fname
             ];
-            $this->CI->load->library('upload');
+            $this->CI->load->library(['image_lib', 'upload']);
             $this->CI->upload->initialize($config);
             if (!$this->CI->upload->do_upload($input_name)) {
                 $error = array('error' => $this->CI->upload->display_errors());
-                
                 print_r($error);
-                
             } else {
                 $upload_img_data = array('upload_data' => $this->CI->upload->data());
+                @chmod($upload_img_data['upload_data']['full_path'], 0777);
                 if (!empty($resize)) {
-                    if ($upload_img_data['upload_data']['image_width'] > $resize['w']) {
-                        $resize_config = array();
-                        $resize_config['image_library'] = 'gd2';
-                        $resize_config['source_image'] = $upload_img_data['upload_data']['full_path'];
-                        $resize_config['maintain_ratio'] = TRUE;
-//			$config['create_thumb'] = TRUE;
+//                    if ($upload_img_data['upload_data']['image_width'] > $resize['w']) {
+                    $resize_config = array();
+                    $resize_config['image_library'] = 'gd2';
+                    $resize_config['source_image'] = $upload_img_data['upload_data']['full_path'];
+                    $resize_config['maintain_ratio'] = TRUE;
+                    if (!empty($resize['w']))
                         $resize_config['width'] = $resize['w'];
-                        if (!empty($resize['h']))
-                            $resize_config['height'] = $resize['h'];
-                        $this->CI->image_lib->initialize($resize_config);
-                        $this->CI->image_lib->resize();
+                    if (!empty($resize['h']))
+                        $resize_config['height'] = $resize['h'];
+                    $this->CI->image_lib->initialize($resize_config);
+                    if (!$this->CI->image_lib->resize()) {
+                        echo $this->CI->image_lib->display_errors();
                     }
+//                    }
                 }
                 if (!empty($thumb)) {
                     if (!file_exists($thumb['path'])) {
@@ -266,8 +267,8 @@ class Util {
         }
         return (!is_int($l)) ? FALSE : substr(str_shuffle(str_repeat($pool, ceil($l / strlen($pool)))), 0, $l);
     }
-    
-     /**
+
+    /**
      * 
      * @return Public ip of client
      */
@@ -289,8 +290,8 @@ class Util {
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
-    
-        /**
+
+    /**
      * Return array as concatenated string
      * @param type $arr ['vinay ', 'singh', 'sachan'] // vinay, singh, sachan
      * @param type $arr ['vinay ', ' ', 'sachan'] // vinay, sachan
@@ -303,6 +304,8 @@ class Util {
         return implode($im, array_filter(array_map('trim', $arr)));
     }
 
-
+    public function all_page_list() {
+        
+    }
 
 }

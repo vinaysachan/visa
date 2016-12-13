@@ -1,3 +1,4 @@
+<?php list($class, $method) = [$this->router->fetch_class(), $this->router->fetch_method()]; ?>
 <header id="header">
     <div class="header-nav-bar">
         <nav class="navbar navbar-default navbar-static-top">
@@ -9,8 +10,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="<?= base_url() ?>" class="navbar-brand">
-                        <img alt="" class="img-responsive" style="max-height: 60px;" src="<?= base_url('public/img/logo.png') ?>">
+                    <a title="<?= SITE_NAME ?>" href="<?= base_url() ?>" class="navbar-brand">
+                        <img alt="<?= SITE_NAME ?>" class="img-responsive" style="max-height: 60px;" src="<?= base_url('public/img/logo.png') ?>">
                     </a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
@@ -27,62 +28,93 @@
                         </span>                         
                     </div>
                     <ul class="nav navbar-nav navbar-right primary-nav">
-                        <li class="active"> <a href="">Home</a> </li>
-                        <li class=""> <a href="">Apply Visa</a> </li>
-                        <li class=""> <a href="">Urgent Visa </a> </li>
-                        <li class=""> <a href="">Documents </a> </li>
-                        <li class=""> <a href="">T&C</a> </li>
-                        <li class=""> <a href="">Privacy</a> </li>
-                        <li class=""> <a href="">Contact Us</a> </li>
+                        <li class="<?= ($class == 'main' && $method == 'index') ? 'active' : '' ?>"> 
+                            <a title="<?= SITE_NAME ?>" href="<?= base_url() ?>">Home</a>
+                        </li>
+                        <?php
+                        foreach ($page_list as $pl) :
+                            if ($pl['slug'] != 'home') :
+                                ?>
+                                <li class=""><a href=""><?= $this->setting_model->page_name_by_slug($pl['slug']) ?></a></li>
+                                <?php
+                            endif;
+                        endforeach;
+                        ?>
+
+
+
+
+                        <!--                        <li class=""> <a href="">Apply Visa</a> </li>
+                                                <li class=""> <a href="">Urgent Visa </a> </li>
+                                                <li class=""> <a href="">Documents </a> </li>
+                                                <li class=""> <a href="">T&C</a> </li>
+                                                <li class=""> <a href="">Privacy</a> </li>
+                                                <li class=""> <a href="">Contact Us</a> </li>-->
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 </header>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img class="img-responsive" style="height: 300px; width: 100% " title="" alt="" src="https://www.dewionline.com/uploads/banner/home_slider/slide_2_1458914526home-banner3.jpg">
-        </div>
-        <div class="item">
-            <img class="img-responsive" style="height: 300px; width: 100%" title="" alt="" src="http://localhost/visa/public/themes/images/banner4.jpg">
-        </div>
-        <div class="item">
-            <img class="img-responsive" style="height: 300px; width: 100%" title="" alt="" src="http://localhost/visa/public/themes/images/banner5.jpg">
-        </div>
-        
-        
-    </div>
-</div>
 
-
-
-<?php /*if (!empty($page_name) && $page_name == 'home' && !empty($banners)) : ?>
+<?php if (!empty($banners)) : ?>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <?php foreach ($banners as $key => $val) : ?>
-                <li data-target="#carousel-example-generic" data-slide-to="<?= $key ?>" class="<?= ($key == 0) ? 'active' : '' ?>"></li>
+            <?php foreach ($banners as $k => $b) : ?>
+                <li data-target="#carousel-example-generic" data-slide-to="<?= $k ?>" class="<?= ($k == 0) ? 'active' : '' ?>"></li>
             <?php endforeach; ?>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <?php foreach ($banners as $key => $val) : ?>
-                <div class="item <?= ($key == 0) ? 'active' : '' ?>">
-                    <img title="<?= $val['banner_desc'] ?>" alt="<?= $val['title'] ?>" src="<?= base_url(BANNER_PHOTO_PATH . $val['image']) ?>" />
+            <?php foreach ($banners as $k => $b) : ?>
+                <div class="item <?= ($k == 0) ? 'active' : '' ?>">
+                    <img  class="img-responsive" style="height: 300px; width: 100% " title="<?= $b->title ?>" alt="<?= $b->title ?>" src="<?= base_url(BANNER_PATH . $b->img) ?>">
                 </div>
             <?php endforeach; ?>
-        </div>  
+        </div>
     </div>
-<?php endif; */?>
+    <div id="application_btn" class="container text-center">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange">
+                    <span class="step">Step 1</span>
+                    <a href="">
+                        <div class="mt5">Click Here to</div>
+                        <h4 class="fs18 m0 p0 mt5">Apply for Visa</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                    <span class="step">Step 2</span>
+                    <a href="">
+                        <div class="mt5">Complete Partially</div>
+                        <h4 class="fs18 m0 p0 mt5">Filled Form</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                    <span class="step">Step 3</span>
+                    <a href="">
+                        <div class="mt5">Make Payment For</div>
+                        <h4 class="fs18 m0 p0 mt5">Completed Form</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-blue">
+                    <span class="step">Step 4</span>
+                    <a href="">
+                        <div class="mt5">Check Applications</div>
+                        <h4 class="fs18 m0 p0 mt5">Status</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
-
-
-
-
-
-<div class="brred"></div>
+<?php
+    print_r($page_data);
+?>

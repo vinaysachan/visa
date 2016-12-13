@@ -1,5 +1,5 @@
 body {
-    background: #ffffff;
+    background-color: #f8f8f8;
     color: #303c42;
     font-size: 14px;
     font-family: 'Lato', Helvetica, Arial, sans-serif;
@@ -34,7 +34,6 @@ h6, .h6 {
 .navbar-default {
     background-color: #ffffff;
 }
-
 #header .navbar-default .navbar-nav {
     border-radius: 3px;
     float: none; 
@@ -42,7 +41,6 @@ h6, .h6 {
     padding: 0;list-style: outside none none;
     margin: 0px;
 }
-
 @media screen and (min-width:767px){
     #header .navbar-default .navbar-nav > li {
         color: #808080;
@@ -91,7 +89,7 @@ h6, .h6 {
 .carousel-indicators {
     bottom: 0;
 }
- 
+
 .carousel-indicators .active, .carousel-indicators li {
     background-color: #f2f2f2;
     border: medium none;
@@ -108,8 +106,137 @@ h6, .h6 {
     background-color: #2aadde;
 }
 
+.right-box:first-child{
+    margin-top: 0;
+}
+
+.right-box {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    margin-left: 0;
+    margin-top: 30px; 
+    position: relative;
+}
+.right-box h3 {
+    border-bottom: 1px solid #f0f0f0;
+    color: #fff;
+    font-family: "Roboto Slab",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin: 0;
+    padding: 10px 0; 
+    text-align: center;
+    text-transform: uppercase;
+    background-color: blueviolet;
+}
+.right-box-content {
+    padding: 10px;
+}
+
+input.form-control:focus, input.form-control,textarea.form-control:focus, textarea.form-control {
+    background-color: #fcfcfc;
+    border-color: #eeeeee ;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid solid solid solid;
+    border-width: 1px 1px 1px 1px;
+    box-shadow: none;
+    color: #848484;
+    min-height: 42px;
+    font-size: 12px;
+}
+
+#application_btn {
+    margin-top: 10px;
+}
+
+.info-box {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 0px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 15px;
+    min-height: 90px;
+    width: 100%;
+    padding: 5px;
+}
+#application_btn .step {
+    background: #fff;
+    color: black;
+    padding: 3px 10px;
+}
+#application_btn a,#application_btn a:hover,#application_btn a:active {
+    color: inherit;
+    text-decoration: none;
+}
 
 
+.bg-yellow {
+    background-color: #f39c12 !important;
+}
+.bg-aqua{
+    background-color: #00c0ef !important;
+}
+.bg-blue {
+    background-color: #0073b7 !important;
+    color: #fff !important;
+}
+.bg-light-blue{
+    background-color: #3c8dbc !important;
+    color: #fff !important;
+}
+.bg-green {
+    background-color: #00a65a !important;
+    color: #fff !important;
+}
+.bg-navy {
+    background-color: #001f3f !important;
+}
+.bg-teal {
+    background-color: #39cccc !important;
+}
+.bg-olive {
+    background-color: #3d9970 !important;
+}
+.bg-lime {
+    background-color: #01ff70 !important;
+}
+.bg-orange {
+    background-color: #ff851b !important;
+    color: #fff !important;
+}
+.bg-fuchsia {
+    background-color: #f012be !important;
+}
+.bg-purple {
+    background-color: #605ca8 !important;
+}
+.bg-maroon {
+    background-color: #d81b60 !important;
+}
+.bg-gray {
+    background-color: #d2d6de !important;
+}
+.bg-gray-light {
+    background-color: #f7f7f7;
+}
+.bg-black {
+    background-color: #111111 !important;
+}
+.bg-red{
+    background-color: #dd4b39 !important;
+    color: #fff !important;
+}
+
+.bg-gray-active {
+    color: #000;
+    background-color: #b5bbc8 !important;
+}
+.bg-black-active {
+    background-color: #000000 !important;
+} 
 
 
 
@@ -190,7 +317,7 @@ h6, .h6 {
 
 
 
- /*Paddings*/ 
+/*Paddings*/ 
 /* ------------------------------------------------------ */
 .p0 { padding: 0 !important }
 .p60 { padding: 60px !important ; }
@@ -262,7 +389,7 @@ h6, .h6 {
 .pr10 { padding-right: 10px !important ; }
 .pr5 { padding-right: 5px !important ; }
 .pr0 { padding-right: 0 !important ; }
- Font Size 
+Font Size 
 .fs1 { font-size: 1px !important ; }
 .fs5 { font-size: 5px !important ; }
 .fs10 { font-size: 10px !important ; }
@@ -285,6 +412,8 @@ h6, .h6 {
 
 
 .brred { border: 1px solid red;}
+
+.error{ font-size: 11px; color: red;font-weight:normal;margin-bottom: 0px;}
 
 /*
 

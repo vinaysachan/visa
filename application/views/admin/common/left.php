@@ -14,75 +14,82 @@
             <li class="<?= ($class == 'home' && $method == 'index') ? 'active' : '' ?>">
                 <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard</span>') ?>
             </li>
-            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">  
+            <li class="<?= ($class == 'home' && $method == 'enquiry') ? 'active' : '' ?>">
+                <?= anchor(base_url('admin/home/enquiry/' . STATUS_IN_ACTIVE), '<i class="fa fa-envelope"></i> <span>Enquiry</span>') ?>
+            </li>
+			<li class="<?= ($class == 'home' && $method == 'applicationDetails') ? 'active' : '' ?>">
+                <?= anchor(base_url('admin/home/applicationDetails/'), '<i class="fa fa-envelope"></i> <span>Application Details</span>') ?>
+            </li>
+            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index', 'banner', 'banner_ae','page', 'page_ae']))) ? 'active' : '' ?>">  
                 <a href="javascript:void(0)">
                     <i class="fa fa-internet-explorer"></i>
                     <span>Website Management</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['index']))) ? 'active' : '' ?>">
-                       <?= anchor(base_url('admin/setting'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['banner', 'banner_ae']))) ? 'active' : '' ?>">
+                        <?= anchor(base_url('admin/setting/banner'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
+                    </li>
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['page', 'page_ae']))) ? 'active' : '' ?>">
+                        <?= anchor(base_url('admin/setting/page'), '<i class="fa fa-television"></i> <span>Manage Pages</span>') ?>
                     </li>
                 </ul>
             </li>
-<!--            <li class="<?= ($class == 'home' && $method == 'index1') ? 'active' : '' ?>">
-            <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard wqewqe</span>') ?>
-            </li>
-            <li class="treeview active">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-book"></i>
-                    <span>Interview Question Answer</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="active">
-                        <a href=""><i class="fa fa-rss-square"></i> <span>Interview QA Category</span></a>
-                    </li>
-                    <li class="">
-                        <a href=""><i class="fa fa-circle-o"></i> <span>Manage Interview QA</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-book"></i>
-                    <span>Blogs</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu" style="display: none;">
-                    <li class="">
-                        <a href=""><i class="fa fa-rss-square"></i> <span>Blog Category</span></a>
-                    </li>
-                    <li class="">
-                        <a href=""><i class="fa fa-circle-o"></i> <span>Manage Blog</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="treeview ">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-book"></i>
-                    <span>Interview Question Answer</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="">
-                        <a href=""><i class="fa fa-rss-square"></i> <span>Interview QA Category</span></a>
-                    </li>
-                    <li class="">
-                        <a href=""><i class="fa fa-circle-o"></i> <span>Manage Interview QA</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="<?= ($class == 'home' && $method == 'index2') ? 'active' : '' ?>">
+            <!--            
+                        <li class="treeview active">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-book"></i>
+                                <span>Interview Question Answer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active">
+                                    <a href=""><i class="fa fa-rss-square"></i> <span>Interview QA Category</span></a>
+                                </li>
+                                <li class="">
+                                    <a href=""><i class="fa fa-circle-o"></i> <span>Manage Interview QA</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-book"></i>
+                                <span>Blogs</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                <li class="">
+                                    <a href=""><i class="fa fa-rss-square"></i> <span>Blog Category</span></a>
+                                </li>
+                                <li class="">
+                                    <a href=""><i class="fa fa-circle-o"></i> <span>Manage Blog</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview ">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-book"></i>
+                                <span>Interview Question Answer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="">
+                                    <a href=""><i class="fa fa-rss-square"></i> <span>Interview QA Category</span></a>
+                                </li>
+                                <li class="">
+                                    <a href=""><i class="fa fa-circle-o"></i> <span>Manage Interview QA</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="<?= ($class == 'home' && $method == 'index2') ? 'active' : '' ?>">
             <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>Dashboard we</span>') ?>
-            </li>
-            <li class="<?= ($class == 'home' && $method == 'index3') ? 'active' : '' ?>">
+                        </li>
+                        <li class="<?= ($class == 'home' && $method == 'index3') ? 'active' : '' ?>">
             <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span> er dfgd</span>') ?>
-            </li>
-            <li class="<?= ($class == 'home' && $method == 'index4') ? 'active' : '' ?>">
+                        </li>
+                        <li class="<?= ($class == 'home' && $method == 'index4') ? 'active' : '' ?>">
             <?= anchor(base_url('admin'), '<i class="fa fa-dashboard"></i> <span>dfgdfg fd</span>') ?>
-            </li>-->
+                        </li>-->
         </ul>
     </section>		
 </aside>
