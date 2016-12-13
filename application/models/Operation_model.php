@@ -31,6 +31,144 @@ class Operation_model extends CORE_Model {
             return FALSE;
         }
     }
+	function app_step1()
+	{
+        $application=$this->input->post('nationality').rand(1,999999);
+		$data = array(
+			'app_id' => $application,
+			'app_type' => $this->input->post('visaType'),
+			'fname' => $this->input->post('fname'),
+			'lname' => $this->input->post('lname'),
+			'passport_type' => $this->input->post('passportType'),
+			'nationality' => $this->input->post('nationality'),
+			'portofarrival' => $this->input->post('portofarrival'),
+			'passport_no' => $this->input->post('passportno'),
+			'dob' => $this->input->post('dob'),
+			'email' => $this->input->post('email')
+			);
+		$this->db->insert('applicatrion_details', $data);
+        return $application;
+	}
+    function get_application_details()
+    {
+        $application_id=$this->session->userdata('application_id');
+        $this->db->where('app_id', $application_id);
+        $query = $this->db->get('applicatrion_details');
+        return $result = $query->result();
+    }
+    function set_visa_reg()
+    {
+        $curdate=date('Y-m-d');
+        $identity_certificate= $this->input->post('ic');
+        $acquire_nationality=$this->input->post('acquire_nationality');
+        $applicationid=$this->input->post('applicationid');
+        $data = array(
+            'fname' => $this->input->post('surname'),
+            'lname' => $this->input->post('fname'),
+            'passport_no' => $this->input->post('passportno'),
+            'sex' => $this->input->post('sex'),
+            'birth_city' => $this->input->post('birthofcity'),
+            'birth_country' => $this->input->post('birthofcountry'),
+            'national_id' => $this->input->post('natinalid'),
+            'religion' => $this->input->post('religion'),
+            'visible_identification_marks' => $this->input->post('identification'),
+            'qualification' => $this->input->post('qualification'),
+            'acquire_nationality' => $acquire_nationality,
+            
+            'pass_place_of_Issue' => $this->input->post('placeofissue'),
+            'pass_date_of_Issue' => $this->input->post('dateofissue'),
+            'pass_date_of_expiry' => $this->input->post('dateofexpiry'),
+            'ldentity_certificate' => $identity_certificate,
+              
+            'last_update' => $curdate
+        );
+        if($identity_certificate=='yes') {
+            $data['ic_country_of_Issue']=$this->input->post('issueofcountry');
+            $data['ic_passport_no']=$this->input->post('icdateofexpiry');
+            $data['ic_date_of_Issue']=$this->input->post('icdateofexpiry');
+            $data['ic_place_of_Issue']=$this->input->post('icplaceofissue');
+            $data['ic_nationality']=$this->input->post('icnatinality');
+            
+            }
+        if($acquire_nationality=='Naturalization') {
+            $data['pre_nationality'] = $this->input->post('prev_nationality');
+        }
+
+        $this->db->where('app_id', $applicationid);
+        $this->db->update('applicatrion_details', $data);
+        if($this->db->affected_rows() > 0) {
+         return 1;   
+        }
+    }
+    function set_visareg3()
+    {
+        $curdate=date('Y-m-d');
+        $grand_pak= $this->input->post('grand_pak');
+        $maritalstatus=$this->input->post('maritalstatus');
+        $military=$this->input->post('military');
+        $applicationid=$this->input->post('applicationid');
+        $data = array(
+            'houseno' => $this->input->post('houseno'),
+            'city' => $this->input->post('city'),
+            'district' => $this->input->post('district'),
+            'zipcode' => $this->input->post('zipcode'),
+            'mobileno' => $this->input->post('mobileno'),
+            'adress_country' => $this->input->post('Addresscountry'),
+            'perma_houseno' => $this->input->post('phouseno'),
+            'perma_district' => $this->input->post('pdistrict'),
+            'father_nationality' => $this->input->post('fathernationality'),
+            'father_name' => $this->input->post('fathername'),
+            'father_birth_place' => $this->input->post('fatherbirthplace'),
+            
+            'father_country' => $this->input->post('fathercountry'),
+            'father_prenationality' => $this->input->post('fatherprenationality'),
+            'mother_name' => $this->input->post('mothername'),
+            'mother_nationality' => $this->input->post('mothernationality'),
+            'mother_prenationality' => $this->input->post('motherprenationality'),
+            'mother_birth_place' => $this->input->post('motherbirthplace'),
+            'mother_country' => $this->input->post('mothercountry'),
+            'present_occupation' => $this->input->post('occupation'),
+            'Employer_or_business' => $this->input->post('Employer_or_business'),
+            'designation' => $this->input->post('designation'),
+            'address' => $this->input->post('baddress'),
+            'prof_phone' => $this->input->post('bPhone'),
+            'past_occupation' => $this->input->post('poccupation'),
+            'marital_status' => $maritalstatus,
+            'grand_parent_pakistan' => $grand_pak,
+            
+            'last_update' => $curdate
+        );
+        if($military=='yes') {
+            $data['mil_organisation']=$this->input->post('morganisation');
+            $data['mil_designation']=$this->input->post('mdesignation');
+            $data['mil_rank']=$this->input->post('rank');
+            $data['mil_place_of_posting']=$this->input->post('posting');
+            
+        }
+        if($maritalstatus=='Married') {
+            $data['spouse_name']=$this->input->post('spousename');
+            $data['spouse_nationlity']=$this->input->post('spousenationality');
+            $data['spouse_prenationality']=$this->input->post('spouseprenationality');
+            $data['spouse_birth_place']=$this->input->post('spousebirthplace');
+            $data['spouse_birth_country']=$this->input->post('spousecountry');
+            
+            }
+        if($grand_pak=='yes') {
+            $data['pakistan_nationality_detail'] = $this->input->post('pakistan_nationality_detail');
+        }
+
+        $this->db->where('app_id', $applicationid);
+        $this->db->update('applicatrion_details', $data);
+        if($this->db->affected_rows() > 0) {
+         return 1;   
+        }
+    }
+	function getCounrty()
+	{
+		 
+		$query=$this->db->get('country');
+		return $result = $query->result();
+	}
 
     public function getAdminById($id) {
         $sql = 'SELECT * FROM ' . TBL_ADMIN_USER . ' au  WHERE au.id ="' . $id . '"';

@@ -7,6 +7,8 @@ class CORE_Controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library(['session', 'util']);
+		$this->load->helper('captcha');
+		$this->load->library('image_lib');
         $this->load->helper(['html', 'utility', 'url', 'form', 'inflector']);
 
         // Load CSS Files :-
@@ -16,6 +18,7 @@ class CORE_Controller extends CI_Controller {
         ];
         // Load JS Files :-
         $this->data['js'] = [
+			'public/jquery-ui/jquery-ui.min.js',
             'public/js/jquery.min.js',
             'public/plugins/bootstrap/js/bootstrap.min.js'
         ];

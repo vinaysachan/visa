@@ -40,7 +40,32 @@ class Home extends Admin_Controller {
         ];
         $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
     }
-
+    function applicationDetails()
+    {
+        $heading = '<i class="fa fa-envelope-o mr10"></i> New Application';
+         
+        $data = [
+            'heading' => $heading,
+            'sub_heading' => '',
+             
+            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'applicationDetails'],
+            'application' => $this->global_model->getApplication()
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+    function appDetails($app_id)
+    {
+        $heading = '<i class="fa fa-envelope-o mr10"></i> New Application';
+         
+        $data = [
+            'heading' => $heading,
+            'sub_heading' => '',
+             
+            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'applicationDetails'],
+            'application' => $this->global_model->getAppDetails($app_id)
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
     public function change_sts() {
         if ($this->global_model->change_status($this->input->post('sts'), $this->input->post('id'))) {
             $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Enquiry status changre successfully.']);

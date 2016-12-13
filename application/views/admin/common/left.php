@@ -17,6 +17,9 @@
             <li class="<?= ($class == 'home' && $method == 'enquiry') ? 'active' : '' ?>">
                 <?= anchor(base_url('admin/home/enquiry/' . STATUS_IN_ACTIVE), '<i class="fa fa-envelope"></i> <span>Enquiry</span>') ?>
             </li>
+			<li class="<?= ($class == 'home' && $method == 'applicationDetails') ? 'active' : '' ?>">
+                <?= anchor(base_url('admin/home/applicationDetails/'), '<i class="fa fa-envelope"></i> <span>Application Details</span>') ?>
+            </li>
             <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index', 'banner', 'banner_ae','page', 'page_ae']))) ? 'active' : '' ?>">  
                 <a href="javascript:void(0)">
                     <i class="fa fa-internet-explorer"></i>

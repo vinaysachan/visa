@@ -37,7 +37,22 @@ class Global_model extends CORE_Model {
             return $query->row();
         return FALSE;
     }
-
+    function getApplication()
+    {
+        $sql = 'SELECT * FROM applicatrion_details ';
+        if ($query = $this->db->query($sql)) {
+            return $query->result();
+        }
+        return FALSE;
+    }
+    function getAppDetails($app_id)
+    {
+        $sql = 'SELECT * FROM applicatrion_details where app_id= "'.$app_id.'"';
+        if ($query = $this->db->query($sql)) {
+            return $query->result();
+        }
+        return FALSE;
+    }
     public function all_saved_page() {
         $sql = 'SELECT GROUP_CONCAT(slug) as all_slugs FROM pages WHERE is_active = "' . STATUS_ACTIVE . '"';
         if ($query = $this->db->query($sql)) {
