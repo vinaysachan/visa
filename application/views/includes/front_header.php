@@ -33,30 +33,19 @@
                         </li>
                         <?php
                         foreach ($page_list as $pl) :
-                            if ($pl['slug'] != 'home') :
+                            if (($pl['slug'] != 'home') && (in_array('top', $pl['menu_location']))) :
                                 ?>
-                                <li class=""><a href=""><?= $this->setting_model->page_name_by_slug($pl['slug']) ?></a></li>
+                                <li  class="<?= (($class == 'main') && ($method == 'page') && (!empty($slug)) && ($slug == $pl['slug'])) ? 'active' : '' ?>"><a href="<?= base_url($pl['slug']) ?>"><?= $this->setting_model->page_name_by_slug($pl['slug']) ?></a></li>
                                 <?php
                             endif;
                         endforeach;
                         ?>
-
-
-
-
-                        <!--                        <li class=""> <a href="">Apply Visa</a> </li>
-                                                <li class=""> <a href="">Urgent Visa </a> </li>
-                                                <li class=""> <a href="">Documents </a> </li>
-                                                <li class=""> <a href="">T&C</a> </li>
-                                                <li class=""> <a href="">Privacy</a> </li>
-                                                <li class=""> <a href="">Contact Us</a> </li>-->
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 </header>
-
 <?php if (!empty($banners)) : ?>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -114,7 +103,3 @@
         </div>
     </div>
 <?php endif; ?>
-
-<?php
-    print_r($page_data);
-?>

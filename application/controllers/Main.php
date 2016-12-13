@@ -9,21 +9,42 @@ class Main extends FRONT_Controller {
     }
 
     public function index() {
+        $page_data = $this->global_model->page_data('home');
         $data = [
-            'title' => 'Page title',
-            'meta_description' => 'Meta Desc',
-            'meta_keywords' => 'Meta Keyword',
+            'title' => $page_data->title,
+            'meta_description' => $page_data->description,
+            'meta_keywords' => $page_data->keywords,
             'breadcrumb' => [
                 base_url() => 'Home',
             ],
-            'heading' => 'Basic Intro & History of PHP',
+            'heading' => $page_data->heading,
             'banners' => $this->setting_model->get_banners(['where' => ['status' => STATUS_ACTIVE]]),
-            'page_data' => $this->global_model->page_data('home')
+            'content' => $page_data->page_content,
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
 
-    public function page() {
+    public function page($slug = NULL) {
+        if (empty($slug)) {
+            redirect(base_url());
+        }
+        $page_data = $this->global_model->page_data($slug);
+        if (empty($page_data)) {
+            redirect(base_url());
+        }
+        $data = [
+            'title' => $page_data->title,
+            'meta_description' => $page_data->description,
+            'meta_keywords' => $page_data->keywords,
+            'heading' => $page_data->heading,
+            'banners' => $this->setting_model->get_banners(['where' => ['status' => STATUS_ACTIVE]]),
+            'content' => $page_data->page_content,
+            'slug' =>$slug
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+    }
+
+    public function first_page() {
 
         $this->load->view('html/first_page');
     }

@@ -415,6 +415,58 @@ Font Size
 
 .error{ font-size: 11px; color: red;font-weight:normal;margin-bottom: 0px;}
 
+.page_content {
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 25px;
+    min-height: 400px;
+    padding: 10px;
+    text-align: justify;
+}
+.page_content h1:first-child {
+    margin: 0px;
+    font-size: 22px;
+    /*display: inline-block;*/
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.page_content h2 {
+    margin: 0px;
+    font-size: 19px; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+ul.blog-popular-post {
+    list-style: outside none none;
+    padding: 5px 5px 0 5px;
+}
+ul.blog-popular-post li {
+    border-bottom: 1px solid #ececec;
+    list-style: outside none none;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+ul.blog-popular-post li:last-child{
+    border-bottom: 0px solid #ececec;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+}
+ul.blog-popular-post li a {
+    color: #222222;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out 0s;
+    font-family: "Roboto Condensed",sans-serif;
+}
+ul.blog-popular-post li a:hover{
+    color: #0000ff;
+}
+
+
 /*
 
 hr {
