@@ -31,10 +31,10 @@ class Admin_Controller extends CORE_Controller {
 
 
         //Check for Login 
-        //if ($this->checkLogin()) {
-       //     redirect(base_url('admin/login'));
-      //      exit();
-       // }
+        if ($this->checkLogin()) {
+            redirect(base_url('admin/login'));
+            exit();
+        }
     }
 
     protected function checkLogin() {
