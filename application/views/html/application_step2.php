@@ -4,13 +4,13 @@
 				 <div class="clear"> </div>
 				<div class="col-md-12" ><span>Port of Arrival     : AHMEDABAD</span><br>
 					<span>Application Type  :  <?=$apply_details[0]->app_type;?></span><br>
-                                        <span>Application NO : <?=strtoupper($this->session->userdata('application_id'));?>
+                                        <span>Application NO : <?=strtoupper($this->session->userdata('application_id'));?></span>
 				</div>
 				<div class="col-md-12" style="padding-left: 14%;">
 				<div class="well col-md-9">
                 <form method="POST" >
 					
-     
+                        
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-4 col-form-label">Surname</label>
       <div class="col-sm-7">

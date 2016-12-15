@@ -118,6 +118,7 @@ define('INFO_MSG', 'alert-info');
 /*File Upload Location */
 define('ADMIN_PHOTO_PATH', './uploads/admin/profile_photo/'); 
 define('BANNER_PATH', './uploads/banner/'); 
+define('APPLICATION_IMG', './uploads/application_image/'); 
 
 define('CAPTCHA_PATH', './uploads/captcha/'); 
 
