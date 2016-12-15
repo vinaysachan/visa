@@ -5,19 +5,12 @@
 	
 </style>
 	
-
-        <div class="band-gr" style="padding-bottom:1%; border-top:solid 5px #FCB040; background:#FCFCFC;">     
-            <div class="wrapper band-txt-center11" style="color:#000; padding:20px; ">
-				 
-				 <div class="clear"> </div>
-				<div class="col-md-12" ><span>Port of Arrival     : AHMEDABAD</span><br>
-					<span>Application Type  :  <?=$apply_details[0]->app_type;?></span><br>
-                                        <span>Application NO : <?=strtoupper($this->session->userdata('application_id'));?></span>
-				</div>
-				<div class="col-md-12" style="padding-left: 14%;">
-				<div class="well col-md-12">
+<div><h4>Application Type  :  <?=$apply_details[0]->app_type;?></h4>
+                                        <h4>Application NO : <?=strtoupper($this->session->userdata('application_id'));?></h4>
+</div>
+				<div class="p10">
                 <form method="POST" >
-		<div class="alert alert-info" role="alert">Applicant's Address Details </div>			
+		<div class="col-md-12" style="background-color: #337ab7; color:white;">Applicant's Address Details </div>			
 					<h2>Present Address</h2>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-4 col-form-label">House No./Street*</label>
@@ -95,7 +88,7 @@
         <input type="text" class="form-control" name="pdistrict" id="pdistrict"  placeholder="State/Province/District">
       </div>
     </div>	
-	<div class="alert alert-info" role="alert">Family Details  </div>				
+	<div class="col-md-12" style="background-color: #337ab7; color:white;">Family Details  </div>				
 	<h2>Father's Details</h2>				
 	<div class="form-group row">
       <label for="inputEmail3" class="col-sm-4 col-form-label">father Name*</label>
@@ -272,7 +265,7 @@
         <input type="text" class="form-control" id="passportno" name="pakistan_nationality_detail"  >
       </div>
     </div>
-	<div class="alert alert-info" role="alert">Profession / Occupation Details of Applicant </div>				
+	<div class="col-md-12" style="background-color: #337ab7; color:white;">Profession / Occupation Details of Applicant </div>				
 	 <div class="form-group row">
       <label for="inputPassword3" class="col-sm-4 col-form-label">Present Occupation *</label>
       <div class="col-sm-7">
@@ -452,55 +445,11 @@
     </div>
   </form>
 				</div>
-				</div>
- 				<div class="clear"> </div>
-            </div>
-        </div>
+				 
 
 <script>
          
-	function sameaddress(f) {
-		 
-  if(f.sameAddress.checked == true) {
-	  
-    f.phouseno.value = f.houseno.value;
-    f.pcity.value = f.city.value;
-	f.pdistrict.value = f.district.value;
-  }
-}
-	function maritalStatus(val)
-	{
-		if (val == 'Married') {
-            
-            $('#spouse_form').show();
-        }
-        else if (val == 'Unmarried') {
-             
-            $('#spouse_form').hide();
-        }
-	}
-	$(document).ready(function() {
-	$('input:radio[name=grand_pak]').change(function() {
-        if (this.value == 'yes') {
-            
-            $('#pak_details').show();
-        }
-        else if (this.value == 'no') {
-             
-            $('#pak_details').hide();
-        }
-    });
-		$('input:radio[name=military]').change(function() {
-        if (this.value == 'yes') {
-            
-            $('#military_form').show();
-        }
-        else if (this.value == 'no') {
-             
-            $('#military_form').hide();
-        }
-    });
-		 });
+	
 	 
 </script>
         

@@ -156,13 +156,63 @@ class Operation_model extends CORE_Model {
             return 1;
         }
     }
-
-    function getCounrty() {
+    
+    public function getCounrty() {
 
         $query = $this->db->get('country');
         return $result = $query->result();
     }
+  
+     function app_step4($img)
+    {
+        $curdate=date('Y-m-d');
+        $visitedbefore= $this->input->post('visitedbefore');
+        $extendstay=$this->input->post('extendstay');
+        
+        $applicationid=$this->input->post('applicationid');
+        $data = array(
+            'durationofvisa' => $this->input->post('visa_day'),
+            'No_ofentries' => $this->input->post('entries_no'),
+            'purpose_of_visit' => $this->input->post('PurposeVisit'),
+            'port_of_exit' => $this->input->post('portofexit'),
+            'places_likely_to_visit' => $this->input->post('visitedplace'),
+            'visited_India' => $visitedbefore,
+             
+            'ref_name' => $this->input->post('refindia'),
+            'ref_address' => $this->input->post('refaddress'),
+            'ref_phone' => $this->input->post('ref_phone'),
+            
+            'ref_home_name' => $this->input->post('ref_home'),
+            'ref_home_address' => $this->input->post('ref_homeaddress'),
+            'ref_home_phone' => $this->input->post('ref_homephone'),
+            'image' => $img,
+                  
+            'last_update' => $curdate
+        );
+        if($visitedbefore=='yes') {
+             
+            $data['visited_address']=$this->input->post('visitedaddress');
+            $data['previously_visited_city']=$this->input->post('visitedcities');
+            $data['last_Indian_visa_no']=$this->input->post('visitedvisano');
+            $data['visited_type_Visa']=$this->input->post('visitedvisatype');
+            $data['visited_visa_issue_place']=$this->input->post('visitedplaceissue');
+            $data['visited_visa_issue_date']=$this->input->post('visitedissuedate');
+            
+        }
+        if($extendstay=='yes') {
+            $data['extend_visa_details']=$this->input->post('extendstaydetails');
+            
+            
+            }
+         
 
+        $this->db->where('app_id', $applicationid);
+        $this->db->update('applicatrion_details', $data);
+        if($this->db->affected_rows() > 0) {
+         return 1;   
+        }
+    }
+	  
     public function getAdminById($id) {
         $sql = 'SELECT * FROM ' . TBL_ADMIN_USER . ' au  WHERE au.id ="' . $id . '"';
         $query = $this->db->query($sql);
@@ -222,5 +272,25 @@ class Operation_model extends CORE_Model {
             }
         }
     }
-
+    function payment_status($status)
+    {
+        $application_id=$this->session->userdata('application_id');
+        $curdate=date('Y-m-d');
+        $data = array(
+			'app_id' => $application_id,
+			'payment_status' => $status,
+			 
+			);
+		$result=$this->db->insert('payment', $data);
+        if($result) 
+        {
+            $data = array(
+            'payment_status' => $status,
+                           
+            'last_update' => $curdate
+        );
+        $this->db->where('app_id', $application_id);
+        $this->db->update('applicatrion_details', $data);
+        }
+    }
 }
