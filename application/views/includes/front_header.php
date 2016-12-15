@@ -75,7 +75,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-green">
                     <span class="step">Step 2</span>
-                    <a href="<?= base_url('visa_reg') ?>">
+                    <a href="<?= base_url('serach_app') ?>">
                         <div class="mt5">Complete Partially</div>
                         <h4 class="fs18 m0 p0 mt5">Filled Form</h4>
                     </a>
