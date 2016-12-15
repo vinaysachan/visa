@@ -46,11 +46,20 @@ class Main extends FRONT_Controller {
 
     function apply_visa() {
         if (!$this->input->post('step1') == "") {
-            $application_id = $this->operation_model->app_step1();
-            $this->session->set_userdata('application_id', $application_id);
-            redirect(base_url('main/visa_reg'));
+            if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
+                echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Please Enter Correct verification code']);
+            } else {
+                $application_id = $this->operation_model->app_step1();
+                $this->session->set_userdata('application_id', $application_id); 
+                echo json_encode([
+                    'sts' => STATUS_SUCCESS,
+                    'title'=> 'Congratulation!',
+                    'msg' => 'Your e-Tourist Visa (eTV) Application submitted successfully.<br/>Please complete Step2.',
+                    'url' => base_url('main/visa_reg')
+                ]);
+            }
+            exit();           
         }
-
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
@@ -61,19 +70,30 @@ class Main extends FRONT_Controller {
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
 
-    function apply_visa_old() {
-        if (!$this->input->post('step1') == "") {
-            $application_id = $this->operation_model->app_step1();
-            $this->session->set_userdata('application_id', $application_id);
-            redirect(base_url('main/visa_reg'));
-        }
-        $data['getCounrty'] = $this->operation_model->getCounrty();
-        $this->load->view('html/common/header');
-        $this->load->view('html/form1', $data);
-        $this->load->view('html/common/footer');
-    }
+    //  
 
     function visa_reg() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('apply_visa'));
+        }
+        if (!$this->input->post('step1') == "") {
+            $result = $this->operation_model->set_visa_reg();
+            if ($result == 0) {
+                redirect(base_url('main/visa_step3'));
+            }
+        }
+        $data = [
+            'title' => 'title',
+            'meta_description' => 'description',
+            'meta_keywords' => 'keywords',
+            'heading' => 'Complete Partially Filled Form',
+            'apply_details' => $this->operation_model->get_application_details(),
+            'getCounrty' => $this->operation_model->getCounrty()
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+    }
+
+    function visa_reg_old() {
         if (!empty($this->session->userdata('application_id'))) {
             if (!$this->input->post('step1') == "") {
                 $result = $this->operation_model->set_visa_reg();
@@ -87,7 +107,7 @@ class Main extends FRONT_Controller {
             $this->load->view('html/application_step2', $data);
             $this->load->view('html/common/footer');
         } else {
-            redirect(base_url('main/apply_visa'));
+            redirect(base_url('apply_visa'));
         }
     }
 
@@ -103,12 +123,12 @@ class Main extends FRONT_Controller {
             $this->load->view('html/visa_step3', $data);
             $this->load->view('html/common/footer');
         } else {
-            redirect(base_url('main/apply_visa'));
+            redirect(base_url('apply_visa'));
         }
- 	}
-	function payment()
-	{
-		$this->load->view('html/payment');
-	}
- 
+    }
+
+    function payment() {
+        $this->load->view('html/payment');
+    }
+
 }

@@ -20,6 +20,7 @@
                 </div>
             </div>
         </div>
+          <script type="text/javascript"> base_url = '<?= base_url() ?>';</script>
         <?php /* Footer */ $this->load->view('includes/front_footer'); ?>
     </body>
 </html>

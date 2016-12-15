@@ -59,5 +59,13 @@ $route['admin/login'] = 'admin/home/login';
 $route['admin/logout'] = 'admin/home/logout';
 
 $route['apply_visa'] = 'main/apply_visa';
+
+$route['visa_reg'] = 'main/visa_reg';
+
+
+
+$route['captcha'] = 'captcha/index';
+
+
  
 $route['(:any)'] = 'main/page/$1';

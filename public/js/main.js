@@ -2,7 +2,7 @@ if ($('#base_url').length) {
     var base_url = $('#base_url').val();
 }
 if ($('#ck_editor_files_path').length) {
-    var base_url = $('#ck_editor_files_path').val();
+    var ck_editor_files_path = $('#ck_editor_files_path').val();
 }
 /*view_uploaded_img Strat  */
 function view_uploaded_img(t) {
@@ -159,7 +159,7 @@ $(function () {
             result = false;
         return result;
     }, 'Please enter 10 digit mobile number');
-
+    
     /*Only Numeric keypress */
     $(document).on('keyup', '.onlyNumeric', function () {
         if (/\D/g.test(this.value)) {
@@ -186,6 +186,19 @@ $(function () {
 
     if ($('.select2').length)
         $('.select2').select2({theme: "classic"});
+
+
+    if ($('.captcha').length) {
+        $.get(base_url + 'captcha', function (o) {
+            $('.captcha').html(o);
+        });
+        $(document).on('click', '.captcha_new', function () {
+            $.get(base_url + 'captcha', function (o) {
+                $('.captcha').html(o);
+            });
+        });
+    }
+//    var base_url = $('#base_url').val();
 
 });
 function alpha_numeric(i) {
