@@ -59,10 +59,6 @@ class Main extends FRONT_Controller {
             'getCounrty' => $this->operation_model->getCounrty()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
-
-//          $this->load->view('html/common/header');
-//        $this->load->view('html/form1', $data);
-//        $this->load->view('html/common/footer');
     }
 
     function apply_visa_old() {
