@@ -194,5 +194,29 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
+	function serach_app()
+	{
+		
+        if (!$this->input->post('search') == "") {
+			$application_data = $this->operation_model->search_app();
+		 	if(empty($application_data)) { 
+				redirect(base_url('serach_app'));
+			} else {
+				 $this->session->set_userdata('application_id', $application_data[0]->app_id); 
+				redirect(base_url('visa_reg'));
+			}
+			
+		}
+		
+		$data = [
+            'title' => 'title',
+            'meta_description' => 'description',
+            'meta_keywords' => 'keywords',
+            'heading' => 'e-Tourist Visa (eTV) Application',
+            'apply_details' =>$this->operation_model->get_application_details()
+             
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+	}
   
 }

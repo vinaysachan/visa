@@ -293,4 +293,11 @@ class Operation_model extends CORE_Model {
         $this->db->update('applicatrion_details', $data);
         }
     }
+    function search_app()
+    {
+        $appid=$this->input->post('appID');
+        $sql = 'SELECT * FROM applicatrion_details   WHERE app_id ="' . $appid . '"';
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }
