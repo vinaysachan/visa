@@ -133,6 +133,12 @@ $("#searchAppFrm").validate({
     }
 });
 
+$("#visa_regFrm").validate({ 
+    submitHandler: function (form) {
+        return true;   
+    }
+});
+
 
 
 
