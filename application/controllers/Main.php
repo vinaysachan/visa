@@ -50,15 +50,15 @@ class Main extends FRONT_Controller {
                 echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Please Enter Correct verification code']);
             } else {
                 $application_id = $this->operation_model->app_step1();
-                $this->session->set_userdata('application_id', $application_id); 
+                $this->session->set_userdata('application_id', $application_id);
                 echo json_encode([
                     'sts' => STATUS_SUCCESS,
-                    'title'=> 'Congratulation!',
+                    'title' => 'Congratulation!',
                     'msg' => 'Your e-Tourist Visa (eTV) Application submitted successfully.<br/>Please complete Step2.',
-                    'url' => base_url('main/visa_reg')
+                    'url' => base_url('visa_reg')
                 ]);
             }
-            exit();           
+            exit();
         }
         $data = [
             'title' => 'title',
@@ -69,8 +69,6 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-
-    //  
 
     function visa_reg() {
         if (empty($this->session->userdata('application_id'))) {
@@ -114,109 +112,111 @@ class Main extends FRONT_Controller {
     function visa_step3() {
         if (!empty($this->session->userdata('application_id'))) {
             if (!$this->input->post('visa_step3') == "") {
-                 
+
                 $this->operation_model->set_visareg3();
             }
             $data = [
-            'title' => 'title',
-            'meta_description' => 'description',
-            'meta_keywords' => 'keywords',
-            'heading' => 'e-Tourist Visa (eTV) Application',
-            'getCounrty' => $this->operation_model->getCounrty(),
-            'apply_details' =>$this->operation_model->get_application_details()
-        ];
-        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
-             
+                'title' => 'title',
+                'meta_description' => 'description',
+                'meta_keywords' => 'keywords',
+                'heading' => 'e-Tourist Visa (eTV) Application',
+                'getCounrty' => $this->operation_model->getCounrty(),
+                'apply_details' => $this->operation_model->get_application_details()
+            ];
+            $this->load->view('templates/front.tpl', array_merge($this->data, $data));
         } else {
             redirect(base_url('apply_visa'));
         }
- 
     }
-  
-    function visa_step4()
-    {
+
+    function visa_step4() {
         if (!$this->input->post('step4') == "") {
-            $app_id=$this->session->userdata('application_id');
-                        
-           $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
-             $result=$this->operation_model->app_step4($img);
+            $app_id = $this->session->userdata('application_id');
+
+            $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
+            $result = $this->operation_model->app_step4($img);
             if ($result) {
-                    redirect(base_url('main/payment'));
-                }
-          }
+                redirect(base_url('main/payment'));
+            }
+        }
 
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
             'meta_keywords' => 'keywords',
             'heading' => 'e-Tourist Visa (eTV) Application',
-            'apply_details' =>$this->operation_model->get_application_details(),
+            'apply_details' => $this->operation_model->get_application_details(),
             'getCounrty' => $this->operation_model->getCounrty()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-	function payment()
-	{
+
+    function payment() {
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
             'meta_keywords' => 'keywords',
             'heading' => 'e-Tourist Visa (eTV) Application',
-            'apply_details' =>$this->operation_model->get_application_details()
-             
+            'apply_details' => $this->operation_model->get_application_details()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
-		
-	}
-    function payment_success()
-    {
+    }
+
+    function payment_success() {
         $this->operation_model->payment_status(1);
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
             'meta_keywords' => 'keywords',
             'heading' => 'e-Tourist Visa (eTV) Application',
-            'apply_details' =>$this->operation_model->get_application_details()
-             
+            'apply_details' => $this->operation_model->get_application_details()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-    function payment_faild()
-    {
+
+    function payment_faild() {
         $this->operation_model->payment_status(0);
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
             'meta_keywords' => 'keywords',
             'heading' => 'e-Tourist Visa (eTV) Application',
-            'apply_details' =>$this->operation_model->get_application_details()
-             
+            'apply_details' => $this->operation_model->get_application_details()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-	function serach_app()
-	{
-		
+
+    function serach_app() {
         if (!$this->input->post('search') == "") {
-			$application_data = $this->operation_model->search_app();
-		 	if(empty($application_data)) { 
-				redirect(base_url('serach_app'));
-			} else {
-				 $this->session->set_userdata('application_id', $application_data[0]->app_id); 
-				redirect(base_url('visa_reg'));
-			}
-			
-		}
-		
-		$data = [
+            if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
+                echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Please Enter Correct verification code']);
+            } else {
+                $application_data = $this->operation_model->search_app();
+                if (empty($application_data)) {
+                    echo json_encode([
+                        'sts' => STATUS_ERROR,
+                        'msg' => 'Please enter correcty Temporary Application ID.',
+                    ]);
+                } else {
+                    $this->session->set_userdata('application_id', $application_data[0]->app_id);
+                    echo json_encode([
+                        'sts' => STATUS_SUCCESS,
+                        'title' => 'Congratulation!',
+                        'msg' => 'Please complete Step2.',
+                        'url' => base_url('visa_reg')
+                    ]);
+                }
+            }
+            exit();
+        }
+        $data = [
             'title' => 'title',
             'meta_description' => 'description',
             'meta_keywords' => 'keywords',
             'heading' => 'e-Tourist Visa (eTV) Application',
-            'apply_details' =>$this->operation_model->get_application_details()
-             
+            'apply_details' => $this->operation_model->get_application_details()
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
-	}
-  
+    }
+
 }

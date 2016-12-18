@@ -223,9 +223,9 @@
             <div class="col-sm-offset-4 col-sm-3">
                 <input type="submit" class="btn btn-primary" name="step1" value="Save and Continue" />
             </div>
-            <div class="col-sm-offset-2 col-sm-3">
+<!--            <div class="col-sm-offset-2 col-sm-3">
                 <input type="submit" class="btn btn-primary" name="step1" value="Save and Temporarily Exit" />
-            </div>
+            </div>-->
         </div>
     </form>
 </div>
