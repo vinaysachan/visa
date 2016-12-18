@@ -76,7 +76,7 @@ class Main extends FRONT_Controller {
         }
         if (!$this->input->post('step1') == "") {
             $result = $this->operation_model->set_visa_reg();
-            if ($result == 0) {
+            if ($result) {
                 redirect(base_url('main/visa_step3'));
             }
         }

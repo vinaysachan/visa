@@ -75,15 +75,15 @@ class Operation_model extends CORE_Model {
             'qualification' => $this->input->post('qualification'),
             'acquire_nationality' => $acquire_nationality,
             'pass_place_of_Issue' => $this->input->post('placeofissue'),
-            'pass_date_of_Issue' => $this->input->post('dateofissue'),
-            'pass_date_of_expiry' => $this->input->post('dateofexpiry'),
+            'pass_date_of_Issue' => get_date($this->input->post('dateofissue')),
+            'pass_date_of_expiry' => get_date($this->input->post('dateofexpiry')),
             'ldentity_certificate' => $identity_certificate,
             'last_update' => $curdate
         );
         if ($identity_certificate == 'yes') {
             $data['ic_country_of_Issue'] = $this->input->post('issueofcountry');
-            $data['ic_passport_no'] = $this->input->post('icdateofexpiry');
-            $data['ic_date_of_Issue'] = $this->input->post('icdateofexpiry');
+            $data['ic_passport_no'] = $this->input->post('icpassportno');
+            $data['ic_date_of_Issue'] = get_date($this->input->post('icdateofexpiry'));
             $data['ic_place_of_Issue'] = $this->input->post('icplaceofissue');
             $data['ic_nationality'] = $this->input->post('icnatinality');
         }
