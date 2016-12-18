@@ -190,7 +190,9 @@ select.form-control option {
     color: inherit;
     text-decoration: none;
 }
-
+.btn {
+    border-radius: 0px;
+}
 
 .bg-yellow {
     background-color: #f39c12 !important;

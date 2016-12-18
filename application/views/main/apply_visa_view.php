@@ -95,8 +95,7 @@
                 <input required="" name="v_code" id="v_code" minlength="4" type="text" maxlength="4" class="form-control" placeholder="Please enter Verification Code"><br/>
                 <span class="captcha"></span>
                 <a href="javascript:void(0)" class="captcha_new"><i class="fa fa-refresh mr10"></i>Not readable? Change text.</a>
-            </div>            
-            <?php //echo $this->session->userdata('captcha') ?>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-offset-8 col-sm-4 text-right">
