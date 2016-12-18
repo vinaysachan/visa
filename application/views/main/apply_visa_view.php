@@ -89,6 +89,12 @@
                 <input name="re_email" type="text" required="" label-name="Email" class="form-control" placeholder="Re-Email">
             </div>
         </div>
+         <div class="form-group">
+            <label for="dob" class="col-md-4 require">Expected Date of Arrival*</label>
+            <div class="col-sm-6">
+                <input type="text" required="" label-name="Date of Birth" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dob" id="date_of_arrival" placeholder="Expected Date of Arrival" >
+            </div>
+        </div>
         <div class="form-group row">
             <label for="v_code" class="col-sm-4 col-form-label">Verification Code</label>
             <div class="col-sm-6">
