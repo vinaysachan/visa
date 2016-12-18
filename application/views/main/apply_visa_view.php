@@ -92,7 +92,7 @@
          <div class="form-group">
             <label for="dob" class="col-md-4 require">Expected Date of Arrival*</label>
             <div class="col-sm-6">
-                <input type="text" required="" label-name="Date of Birth" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dob" id="date_of_arrival" placeholder="Expected Date of Arrival" >
+                <input type="text" required="" label-name="Date of Birth" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
             </div>
         </div>
         <div class="form-group row">

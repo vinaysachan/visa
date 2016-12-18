@@ -61,8 +61,9 @@ $route['admin/logout'] = 'admin/home/logout';
 $route['apply_visa'] = 'main/apply_visa';
 $route['serach_app'] = 'main/serach_app';
 $route['visa_reg'] = 'main/visa_reg';
-
-
+$route['uploadPassport'] = 'main/uploadPassport';
+$route['reviewform'] = 'main/reviewform';
+$route['payment'] = 'main/payment';
 
 $route['captcha'] = 'captcha/index';
 

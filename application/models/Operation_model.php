@@ -44,6 +44,7 @@ class Operation_model extends CORE_Model {
             'portofarrival' => $this->input->post('portofarrival'),
             'passport_no' => $this->input->post('passportno'),
             'dob' => get_date($this->input->post('dob')),
+            'expected_date_arrival' => get_date($this->input->post('date_of_arrival')),
             'email' => $this->input->post('email')
         );
         $this->db->insert('applicatrion_details', $data);

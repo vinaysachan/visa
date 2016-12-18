@@ -136,7 +136,7 @@ class Main extends FRONT_Controller {
             $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
             $result = $this->operation_model->app_step4($img);
             if ($result) {
-                redirect(base_url('main/payment'));
+                redirect(base_url('main/uploadPassport'));
             }
         }
 
@@ -150,7 +150,39 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-
+    public function uploadPassport()
+    {
+        if (!$this->input->post('uploadpassport') == "") {
+            $app_id = $this->session->userdata('application_id');
+            $img = $this->util->fileUpload(PASSPORT_IMG, 'passport', $app_id, 'jpeg|jpg|png');
+            $result = $this->operation_model->app_step4();
+           if ($result) {
+                redirect(base_url('main/reviewform'));
+            }
+            
+        }
+         $data = [
+            'title' => 'title',
+            'meta_description' => 'Upload PassPort',
+            'meta_keywords' => 'E-visa',
+            'heading' => 'e-Tourist Visa (eTV) Application',
+            'apply_details' => $this->operation_model->get_application_details()
+            
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+    }
+    public function reviewform()
+    {
+       $data = [
+            'title' => 'title',
+            'meta_description' => 'Upload PassPort',
+            'meta_keywords' => 'E-visa',
+            'heading' => 'Conform Details',
+            'apply_details' => $this->operation_model->get_application_details()
+            
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data)); 
+    }
     function payment() {
         $data = [
             'title' => 'title',
