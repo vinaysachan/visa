@@ -29,15 +29,15 @@
             </div>
         </div>	 
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Date of Birth</label>
+            <label class="col-sm-4 require">Date of Birth</label>
             <div class="col-sm-7">
                 <input disabled="" value="<?= get_date($apply_details[0]->dob, 'Y-m-d', 'd/m/Y') ?>" type="text" class="form-control" placeholder="Date of Birth" >
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Town/City of birth</label>
+            <label for="birthofcity" class="col-sm-4 require">Town/City of birth</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="birthofcity" id="inputEmail3" placeholder="Last Name" required="" label-name="Town/City of Birth">
+                <input type="text" class="form-control" name="birthofcity" id="birthofcity" placeholder="Town/City of birth" required="" label-name="Town/City of Birth">
             </div>
         </div>				
 

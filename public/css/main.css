@@ -510,3 +510,8 @@ ul.blog-popular-post li a {
 ul.blog-popular-post li a:hover{
     color: #0000ff;
 }
+
+.show_images > img {
+    margin-top: 10px;
+    width: 350px;
+}

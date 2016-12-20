@@ -301,4 +301,17 @@ class Operation_model extends CORE_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+    public function uploadpassport($pass_img)
+    {
+        $curdate=date('Y-m-d');
+        $application_id=$this->session->userdata('application_id');
+        $data = array(
+            'passport_img' => $pass_img,
+                           
+            'last_update' => $curdate
+        );
+        $this->db->where('app_id', $application_id);
+        $this->db->update('applicatrion_details', $data);
+        return TRUE;
+    }
 }

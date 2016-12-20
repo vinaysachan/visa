@@ -63,6 +63,7 @@ $route['serach_app'] = 'main/serach_app';
 $route['visa_reg'] = 'main/visa_reg';
 $route['uploadPassport'] = 'main/uploadPassport';
 $route['reviewform'] = 'main/reviewform';
+$route['visa_step4'] = 'main/visa_step4';
 $route['payment'] = 'main/payment';
 
 $route['captcha'] = 'captcha/index';
