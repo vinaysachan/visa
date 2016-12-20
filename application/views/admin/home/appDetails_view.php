@@ -9,7 +9,7 @@
   <table class="table table-bordered">
          
         <tbody>
-			<tr style="background-color: orange;">
+			<tr class="info-bar">
 			   <td >Application NO</td>
 			   <td> <?= $application[0]->app_id ?></td>
 			 </tr>
@@ -110,10 +110,9 @@
 			   <td> <?= $application[0]->birth_country ?></td>
 			
 			 </tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Passport Details </td>
-			   <td></td>
-			
+			<tr class="info-bar" >
+			   <td colspan="2">Passport Details </td>
+			   
 			 </tr>
 			<tr>
 			   <td >Passport Type</td>
@@ -141,10 +140,9 @@
 			
 			 </tr>
 			<tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Present Address </td>
-			   <td></td>
-			
+			<tr class="info-bar" >
+			   <td colspan="2">Present Address </td>
+			   
 			 </tr>
 			<tr>
 			   <td >Address</td>
@@ -176,10 +174,9 @@
 			   <td> <?= $application[0]->mobileno ?></td>
 			
 			 </tr><tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Permanent Address </td>
-			   <td></td>
-			
+			<tr class="info-bar" >
+			   <td colspan="2">Permanent Address </td>
+			    
 			 </tr>
 			<tr>
 			   <td >Address</td>
@@ -191,9 +188,9 @@
 			   <td> <?= $application[0]->perma_district ?></td>
 			
 			 </tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Father Details</td>
-			   <td></td>
+			<tr class="info-bar" >
+			   <td colspan="2">Father Details</td>
+			    
 			
 			 </tr>
 			<tr>
@@ -216,9 +213,9 @@
 			   <td> <?= $application[0]->father_country ?></td>
 			
 			 </tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Mother Details</td>
-			   <td></td>
+			<tr class="info-bar" >
+			   <td colspan="2">Mother Details</td>
+			   
 			
 			 </tr>
 			<tr>
@@ -241,11 +238,11 @@
 			   <td> <?= $application[0]->mother_country ?></td>
 			
 			 </tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Merrital Details</td>
-			   <td></td>
+			<tr class="info-bar" >
+			   <td colspan="2">Merrital Details</td>
+			   
 			
-			 </tr>
+            </tr>
 			<tr>
 			   <td >Status</td>
 			   <td> <?= $application[0]->marital_status ?></td>
@@ -281,9 +278,9 @@
 			   <td> <?= $application[0]->pakistan_nationality_detail ?></td>
 			
 			 </tr>
-			<tr style="background-color: orange; color:white;">
-			   <td >Occupation Details</td>
-			   <td></td>
+			<tr class="info-bar" >
+			   <td colspan="2">Occupation Details</td>
+			    
 			
 			 </tr>
 			<tr>
@@ -321,15 +318,103 @@
 			   <td> <?= $application[0]->mil_place_of_posting ?></td>
 			
 			 </tr>
+            <tr class="info-bar" >
+			   <td colspan="2">Previous Visa/currently Valid Visa Details </td>
+			   
+		   </tr> 
+            <tr>
+			   <td >Visited India Before</td>
+			   <td> <?= $application[0]->visited_India ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Indian Address</td>
+			   <td> <?= $application[0]->visited_address ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >indian Visited City</td>
+			   <td> <?= $application[0]->previously_visited_city?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Last Indian Visa NO</td>
+			   <td> <?= $application[0]->last_Indian_visa_no ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Type Of Visa </td>
+			   <td> <?= $application[0]->visited_type_Visa ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Last Indian visa Issue Place</td>
+			   <td> <?= $application[0]->visited_visa_issue_place ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Last Indian visa Issue Date</td>
+			   <td> <?= $application[0]->visited_visa_issue_date ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Has Permission visit or extend Stay</td>
+			   <td> <?= $application[0]->extend_visa ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Last India Visa extend by whom</td>
+			   <td> <?= $application[0]->extend_visa_details ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Last Indian visa Issue Place</td>
+			   <td> <?= $application[0]->visited_visa_issue_date ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Other Country visited in 10 years</td>
+			   <td> <?= $application[0]->countries_visitedlast; ?></td>
+			
+			 </tr>
+            <tr class="info-bar" >
+			   <td colspan="2">References</td>
+			</tr> 
+            <tr>
+			   <td >Reference Name</td>
+			   <td> <?= $application[0]->ref_name;?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Reference Address</td>
+			   <td> <?= $application[0]->ref_address ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Reference Phone No</td>
+			   <td> <?= $application[0]->ref_phone; ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Reference Name Home Country</td>
+			   <td> <?= $application[0]->ref_home_name; ?></td>
+			
+			 </tr>
+            <tr>
+			   <td >Reference Address Home Countrye</td>
+			   <td> <?= $application[0]->ref_home_address; ?></td>
+			
+			 </tr>
              <tr>
-                 <td><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="N9RGXUAUN9TKJ">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</td>
-            </tr>    
+			   <td >Image</td>
+			   <td ><img src="<?=base_url().APPLICATION_IMG ?>/<?= $application[0]->app_id; ?>" class="img-bar" /> </td>
+			
+			 </tr>
+            <tr>
+			   <td >PassPort</td>
+			   <td ><img src="<?=base_url().PASSPORT_IMG ?>/<?= $application[0]->app_id; ?>" class="img-bar" /> </td>
+			
+			 </tr>
         </tbody>
     </table>
 	</div>
@@ -338,4 +423,13 @@
     
 	</div>
 </div>
- 
+ <style>
+     .img-bar {
+         width:200px;
+         height:200px;
+     }
+     .info-bar {
+         background-color: orange;
+         color:white;
+     }
+</style>
