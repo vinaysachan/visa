@@ -43,7 +43,7 @@
                 <select name="adress_country" required="" label-name="Country" class="form-control" id="adress_country" data-parsley-required="" >
                     <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                    <option <?=($counrty->code==$apply_details[0]->adress_country)?'selected=""':''?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->adress_country) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -77,73 +77,71 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="pcity" class="col-sm-4 require">Village/Town/City *</label>
+            <label for="pcity" class="col-sm-4 require">Village/Town/City</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" required="" label-name="Village/Town/City" value="<?= $apply_details[0]->perma_city; ?>" name="pcity" id="pcity" placeholder="Village/Town/City">
             </div>
         </div>
         <div class="form-group row">
-            <label for="pdistrict" class="col-sm-4 require">State/Province/District *</label>
+            <label for="pdistrict" class="col-sm-4 require">State/Province/District</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" name="pdistrict" required="" label-name="Village/Town/City" value="<?= $apply_details[0]->perma_district; ?>" id="pdistrict" placeholder="State/Province/District">
             </div>
-        </div>	
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Family Details  </div>				
+        </div>
+        <div class="col-md-12 box_heading">Family Details</div>
         <h2>Father's Details</h2>				
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">father Name*</label>
+            <label for="father_name" class="col-sm-4 require">Father Name</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="fathername" id="inputEmail3" placeholder="father Name">
+                <input type="text" class="form-control" required="" label-name="Father Name" value="<?= $apply_details[0]->father_name; ?>" name="father_name" id="father_name" placeholder="father Name">
             </div>
-        </div>				
-
+        </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">father Nationality</label>
+            <label for="father_nationality" class="col-sm-4 require">Father Nationality</label>
             <div class="col-sm-7">
-                <select name="fathernationality" class="form-control" id="fathernationality" data-parsley-required="" >
-                    <option value="">Select Country...</option>
+                <select name="father_nationality" class="form-control" required="" label-name="Father Nationality"  id="father_nationality" >
+                    <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->father_nationality) ? 'selected=""' : '' ?> value="<?= $counrty->code ?>" title="<?= $counrty->name ?>"> <?= $counrty->name ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">father Pre Nationality</label>
+            <label for="father_prenationality" class="col-sm-4">Father Pre Nationality</label>
             <div class="col-sm-7">
-                <select name="fatherprenationality" class="form-control" id="fatherprenationality" data-parsley-required="" >
-                    <option value="">Select Country...</option>
+                <select name="father_prenationality" class="form-control" id="father_prenationality" >
+                    <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->father_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Father Birth Place*</label>
+            <label for="fatherbirthplace" class="col-sm-4 require">Father Birth Place</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="fatherbirthplace" id="inputEmail3" placeholder="Father Birth Place">
+                <input type="text" value="<?= $apply_details[0]->father_name; ?>" class="form-control" name="fatherbirthplace" id="fatherbirthplace" placeholder="Father Birth Place">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">father Country</label>
+            <label for="father_country" class="col-sm-4">Father Country</label>
             <div class="col-sm-7">
-                <select name="fathercountry" class="form-control" id="fathercountry" data-parsley-required="" >
+                <select name="father_country" class="form-control" id="father_country" data-parsley-required="" >
                     <option value="">Select Country...</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->father_country) ? 'selected=""' : '' ?> value="<?= $counrty->code ?>" title="<?= $counrty->name ?>"><?= $counrty->name ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>	
         <h2>Mother's Details</h2>				
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Mother Name*</label>
+            <label for="mother_name" class="col-sm-4 require">Mother Name</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="mothername" id="inputEmail3" placeholder="father Name">
+                <input type="text" required="" label-name="Mother Name" value="<?= $apply_details[0]->father_name; ?>" class="form-control" name="mother_name" id="mother_name" placeholder="Mother Name">
             </div>
         </div>				
-
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-4 col-form-label">Mother Nationality</label>
             <div class="col-sm-7">

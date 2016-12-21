@@ -345,6 +345,13 @@ ul.blog-popular-post li a:hover{
     width: 350px;
 }
 
+.box_heading {
+    background: #5ea5e2 none repeat scroll 0 0;
+    color: #fff;
+    padding: 8px 15px;
+    margin: 2px 0px 10px 0px;
+}
+
 /* Margins 
  ------------------------------------------------------ */
 .m60 { margin: 60px; }
