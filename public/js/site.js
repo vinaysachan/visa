@@ -133,31 +133,17 @@ $("#searchAppFrm").validate({
     }
 });
 
-$("#visa_regFrm").validate({ 
+$("#visa_regFrm").validate({
     submitHandler: function (form) {
         return true;   
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$("#step3").validate({
+    submitHandler: function (form) {
+        return true;   
+    }
+}); 
 
 function acquire_naturalization(val) {
     if (val == 'Naturalization') {

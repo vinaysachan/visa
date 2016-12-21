@@ -19,12 +19,12 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Sex </label>
+            <label for="sex" class="col-sm-4 require">Sex </label>
             <div class="col-sm-7">
-                <select name="sex" id="visaType" class="form-control" data-parsley-required="">
+                <select name="sex" id="sex" class="form-control" required="" Label-name="Sex">
                     <option value="">Select</option>
-                    <option value="M" selected="">Male</option>
-                    <option value="F">Female</option>
+                    <option <?= ($apply_details[0]->sex == 'M') ? 'selected=""' : '' ?> value="M" >Male</option>
+                    <option <?= ($apply_details[0]->sex == 'F') ? 'selected=""' : '' ?> value="F">Female</option>
                 </select>
             </div>
         </div>	 
@@ -37,25 +37,24 @@
         <div class="form-group row">
             <label for="birthofcity" class="col-sm-4 require">Town/City of birth</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="birthofcity" id="birthofcity" placeholder="Town/City of birth" required="" label-name="Town/City of Birth">
+                <input type="text" value="<?= $apply_details[0]->birth_city ?>" class="form-control" name="birthofcity" id="birthofcity" placeholder="Town/City of birth" required="" label-name="Town/City of Birth">
             </div>
-        </div>				
-
+        </div>
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-4 require">Country of birth </label>
             <div class="col-sm-7">
                 <select name="birthofcountry" class="form-control" id="nationality" required="" label-name="Country of birth">
-                    <option value="">Select Country...</option>
+                    <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($apply_details[0]->birth_country == $counrty->code) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Citizenship/National Id No.</label>
+            <label for="natinalid" class="col-sm-4 require">Citizenship/National Id No.</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="natinalid" id="inputEmail3" placeholder="Citizenship/National Id No" required="" label-name="Citizenship/National Id No">
+                <input type="text" value="<?= $apply_details[0]->national_id ?>" class="form-control" name="natinalid" id="natinalid" placeholder="Citizenship/National Id No" required="" label-name="Citizenship/National Id No">
             </div>
         </div>				
         <div class="form-group row">
@@ -63,39 +62,39 @@
             <div class="col-sm-7">
                 <select name="religion" class="form-control" required="" label-name="Religion">
                     <option value="" selected="selected">Select Religion</option>
-                    <option value="BAHAI">BAHAI</option>
-                    <option value="BUDDHISM">BUDDHISM</option>
-                    <option value="CHRISTIAN">CHRISTIAN</option>
-                    <option value="HINDU">HINDU</option>
-                    <option value="ISLAM">ISLAM</option>
-                    <option value="JUDAISM">JUDAISM</option>
-                    <option value="PARSI">PARSI</option>
-                    <option value="SIKH">SIKH</option>
-                    <option value="ZOROASTRIAN">ZOROASTRIAN</option>
-                    <option value="Others">Others</option>
+                    <option <?= ($apply_details[0]->religion == 'BAHAI') ? 'selected=""' : '' ?> value="BAHAI">BAHAI</option>
+                    <option <?= ($apply_details[0]->religion == 'BUDDHISM') ? 'selected=""' : '' ?> value="BUDDHISM">BUDDHISM</option>
+                    <option <?= ($apply_details[0]->religion == 'CHRISTIAN') ? 'selected=""' : '' ?> value="CHRISTIAN">CHRISTIAN</option>
+                    <option <?= ($apply_details[0]->religion == 'HINDU') ? 'selected=""' : '' ?> value="HINDU">HINDU</option>
+                    <option <?= ($apply_details[0]->religion == 'ISLAM') ? 'selected=""' : '' ?> value="ISLAM">ISLAM</option>
+                    <option <?= ($apply_details[0]->religion == 'JUDAISM') ? 'selected=""' : '' ?> value="JUDAISM">JUDAISM</option>
+                    <option <?= ($apply_details[0]->religion == 'PARSI') ? 'selected=""' : '' ?> value="PARSI">PARSI</option>
+                    <option <?= ($apply_details[0]->religion == 'SIKH') ? 'selected=""' : '' ?> value="SIKH">SIKH</option>
+                    <option <?= ($apply_details[0]->religion == 'ZOROASTRIAN') ? 'selected=""' : '' ?> value="ZOROASTRIAN">ZOROASTRIAN</option>
+                    <option <?= ($apply_details[0]->religion == 'Others') ? 'selected=""' : '' ?> value="Others">Others</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-4 require">Visible identification marks</label>
             <div class="col-sm-7">
-                <input type="text" name="identification" class="form-control" id="inputEmail3" placeholder="Visible identification marks" required="" label-name="Visible identification marks">
+                <input type="text" name="identification" class="form-control" id="inputEmail3" placeholder="Visible identification marks" required="" value="<?= $apply_details[0]->visible_identification_marks ?>" label-name="Visible identification marks">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-4 require">Educational Qualification</label>
             <div class="col-sm-7">
                 <select name="qualification" class="form-control" id="passportType" required="" label-name="Educational Qualification">
-                    <option value="" selected="selected">Select Educational Qualification</option>
-                    <option value="BELOW MATRICULATION"> BELOW MATRICULATION</option>
-                    <option value="GRADUATE"> GRADUATE</option>
-                    <option value="HIGHER SECONDARY"> HIGHER SECONDARY</option>
-                    <option value="ILLITERATE"> ILLITERATE</option>
-                    <option value="MATRICULATION"> MATRICULATION</option>
-                    <option value="NA BEING MINOR"> NA BEING MINOR</option>
-                    <option value="OTHERS"> OTHERS</option>
-                    <option value="POST GRADUATE"> POST GRADUATE</option>
-                    <option value="PROFESSIONAL"> PROFESSIONAL</option>
+                    <option value="" >Select Educational Qualification</option>
+                    <option <?= ($apply_details[0]->qualification == 'BELOW MATRICULATION') ? 'selected=""' : '' ?> value="BELOW MATRICULATION"> BELOW MATRICULATION</option>
+                    <option <?= ($apply_details[0]->qualification == 'GRADUATE') ? 'selected=""' : '' ?> value="GRADUATE"> GRADUATE</option>
+                    <option <?= ($apply_details[0]->qualification == 'HIGHER SECONDARY') ? 'selected=""' : '' ?>  value="HIGHER SECONDARY"> HIGHER SECONDARY</option>
+                    <option <?= ($apply_details[0]->qualification == 'ILLITERATE') ? 'selected=""' : '' ?>  value="ILLITERATE"> ILLITERATE</option>
+                    <option <?= ($apply_details[0]->qualification == 'MATRICULATION') ? 'selected=""' : '' ?>  value="MATRICULATION"> MATRICULATION</option>
+                    <option <?= ($apply_details[0]->qualification == 'NA BEING MINOR') ? 'selected=""' : '' ?>  value="NA BEING MINOR"> NA BEING MINOR</option>
+                    <option <?= ($apply_details[0]->qualification == 'OTHERS') ? 'selected=""' : '' ?>  value="OTHERS"> OTHERS</option>
+                    <option <?= ($apply_details[0]->qualification == 'POST GRADUATE') ? 'selected=""' : '' ?>  value="POST GRADUATE"> POST GRADUATE</option>
+                    <option <?= ($apply_details[0]->qualification == 'PROFESSIONAL') ? 'selected=""' : '' ?>  value="PROFESSIONAL"> PROFESSIONAL</option>
                 </select>
             </div>
         </div>				
@@ -104,23 +103,25 @@
             <div class="col-sm-7"><?= country_name($apply_details[0]->nationality) ?></div> 
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 require">Did you acquire Nationality by birth or by Naturalization?</label>
+            <label for="acquire_nationality" class="col-sm-4 require">Did you acquire Nationality by birth or by Naturalization?</label>
             <div class="col-sm-7">
-                <select name="acquire_nationality" class="form-control" id="passportType" onchange="acquire_naturalization(this.value)" required="" label-name="">
+                <select name="acquire_nationality" class="form-control" id="acquire_nationality" onchange="acquire_naturalization(this.value)" required="" label-name="">
                     <option value="">Select One</option>
-                    <option value="By Birth">By Birth</option>
-                    <option value="Naturalization">Naturalization</option>
+                    <option <?= ($apply_details[0]->acquire_nationality == 'By Birth') ? 'selected=""' : '' ?>  value="By Birth">By Birth</option>
+                    <option <?= ($apply_details[0]->acquire_nationality == 'Naturalization') ? 'selected=""' : '' ?>  value="Naturalization">Naturalization</option>
                 </select>
             </div>
         </div>
-        <div class="form-group row" id="prev_nationality" style="display:none">
+        <div class="form-group row" id="prev_nationality" style="display:<?= (!empty($apply_details[0]->pre_nationality)) ? '' : 'none' ?>">
             <label for="prev_nationality" class="col-sm-4 col-form-label">Prev. Nationality </label>
             <div class="col-sm-7">
                 <select name="prev_nationality" class="form-control" id="nationality" >
                     <option value="">Select Country...</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($apply_details[0]->pre_nationality == $counrty->code) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
+
+
                 </select>
             </div>
         </div> 
@@ -133,7 +134,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-4 col-require">Place of Issue</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="placeofissue" name="placeofissue" placeholder="Place of Issue" required="">
+                <input type="text" class="form-control" id="placeofissue" value="<?= $apply_details[0]->pass_place_of_Issue; ?>" name="placeofissue" placeholder="Place of Issue" required="">
             </div>
         </div>
         <div class="form-group">

@@ -80,7 +80,7 @@
         <div class="form-group row">
             <label for="email" class="col-sm-4 require">Email</label>
             <div class="col-sm-6">
-                <input type="email" class="form-control" required="" label-name="Email" id="email" name="email" placeholder="First Name">
+                <input type="email" class="form-control" required="" label-name="Email" id="email" name="email" placeholder="Email">
             </div>
         </div>
         <div class="form-group row">
@@ -89,16 +89,22 @@
                 <input name="re_email" type="text" required="" label-name="Email" class="form-control" placeholder="Re-Email">
             </div>
         </div>
-         <div class="form-group">
+        <div class="form-group row">
+            <label for="phone" class="col-sm-4 require">Telephone Number</label>
+            <div class="col-sm-6">
+                <input name="phone" type="text" required="" label-name="Telephone Number" class="form-control" placeholder="Telephone Number">
+            </div>
+        </div>
+        <div class="form-group">
             <label for="dob" class="col-md-4 require">Expected Date of Arrival*</label>
             <div class="col-sm-6">
-                <input type="text" required="" label-name="Date of Birth" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
+                <input type="text" required="" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
             </div>
         </div>
         <div class="form-group row">
             <label for="v_code" class="col-sm-4 col-form-label">Verification Code</label>
             <div class="col-sm-6">
-                <input required="" name="v_code" id="v_code" minlength="4" type="text" maxlength="4" class="form-control" placeholder="Please enter Verification Code"><br/>
+                <input required="" name="v_code" id="v_code" minlength="4" type="text" maxlength="4" class="form-control" label-name="Please enter Verification Code" placeholder="Please enter Verification Code"><br/>
                 <span class="captcha"></span>
                 <a href="javascript:void(0)" class="captcha_new"><i class="fa fa-refresh mr10"></i>Not readable? Change text.</a>
             </div>

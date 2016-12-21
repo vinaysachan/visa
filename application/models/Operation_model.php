@@ -33,9 +33,7 @@ class Operation_model extends CORE_Model {
     }
 
     function app_step1() {
-        $application = $this->input->post('nationality') . rand(1, 999999);
         $data = array(
-            'app_id' => $application,
             'app_type' => $this->input->post('visaType'),
             'fname' => $this->input->post('fname'),
             'lname' => $this->input->post('lname'),
@@ -45,9 +43,14 @@ class Operation_model extends CORE_Model {
             'passport_no' => $this->input->post('passportno'),
             'dob' => get_date($this->input->post('dob')),
             'expected_date_arrival' => get_date($this->input->post('date_of_arrival')),
-            'email' => $this->input->post('email')
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'status' => 1
         );
         $this->db->insert('applicatrion_details', $data);
+        $id = $this->db->insert_id();
+        $application = $this->input->post('nationality') . $id;
+        $this->db->where('id', $id)->update('applicatrion_details', ['app_id' => $application]);
         return $application;
     }
 
@@ -64,11 +67,11 @@ class Operation_model extends CORE_Model {
         $acquire_nationality = $this->input->post('acquire_nationality');
         $applicationid = $this->input->post('applicationid');
         $data = array(
-            'fname' => $this->input->post('surname'),
-            'lname' => $this->input->post('fname'),
-            'passport_no' => $this->input->post('passportno'),
+            'lname' => $this->input->post('surname'),
+            'fname' => $this->input->post('fname'),
             'sex' => $this->input->post('sex'),
             'birth_city' => $this->input->post('birthofcity'),
+            'passport_no' => $this->input->post('passportno'),
             'birth_country' => $this->input->post('birthofcountry'),
             'national_id' => $this->input->post('natinalid'),
             'religion' => $this->input->post('religion'),
@@ -79,7 +82,8 @@ class Operation_model extends CORE_Model {
             'pass_date_of_Issue' => get_date($this->input->post('dateofissue')),
             'pass_date_of_expiry' => get_date($this->input->post('dateofexpiry')),
             'ldentity_certificate' => $identity_certificate,
-            'last_update' => $curdate
+            'last_update' => $curdate,
+            'status' => 2
         );
         if ($identity_certificate == 'yes') {
             $data['ic_country_of_Issue'] = $this->input->post('issueofcountry');
@@ -91,10 +95,8 @@ class Operation_model extends CORE_Model {
         if ($acquire_nationality == 'Naturalization') {
             $data['pre_nationality'] = $this->input->post('prev_nationality');
         }
-
         $this->db->where('app_id', $applicationid);
-        $this->db->update('applicatrion_details', $data);
-        if ($this->db->affected_rows() > 0) {
+        if ($this->db->update('applicatrion_details', $data)) {
             return 1;
         }
     }
@@ -111,7 +113,8 @@ class Operation_model extends CORE_Model {
             'district' => $this->input->post('district'),
             'zipcode' => $this->input->post('zipcode'),
             'mobileno' => $this->input->post('mobileno'),
-            'adress_country' => $this->input->post('Addresscountry'),
+            'adress_country' => $this->input->post('adress_country'),
+            'perma_city' => $this->input->post('pcity'),
             'perma_houseno' => $this->input->post('phouseno'),
             'perma_district' => $this->input->post('pdistrict'),
             'father_nationality' => $this->input->post('fathernationality'),
@@ -150,27 +153,24 @@ class Operation_model extends CORE_Model {
         if ($grand_pak == 'yes') {
             $data['pakistan_nationality_detail'] = $this->input->post('pakistan_nationality_detail');
         }
-
         $this->db->where('app_id', $applicationid);
-        $this->db->update('applicatrion_details', $data);
-        if ($this->db->affected_rows() > 0) {
+        if ($this->db->update('applicatrion_details', $data)) {
             return 1;
         }
     }
-    
+
     public function getCounrty() {
 
         $query = $this->db->get('country');
         return $result = $query->result();
     }
-  
-     function app_step4($img)
-    {
-        $curdate=date('Y-m-d');
-        $visitedbefore= $this->input->post('visitedbefore');
-        $extendstay=$this->input->post('extendstay');
-        
-        $applicationid=$this->input->post('applicationid');
+
+    function app_step4($img) {
+        $curdate = date('Y-m-d');
+        $visitedbefore = $this->input->post('visitedbefore');
+        $extendstay = $this->input->post('extendstay');
+
+        $applicationid = $this->input->post('applicationid');
         $data = array(
             'durationofvisa' => $this->input->post('visa_day'),
             'No_ofentries' => $this->input->post('entries_no'),
@@ -178,42 +178,36 @@ class Operation_model extends CORE_Model {
             'port_of_exit' => $this->input->post('portofexit'),
             'places_likely_to_visit' => $this->input->post('visitedplace'),
             'visited_India' => $visitedbefore,
-             
             'ref_name' => $this->input->post('refindia'),
             'ref_address' => $this->input->post('refaddress'),
             'ref_phone' => $this->input->post('ref_phone'),
-            
             'ref_home_name' => $this->input->post('ref_home'),
             'ref_home_address' => $this->input->post('ref_homeaddress'),
             'ref_home_phone' => $this->input->post('ref_homephone'),
             'image' => $img,
-                  
             'last_update' => $curdate
         );
-        if($visitedbefore=='yes') {
-             
-            $data['visited_address']=$this->input->post('visitedaddress');
-            $data['previously_visited_city']=$this->input->post('visitedcities');
-            $data['last_Indian_visa_no']=$this->input->post('visitedvisano');
-            $data['visited_type_Visa']=$this->input->post('visitedvisatype');
-            $data['visited_visa_issue_place']=$this->input->post('visitedplaceissue');
-            $data['visited_visa_issue_date']=$this->input->post('visitedissuedate');
-            
+        if ($visitedbefore == 'yes') {
+
+            $data['visited_address'] = $this->input->post('visitedaddress');
+            $data['previously_visited_city'] = $this->input->post('visitedcities');
+            $data['last_Indian_visa_no'] = $this->input->post('visitedvisano');
+            $data['visited_type_Visa'] = $this->input->post('visitedvisatype');
+            $data['visited_visa_issue_place'] = $this->input->post('visitedplaceissue');
+            $data['visited_visa_issue_date'] = $this->input->post('visitedissuedate');
         }
-        if($extendstay=='yes') {
-            $data['extend_visa_details']=$this->input->post('extendstaydetails');
-            
-            
-            }
-         
+        if ($extendstay == 'yes') {
+            $data['extend_visa_details'] = $this->input->post('extendstaydetails');
+        }
+
 
         $this->db->where('app_id', $applicationid);
         $this->db->update('applicatrion_details', $data);
-        if($this->db->affected_rows() > 0) {
-         return 1;   
+        if ($this->db->affected_rows() > 0) {
+            return 1;
         }
     }
-	  
+
     public function getAdminById($id) {
         $sql = 'SELECT * FROM ' . TBL_ADMIN_USER . ' au  WHERE au.id ="' . $id . '"';
         $query = $this->db->query($sql);
@@ -273,45 +267,42 @@ class Operation_model extends CORE_Model {
             }
         }
     }
-    function payment_status($status)
-    {
-        $application_id=$this->session->userdata('application_id');
-        $curdate=date('Y-m-d');
+
+    function payment_status($status) {
+        $application_id = $this->session->userdata('application_id');
+        $curdate = date('Y-m-d');
         $data = array(
-			'app_id' => $application_id,
-			'payment_status' => $status,
-			 
-			);
-		$result=$this->db->insert('payment', $data);
-        if($result) 
-        {
-            $data = array(
+            'app_id' => $application_id,
             'payment_status' => $status,
-                           
-            'last_update' => $curdate
         );
-        $this->db->where('app_id', $application_id);
-        $this->db->update('applicatrion_details', $data);
+        $result = $this->db->insert('payment', $data);
+        if ($result) {
+            $data = array(
+                'payment_status' => $status,
+                'last_update' => $curdate
+            );
+            $this->db->where('app_id', $application_id);
+            $this->db->update('applicatrion_details', $data);
         }
     }
-    function search_app()
-    {
-        $appid=$this->input->post('appID');
+
+    function search_app() {
+        $appid = $this->input->post('appID');
         $sql = 'SELECT * FROM applicatrion_details   WHERE app_id ="' . $appid . '"';
         $query = $this->db->query($sql);
         return $query->result();
     }
-    public function uploadpassport($pass_img)
-    {
-        $curdate=date('Y-m-d');
-        $application_id=$this->session->userdata('application_id');
+
+    public function uploadpassport($pass_img) {
+        $curdate = date('Y-m-d');
+        $application_id = $this->session->userdata('application_id');
         $data = array(
             'passport_img' => $pass_img,
-                           
             'last_update' => $curdate
         );
         $this->db->where('app_id', $application_id);
         $this->db->update('applicatrion_details', $data);
         return TRUE;
     }
+
 }

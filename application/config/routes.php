@@ -64,6 +64,7 @@ $route['visa_reg'] = 'main/visa_reg';
 $route['uploadPassport'] = 'main/uploadPassport';
 $route['reviewform'] = 'main/reviewform';
 $route['visa_step4'] = 'main/visa_step4';
+$route['visa_step3'] = 'main/visa_step3';
 $route['payment'] = 'main/payment';
 
 $route['captcha'] = 'captcha/index';

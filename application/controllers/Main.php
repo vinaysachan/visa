@@ -54,7 +54,7 @@ class Main extends FRONT_Controller {
                 echo json_encode([
                     'sts' => STATUS_SUCCESS,
                     'title' => 'Congratulation!',
-                    'msg' => 'Your e-Tourist Visa (eTV) Application submitted successfully.<br/>Please complete Step2.',
+                    'msg' => 'Your e-Tourist Visa (eTV) Application submitted successfully.<br/>Your Application Id is : <b>' . $application_id . '</b><br/>Please complete Step2.',
                     'url' => base_url('visa_reg')
                 ]);
             }
@@ -77,7 +77,7 @@ class Main extends FRONT_Controller {
         if (!$this->input->post('step1') == "") {
             $result = $this->operation_model->set_visa_reg();
             if ($result) {
-                redirect(base_url('main/visa_step3'));
+                redirect(base_url('visa_step3'));
             }
         }
         $data = [
@@ -91,29 +91,16 @@ class Main extends FRONT_Controller {
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
 
-    function visa_reg_old() {
-        if (!empty($this->session->userdata('application_id'))) {
-            if (!$this->input->post('step1') == "") {
-                $result = $this->operation_model->set_visa_reg();
-                if ($result) {
-                    redirect(base_url('main/visa_step3'));
-                }
-            }
-            $data['apply_details'] = $this->operation_model->get_application_details();
-            $data['getCounrty'] = $this->operation_model->getCounrty();
-            $this->load->view('html/common/header');
-            $this->load->view('html/application_step2', $data);
-            $this->load->view('html/common/footer');
-        } else {
-            redirect(base_url('apply_visa'));
-        }
-    }
-
     function visa_step3() {
         if (!empty($this->session->userdata('application_id'))) {
             if (!$this->input->post('visa_step3') == "") {
                 if ($this->operation_model->set_visareg3()) {
                     redirect(base_url('visa_step4'));
+                }
+            }
+            if (!$this->input->post('visa_step3_exit') == "") {
+                if ($this->operation_model->set_visareg3()) {
+                    redirect(base_url());
                 }
             }
             $data = [
