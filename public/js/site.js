@@ -60,7 +60,7 @@ function sameaddress(f) {
 function maritalStatus(val) {
     if (val == 'Married') {
         $('#spouse_form').show();
-    } else if (val == 'Unmarried') {
+    } else {
         $('#spouse_form').hide();
     }
 }

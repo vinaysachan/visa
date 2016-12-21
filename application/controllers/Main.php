@@ -100,6 +100,7 @@ class Main extends FRONT_Controller {
             }
             if (!$this->input->post('visa_step3_exit') == "") {
                 if ($this->operation_model->set_visareg3()) {
+                    $this->session->unset_userdata('application_id');
                     redirect(base_url());
                 }
             }
@@ -216,12 +217,19 @@ class Main extends FRONT_Controller {
                         'msg' => 'Please enter correcty Temporary Application ID.',
                     ]);
                 } else {
+                    $url = base_url('visa_reg');
+                    if ($application_data[0]->status == 3) {
+                        $url = base_url('visa_step3');
+                    }
+                    if ($application_data[0]->status == 4) {
+                        $url = base_url('visa_step4');
+                    }
                     $this->session->set_userdata('application_id', $application_data[0]->app_id);
                     echo json_encode([
                         'sts' => STATUS_SUCCESS,
                         'title' => 'Congratulation!',
-                        'msg' => 'Please complete Step2.',
-                        'url' => base_url('visa_reg')
+                        'msg' => 'Please complete your Application.',
+                        'url' => $url
                     ]);
                 }
             }

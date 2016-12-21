@@ -132,16 +132,23 @@ class Operation_model extends CORE_Model {
             'designation' => $this->input->post('designation'),
             'address' => $this->input->post('baddress'),
             'prof_phone' => $this->input->post('bPhone'),
-            'past_occupation' => $this->input->post('poccupation'),
+            'past_occupation' => $this->input->post('past_occupation'),
             'marital_status' => $maritalstatus,
             'grand_parent_pakistan' => $grand_pak,
-            'last_update' => $curdate
+            'last_update' => $curdate,
+            'military' => $military,
+            'status' => 3
         );
         if ($military == 'yes') {
             $data['mil_organisation'] = $this->input->post('morganisation');
             $data['mil_designation'] = $this->input->post('mdesignation');
             $data['mil_rank'] = $this->input->post('rank');
             $data['mil_place_of_posting'] = $this->input->post('posting');
+        } else {
+            $data['mil_organisation'] = '';
+            $data['mil_designation'] = '';
+            $data['mil_rank'] = '';
+            $data['mil_place_of_posting'] = '';
         }
         if ($maritalstatus == 'Married') {
             $data['spouse_name'] = $this->input->post('spousename');

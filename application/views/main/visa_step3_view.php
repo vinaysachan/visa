@@ -10,7 +10,7 @@
 </div>
 <div class="p10">
     <form name="step3" id="step3" method="POST" >
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Applicant's Address Details </div>			
+        <div class="col-md-12 box_heading">Applicant's Address Details </div>			
         <h2>Present Address</h2>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-4 require">House No./Street</label>
@@ -139,97 +139,93 @@
         <div class="form-group row">
             <label for="mother_name" class="col-sm-4 require">Mother Name</label>
             <div class="col-sm-7">
-                <input type="text" required="" label-name="Mother Name" value="<?= $apply_details[0]->father_name; ?>" class="form-control" name="mother_name" id="mother_name" placeholder="Mother Name">
+                <input type="text" required="" label-name="Mother Name" value="<?= $apply_details[0]->mother_name ?>" class="form-control" name="mother_name" id="mother_name" placeholder="Mother Name">
             </div>
         </div>				
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Mother Nationality</label>
+            <label for="mothernationality" class="col-sm-4 require">Mother Nationality</label>
             <div class="col-sm-7">
-                <select name="mothernationality" class="form-control" id="mothernationality" data-parsley-required="" >
-                    <option value="">Select Country...</option>
+                <select name="mothernationality" class="form-control" id="mothernationality" >
+                    <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->mother_nationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Mother Pre Nationality</label>
+            <label for="motherprenationality" class="col-sm-4">Mother Pre Nationality</label>
             <div class="col-sm-7">
-                <select name="motherprenationality" class="form-control" id="motherprenationality" data-parsley-required="" >
+                <select name="motherprenationality" class="form-control" id="motherprenationality" >
                     <option value="">Select Country...</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option <?= ($counrty->code == $apply_details[0]->mother_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Mother Birth Place*</label>
+            <label for="inputEmail3" class="col-sm-4 require">Mother Birth Place</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="motherbirthplace" id="inputEmail3" placeholder="Father Birth Place">
+                <input type="text" class="form-control" required="" label-name="Mother Birth Place" value="<?= $apply_details[0]->mother_birth_place ?>" name="motherbirthplace" id="inputEmail3" placeholder="Father Birth Place">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Mother Country</label>
+            <label for="mothercountry" class="col-sm-4">Mother Country</label>
             <div class="col-sm-7">
-                <select name="mothercountry" class="form-control" id="mothercountry" data-parsley-required="" >
-                    <option value="">Select Country...</option>
+                <select name="mothercountry" class="form-control" id="mothercountry" >
+                    <option value="">Select Country</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                        <option value="<?= $counrty->code; ?>" <?= ($counrty->code == $apply_details[0]->mother_country) ? 'selected=""' : '' ?> title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>	
         <hr>
-
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Applicant's Marital Status *</label>
+            <label for="maritalstatus" class="col-sm-4 require">Applicant's Marital Status</label>
             <div class="col-sm-7">
-                <select name="maritalstatus" class="form-control" id="maritalstatus" onchange="maritalStatus(this.value)">
+                <select name="maritalstatus" required="" label-name="Marital Status" class="form-control" id="maritalstatus" onchange="maritalStatus(this.value)"> 
                     <option value="">Select One</option>
-                    <option value="Married">Married</option>
-                    <option value="Unmarried" selected="selected">Single</option>
-
+                    <option <?= ('Married' == $apply_details[0]->marital_status) ? 'selected=""' : '' ?> value="Married">Married</option>
+                    <option <?= ('Unmarried' == $apply_details[0]->marital_status) ? 'selected=""' : '' ?> value="Unmarried">Single</option>
                 </select>
             </div>
         </div>
-        <!--------------------spouse Form ------------------------------------>	
-        <div id="spouse_form" style="display: none;">
+        <div id="spouse_form" style="display: <?= ('Married' == $apply_details[0]->marital_status) ? 'block' : 'none' ?>;">
             <h2>Spouse's Details</h2>				
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Spouse Name*</label>
+                <label for="spousename" class="col-sm-4 require">Spouse Name</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="spousename" id="inputEmail3" placeholder="Spouse Name">
+                    <input type="text" required="" label-name="Spouse Name" value="<?= $apply_details[0]->spouse_name ?>" class="form-control" name="spousename" id="spousename" placeholder="Spouse Name">
                 </div>
-            </div>				
-
+            </div>
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 col-form-label">Spouse Nationality</label>
+                <label for="spousenationality" class="col-sm-4">Spouse Nationality</label>
                 <div class="col-sm-7">
                     <select name="spousenationality" class="form-control" id="spousenationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
                         <?php foreach ($getCounrty as $counrty) { ?>
-                            <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                            <option <?= ($counrty->code == $apply_details[0]->spouse_nationlity) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 col-form-label">Spouse Pre Nationality</label>
+                <label for="spouseprenationality" class="col-sm-4">Spouse Pre Nationality</label>
                 <div class="col-sm-7">
                     <select name="spouseprenationality" class="form-control" id="spouseprenationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
                         <?php foreach ($getCounrty as $counrty) { ?>
-                            <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                            <option <?= ($counrty->code == $apply_details[0]->spouse_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Spouse Birth Place*</label>
+                <label for="inputEmail3" class="col-sm-4 require">Spouse Birth Place</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="spousebirthplace" id="inputEmail3" placeholder="Father Birth Place">
+                    <input type="text" class="form-control" required="" label-name="Spouse Birth Place" value="<?= $apply_details[0]->spouse_birth_place ?>" name="spousebirthplace" id="inputEmail3" placeholder="Father Birth Place">
                 </div>
             </div>
             <div class="form-group row">
@@ -238,216 +234,162 @@
                     <select name="spousecountry" class="form-control" id="spousecountry" data-parsley-required="" >
                         <option value="">Select Country...</option>
                         <?php foreach ($getCounrty as $counrty) { ?>
-                            <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                            <option <?= ($counrty->code == $apply_details[0]->spouse_birth_country) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
             </div>	
         </div>
-        <!--------------------spouse Form END------------------------------------>					
+        <!--------------------spouse Form END------------------------------------>	
+        <hr/>
         <div class="form-group row" >
-            <label for="inputPassword3" class="col-sm-12 col-form-label">Were your Grandfather/ Grandmother (paternal/maternal) Pakistan Nationals or Belong to Pakistan held area.</label>
-            <div class="col-sm-9">
+            <label for="inputPassword3" class="col-sm-12 text-left">Were your Grandfather/ Grandmother (paternal/maternal) Pakistan Nationals or Belong to Pakistan held area.</label>
+            <div class="col-sm-5 col-sm-offset-4">
                 <label class="radio-inline">
-                    <input type="radio" name="grand_pak" id="grand_pak" checked="checked" value="yes"> YES
+                    <input type="radio" <?= (($apply_details[0]->grand_parent_pakistan == "yes") || (empty($apply_details[0]->grand_parent_pakistan))) ? 'checked="checked"' : '' ?> name="grand_pak" id="grand_pak" value="yes"> YES
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="grand_pak" id="grand_pak"  value="no"> NO
+                    <input type="radio" <?= ($apply_details[0]->grand_parent_pakistan == "no") ? 'checked="checked"' : '' ?> name="grand_pak" id="grand_pak" value="no"> NO
                 </label>
             </div>
         </div>
-
-        <div class="form-group row" id="pak_details">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">If Yes, give details</label>
+        <div class="form-group row" style="display:<?= (($apply_details[0]->grand_parent_pakistan == "yes") || (empty($apply_details[0]->grand_parent_pakistan))) ? 'block' : 'none' ?>"  id="pak_details">
+            <label for="pakistan_nationality_detail" class="col-sm-4 require">If Yes, give details</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="passportno" name="pakistan_nationality_detail"  >
+                <input type="text" class="form-control" required="" label-name="Details" value="<?= $apply_details[0]->pakistan_nationality_detail ?>" id="passportno" name="pakistan_nationality_detail"  >
             </div>
         </div>
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Profession / Occupation Details of Applicant </div>				
+        <div class="col-md-12 box_heading">Profession / Occupation Details of Applicant </div>				
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Present Occupation *</label>
+            <label for="occupation" class="col-sm-4 require">Present Occupation</label>
             <div class="col-sm-7">
-                <select name="acquire_nationality" class="form-control" id="passportType" onchange="maritalStatus(this.value)">
-                    <option value="" selected="selected">Select......</option>
-
-                    <option value="AIR FORCE"> AIR FORCE</option>
-                    <option value="BUSINESS PERSON"> BUSINESS PERSON</option>
-                    <option value="CAMERAMAN"> CAMERAMAN</option>
-                    <option value="CHARITY/SOCIAL WORKER"> CHARITY/SOCIAL WORKER</option>
-                    <option value="CHARTERED ACCOUNTANT"> CHARTERED ACCOUNTANT</option>
-                    <option value="COLLEGE/UNIVERSITY TEACHER"> COLLEGE/UNIVERSITY TEACHER
-                    </option>
-                    <option value="DIPLOMAT"> DIPLOMAT</option>
-                    <option value="DOCTOR"> DOCTOR</option>
-                    <option value="ENGINEER"> ENGINEER</option>
-                    <option value="FILM PRODUCER"> FILM PRODUCER</option>
-                    <option value="GOVERNMENT SERVICE"> GOVERNMENT SERVICE</option>
-                    <option value="HOUSE WIFE"> HOUSE WIFE</option>
-                    <option value="JOURNALIST"> JOURNALIST</option>
-                    <option value="LABOUR"> LABOUR</option>
-                    <option value="LAWYER"> LAWYER</option>
-                    <option value="MEDIA"> MEDIA</option>
-                    <option value="MILITARY "> MILITARY</option>
-                    <option value="MISSIONARY"> MISSIONARY</option>
-                    <option value="NAVY"> NAVY</option>
-                    <option value="NEWS BROADCASTER"> NEWS BROADCASTER</option>
-                    <option value="OFFICIAL"> OFFICIAL</option>
-                    <option value="POLICE"> POLICE</option>
-                    <option value="PRESS"> PRESS</option>
-                    <option value="PRIVATE SERVICE"> PRIVATE SERVICE</option>
-                    <option value="PUBLISHER"> PUBLISHER</option>
-                    <option value="REPORTER"> REPORTER</option>
-                    <option value="RESEARCHER"> RESEARCHER</option>
-                    <option value="RETIRED"> RETIRED</option>
-                    <option value="SEA MAN"> SEA MAN</option>
-                    <option value="SELF EMPLOYED/ FREELANCER"> SELF EMPLOYED/ FREELANCER
-                    </option>
-                    <option value="STUDENT"> STUDENT</option>
-                    <option value="TRADER"> TRADER</option>
-                    <option value="TV PRODUCER"> TV PRODUCER</option>
-                    <option value="UN-EMPLOYED"> UN-EMPLOYED</option>
-                    <option value="UN OFFICIAL"> UN OFFICIAL</option>
-                    <option value="WORKER"> WORKER</option>
-                    <option value="WRITER"> WRITER</option>
-                    <option value="OTHERS" id="otherOccuText"> OTHERS</option>
-
-                </select>
+                <?php
+                $occupations = array(
+                    '' => 'Select Occupation',
+                    'AIR FORCE' => 'AIR FORCE',
+                    'BUSINESS PERSON' => 'BUSINESS PERSON',
+                    'CAMERAMAN' => 'CAMERAMAN',
+                    'CHARITY/SOCIAL WORKER' => 'CHARITY/SOCIAL WORKER',
+                    'CHARTERED ACCOUNTANT' => 'CHARTERED ACCOUNTANT',
+                    'COLLEGE/UNIVERSITY TEACHER' => 'COLLEGE/UNIVERSITY TEACHER',
+                    'DIPLOMAT' => 'DIPLOMAT',
+                    'DOCTOR' => 'DOCTOR',
+                    'ENGINEER' => 'ENGINEER',
+                    'FILM PRODUCER' => 'FILM PRODUCER',
+                    'GOVERNMENT SERVICE' => 'GOVERNMENT SERVICE',
+                    'HOUSE WIFE' => 'HOUSE WIFE',
+                    'JOURNALIST' => 'JOURNALIST',
+                    'LABOUR' => 'LABOUR',
+                    'LAWYER' => 'LAWYER',
+                    'MEDIA' => 'MEDIA',
+                    'MILITARY' => 'MILITARY',
+                    'MISSIONARY' => 'MISSIONARY',
+                    'NAVY' => 'NAVY',
+                    'NEWS BROADCASTER' => 'NEWS BROADCASTER',
+                    'OFFICIAL' => 'OFFICIAL',
+                    'POLICE' => 'POLICE',
+                    'PRESS' => 'PRESS',
+                    'PUBLISHER' => 'PUBLISHER',
+                    'PRIVATE SERVICE' => 'PRIVATE SERVICE',
+                    'REPORTER' => 'REPORTER',
+                    'RESEARCHER' => 'RESEARCHER',
+                    'RETIRED' => 'RETIRED',
+                    'SEA MAN' => 'SEA MAN',
+                    'SELF EMPLOYED/ FREELANCER' => 'SELF EMPLOYED/ FREELANCER',
+                    'STUDENT' => 'STUDENT',
+                    'TRADER' => 'TRADER',
+                    'TV PRODUCER' => 'TV PRODUCER',
+                    'UN-EMPLOYED' => 'UN-EMPLOYED',
+                    'UN OFFICIAL' => 'UN OFFICIAL',
+                    'WORKER' => 'WORKER',
+                    'WRITER' => 'WRITER',
+                    'OTHERS' => 'OTHERS'
+                );
+                echo form_dropdown('occupation', $occupations, $apply_details[0]->present_occupation, ['id' => 'occupation', 'class' => 'form-control', 'required' => 'required', 'label-name' => 'Occupation']);
+                ?>
             </div>
         </div>				
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Employer Name/business*</label>
+            <label for="Employer_or_business" class="col-sm-4 require">Employer Name/business</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="Employer_or_business" name="Employer_or_business" placeholder="Employer Name/business">
+                <input type="text" class="form-control" required="" label-name="Employer Name/business" value="<?= $apply_details[0]->Employer_or_business ?>" id="Employer_or_business" name="Employer_or_business" placeholder="Employer Name/business">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Designation *</label>
+            <label for="designation" class="col-sm-4 require">Designation</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="designation" name="designation" placeholder="Place of Issue">
+                <input type="text" class="form-control" required="" label-name="Designation" value="<?= $apply_details[0]->designation ?>" id="designation" name="designation" placeholder="Designation">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Address*</label>
+            <label for="baddress" class="col-sm-4 require">Address</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="baddress" name="baddress*" placeholder="Place of Issue">
+                <input type="text" class="form-control" required="" label-name="Address" value="<?= $apply_details[0]->address ?>" id="baddress" name="baddress" placeholder="Address">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Phone*</label>
+            <label for="bPhone" class="col-sm-4 require">Phone</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="bPhone" name="bPhone" placeholder="Phone">
+                <input type="text" class="form-control onlyNumeric" required="" label-name="Phone" value="<?= $apply_details[0]->prof_phone ?>" id="bPhone" name="bPhone" placeholder="Phone">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-4 col-form-label">Past Occupation, if any</label>
             <div class="col-sm-7">
-                <select name="poccupation" class="form-control" id="poccupation" >
-                    <option value="" selected="selected">Select......</option>
-
-                    <option value="AIR FORCE"> AIR FORCE</option>
-                    <option value="BUSINESS PERSON"> BUSINESS PERSON</option>
-                    <option value="CAMERAMAN"> CAMERAMAN</option>
-                    <option value="CHARITY/SOCIAL WORKER"> CHARITY/SOCIAL WORKER</option>
-                    <option value="CHARTERED ACCOUNTANT"> CHARTERED ACCOUNTANT</option>
-                    <option value="COLLEGE/UNIVERSITY TEACHER"> COLLEGE/UNIVERSITY TEACHER
-                    </option>
-                    <option value="DIPLOMAT"> DIPLOMAT</option>
-                    <option value="DOCTOR"> DOCTOR</option>
-                    <option value="ENGINEER"> ENGINEER</option>
-                    <option value="FILM PRODUCER"> FILM PRODUCER</option>
-                    <option value="GOVERNMENT SERVICE"> GOVERNMENT SERVICE</option>
-                    <option value="HOUSE WIFE"> HOUSE WIFE</option>
-                    <option value="JOURNALIST"> JOURNALIST</option>
-                    <option value="LABOUR"> LABOUR</option>
-                    <option value="LAWYER"> LAWYER</option>
-                    <option value="MEDIA"> MEDIA</option>
-                    <option value="MILITARY "> MILITARY</option>
-                    <option value="MISSIONARY"> MISSIONARY</option>
-                    <option value="NAVY"> NAVY</option>
-                    <option value="NEWS BROADCASTER"> NEWS BROADCASTER</option>
-                    <option value="OFFICIAL"> OFFICIAL</option>
-                    <option value="POLICE"> POLICE</option>
-                    <option value="PRESS"> PRESS</option>
-                    <option value="PRIVATE SERVICE"> PRIVATE SERVICE</option>
-                    <option value="PUBLISHER"> PUBLISHER</option>
-                    <option value="REPORTER"> REPORTER</option>
-                    <option value="RESEARCHER"> RESEARCHER</option>
-                    <option value="RETIRED"> RETIRED</option>
-                    <option value="SEA MAN"> SEA MAN</option>
-                    <option value="SELF EMPLOYED/ FREELANCER"> SELF EMPLOYED/ FREELANCER
-                    </option>
-                    <option value="STUDENT"> STUDENT</option>
-                    <option value="TRADER"> TRADER</option>
-                    <option value="TV PRODUCER"> TV PRODUCER</option>
-                    <option value="UN-EMPLOYED"> UN-EMPLOYED</option>
-                    <option value="UN OFFICIAL"> UN OFFICIAL</option>
-                    <option value="WORKER"> WORKER</option>
-                    <option value="WRITER"> WRITER</option>
-                    <option value="OTHERS" id="otherOccuText"> OTHERS</option>
-
-                </select>
+                <?php
+                echo form_dropdown('past_occupation', $occupations, $apply_details[0]->past_occupation, ['id' => 'past_occupation', 'class' => 'form-control']);
+                ?>
             </div>
         </div>
+        <hr/>
         <div class="form-group row">				
-            <label for="inputEmail3" class="col-sm-7 col-form-label">Are/were you in a Military/Semi-Military/Police/Security. Organization? Yes / No </label>
-            <div class="col-sm-4">
+            <label for="military" class="col-sm-12">
+                <p class="text-center">Are/were you in a Military/Semi-Military/Police/Security. Organization? Yes / No </p>
+            </label>
+            <div class="col-sm-12 text-center">
                 <label class="radio-inline">
-                    <input type="radio" name="military" id="inlineRadio1" value="yes"> YES
+                    <input type="radio" <?= ($apply_details[0]->military == "yes") ? 'checked="checked"' : '' ?> name="military" value="yes"> YES
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="military" id="inlineRadio2" checked="checked" value="no"> NO
+                    <input type="radio" <?= (($apply_details[0]->military == "no") || (empty($apply_details[0]->grand_parent_pakistan))) ? 'checked="checked"' : '' ?> name="military" value="no"> NO
                 </label>
             </div>
         </div>
-        <!--------------------Military Form ------------------------------------>	
-        <div id="military_form" style="display: none;">
-
+        <div id="military_form" style="display: <?= (($apply_details[0]->military == "no") || (empty($apply_details[0]->grand_parent_pakistan))) ? 'none' : 'block' ?>;">
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Organisation*</label>
+                <label for="morganisation" class="col-sm-4 require">Organisation</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="morganisation" id="morganisation" placeholder="">
+                    <input type="text"required="" label-name="Organisation" value="<?= $apply_details[0]->mil_organisation ?>" class="form-control" name="morganisation" id="morganisation" placeholder="">
                 </div>
             </div>				
 
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Designation</label>
+                <label for="mdesignation" class="col-sm-4">Designation</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="mdesignation" id="mdesignation" placeholder="">
+                    <input type="text" class="form-control" value="<?= $apply_details[0]->mil_designation ?>" name="mdesignation" id="mdesignation" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Rank</label>
+                <label for="rank" class="col-sm-4">Rank</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="rank" id="rank" >
+                    <input type="text" class="form-control" value="<?= $apply_details[0]->mil_rank ?>" name="rank" id="rank" >
                 </div>
             </div>				
 
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Place of Posting</label>
+                <label for="posting" class="col-sm-4">Place of Posting</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" name="posting" id="posting" >
+                    <input type="text" class="form-control" value="<?= $apply_details[0]->mil_place_of_posting ?>" name="posting" id="posting" >
                 </div>
             </div>
         </div>
-        <!--------------------Military Form END------------------------------------>	 		
-
-
-
         <div class="form-group row">
-            <div class="offset-sm-2 col-sm-5">
+            <div class="col-sm-offset-4 col-sm-3">
                 <input type="submit" class="btn btn-primary" name="visa_step3" value="Save and Continue" />
             </div>
-            <div class="offset-sm-2 col-sm-5">
+            <div class="col-sm-offset-2 col-sm-3">
                 <input type="submit" class="btn btn-primary" name="visa_step3_exit" value="Save and Temporarily Exit" />
             </div>
         </div>
     </form>
 </div>
-
-
-<script>
-
-
-
-</script>
-
