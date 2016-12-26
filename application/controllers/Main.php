@@ -130,7 +130,7 @@ class Main extends FRONT_Controller {
         if (!$this->input->post('step4') == "") {
             $app_id = $this->session->userdata('application_id');
 
-           echo $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
+             $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
              
             $result = $this->operation_model->app_step4($img);
             if ($result) {

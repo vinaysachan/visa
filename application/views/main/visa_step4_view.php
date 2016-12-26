@@ -156,7 +156,6 @@
                         'TRANSIT VISA' => 'TRANSIT VISA',
                         'UN OFFICIAL' => 'UN OFFICIAL',
                         'VISIT VISA' => 'VISIT VISA'
-                        
                     );
                     echo form_dropdown('visitedvisatype', $visitedvisatype, $apply_details[0]->visited_type_Visa, ['id' => 'occupation', 'class' => 'form-control', 'required' => 'required', 'label-name' => 'Type of Visa']);
                     ?>  
@@ -190,58 +189,71 @@
         <div class="form-group row" id="extendstaydetails" style="display: <?= (!empty($apply_details[0]->extend_visa_details)) ? 'block' : 'none' ?>;">
             <label for="" class="col-sm-5 ">If so, when and by whom (Mention Control No. and date also) </label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="<?=$apply_details[0]->extend_visa_details?>" name="extendstaydetails" id="" >
+                <input type="text" class="form-control" value="<?= $apply_details[0]->extend_visa_details ?>" name="extendstaydetails" id="" >
             </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 ">Countries Visited in Last 10 years </label>
             <div class="col-sm-7">
-                <textarea class="form-control" name="visited10Countries"><?=$apply_details[0]->visited10Countries?></textarea>
+                <textarea class="form-control" name="visited10Countries"><?= $apply_details[0]->visited10Countries ?></textarea>
             </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Reference Name in India</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" required="" id="" name="refindia" >
+                <input type="text" class="form-control" value="<?= $apply_details[0]->ref_name ?>" required="" id="" name="refindia" >
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Address</label>
             <div class="col-sm-7">
-                <textarea class="form-control" required="" name="refaddress"></textarea>
+                <textarea class="form-control" required="" name="refaddress"><?= $apply_details[0]->ref_address ?></textarea>
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Phone </label>
             <div class="col-sm-7">
-                <input type="number" min="0" required="" class="form-control" id="" name="ref_phone" >
+                <input type="number" min="0" required="" value="<?= $apply_details[0]->ref_phone ?>" class="form-control" id="" name="ref_phone" >
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Reference Name in Home Country</label>
             <div class="col-sm-7">
-                <input type="text" required="" class="form-control" id="" name="ref_home" >
+                <input type="text" required="" value="<?= $apply_details[0]->ref_home_name ?>" class="form-control" id="" name="ref_home" >
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Address</label>
             <div class="col-sm-7">
-                <input type="text" required="" class="form-control" id="" name="ref_homeaddress" >
+                <input type="text" required="" value="<?= $apply_details[0]->ref_home_address ?>" class="form-control" id="" name="ref_homeaddress" >
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Phone</label>
             <div class="col-sm-7">
-                <input type="text" required="" class="form-control" id="" name="ref_homephone" >
+                <input type="text" required="" value="<?= $apply_details[0]->ref_home_phone ?>" class="form-control" id="" name="ref_homephone" >
             </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Image Upload</div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Image</label>
             <div class="col-sm-7">
-                <input type="file" required="" class="form-control view_photo" id="file" name="image" >
+                <?= $apply_details[0]->image ?>
+                <!--$img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');-->
+
+                <?php if (!empty($apply_details[0]->image)) : ?>
+
+                    <div class="show_images">
+
+                    </div>
+                <?php else : ?>
+                    <input type="file" required="" class="form-control view_photo" id="file" name="image" >
+                <?php endif; ?>
+
+
+
             </div>
         </div>
         <div class="form-group row">
