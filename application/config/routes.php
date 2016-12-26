@@ -66,7 +66,7 @@ $route['reviewform'] = 'main/reviewform';
 $route['visa_step4'] = 'main/visa_step4';
 $route['visa_step3'] = 'main/visa_step3';
 $route['payment'] = 'main/payment';
-
+$route['feepay']='main/feepay';
 $route['captcha'] = 'captcha/index';
 
 
