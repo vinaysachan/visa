@@ -3,7 +3,7 @@
 </div>
 <div class="p10">
     <form method="post" class="form-horizontal" action="" name="step4Form" id="step4Form" enctype="multipart/form-data">
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Details of Visa Sought </div>
+        <div class="col-md-12 box_heading">Details of Visa Sought </div>
         <div class="form-group">
             <label for="visaType" class="col-sm-4 require">Type of visa*</label>
             <div class="col-sm-6">e-Tourist Visa</div>
@@ -83,7 +83,7 @@
                 <input type="text" name="visitedplace" value="<?= $apply_details[0]->places_likely_to_visit; ?>" required="" class="form-control" id="" placeholder="visited Place">
             </div>
         </div>
-        <div class="col-md-12" style="background-color: #337ab7; color:white;" >Previous Visa/Currently valid Visa Details </div>
+        <div class="col-md-12 box_heading">Previous Visa/Currently valid Visa Details </div>
         <div class="form-group">
             <label for="dtp_input2" class="col-md-4">Have you ever visited India before?</label>
             <div class="col-sm-7">
@@ -192,14 +192,14 @@
                 <input type="text" class="form-control" value="<?= $apply_details[0]->extend_visa_details ?>" name="extendstaydetails" id="" >
             </div>
         </div>
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
+        <div class="col-md-12 box_heading">Other Information </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 ">Countries Visited in Last 10 years </label>
             <div class="col-sm-7">
                 <textarea class="form-control" name="visited10Countries"><?= $apply_details[0]->visited10Countries ?></textarea>
             </div>
         </div>
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
+        <div class="col-md-12 box_heading">Other Information </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Reference Name in India</label>
             <div class="col-sm-7">
@@ -236,24 +236,19 @@
                 <input type="text" required="" value="<?= $apply_details[0]->ref_home_phone ?>" class="form-control" id="" name="ref_homephone" >
             </div>
         </div>
-        <div class="col-md-12" style="background-color: #337ab7; color:white;">Image Upload</div>
+        <div class="col-md-12 box_heading">Image Upload</div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">Image</label>
             <div class="col-sm-7">
-                <?= $apply_details[0]->image ?>
-                <!--$img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');-->
-
                 <?php if (!empty($apply_details[0]->image)) : ?>
-
-                    <div class="show_images">
-
+                    <input type="hidden" name="old_img" value="<?= $apply_details[0]->image ?>">
+                    <input type="file" class="form-control view_photo" id="file" name="image" >
+                    <div class="show_images mt5">
+                        <img style="max-width: 150px" src="<?= base_url(APPLICATION_IMG . $apply_details[0]->image) ?>">
                     </div>
                 <?php else : ?>
                     <input type="file" required="" class="form-control view_photo" id="file" name="image" >
                 <?php endif; ?>
-
-
-
             </div>
         </div>
         <div class="form-group row">
