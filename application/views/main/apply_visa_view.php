@@ -17,6 +17,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="mname" class="col-sm-4">Middle Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="mname" placeholder="Middle Name">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="lname" class="col-sm-4 require">Last Name</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="lname" required="Last Name" label-name="Last Name" placeholder="Last Name">
@@ -96,7 +102,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="dob" class="col-md-4 require">Expected Date of Arrival*</label>
+            <label for="dob" class="col-md-4 require">Expected Date of Arrival</label>
             <div class="col-sm-6">
                 <input type="text" required="" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
             </div>

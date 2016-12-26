@@ -13,22 +13,22 @@
         <div class="col-md-12 box_heading">Applicant's Address Details </div>			
         <h2>Present Address</h2>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">House No./Street</label>
+            <label for="" class="col-sm-4 require">House No./Street</label>
             <div class="col-sm-7">
                 <input type="hidden" class="form-control" name="applicationid" id="applicationid" value="<?= $this->session->userdata('application_id'); ?>" >
                 <input type="text" class="form-control" required="" label-name="House No./Street" name="houseno" id="houseno" value="<?= $apply_details[0]->houseno; ?>" placeholder="House No./Street">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Village/Town/City</label>
+            <label for="" class="col-sm-4 require">Village/Town/City</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" required="" label-name="Village/Town/City" value="<?= $apply_details[0]->city; ?>"  name="city" id="city"  placeholder="Name">
+                <input type="text" class="form-control" required="" label-name="Village/Town/City" value="<?= $apply_details[0]->city; ?>"  name="city" id="city"  placeholder="Village/Town/City">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">State/Province/District</label>
+            <label for="" class="col-sm-4 require">State/Province/District</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" required="" label-name="Village/Town/City" value="<?= $apply_details[0]->district; ?>" name="district" id="district"  placeholder="Name">
+                <input type="text" class="form-control" required="" label-name="State/Province/District" value="<?= $apply_details[0]->district; ?>" name="district" id="district"  placeholder="State/Province/District">
             </div>
         </div>
         <div class="form-group row">
@@ -55,13 +55,13 @@
             </div>
         </div>	
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4">Email</label>
+            <label for="" class="col-sm-4">Email</label>
             <div class="col-sm-7">
                 <?= $apply_details[0]->email; ?>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-6">Click Here for Same Address</label>
+            <label for="" class="col-sm-6">Click Here for Same Address</label>
             <div class="col-sm-4">
                 <label class="radio-inline">
                     <input type="checkbox" name="sameAddress" id="sameAddress" value="yes" onclick="sameaddress(this.form)"> 
@@ -125,9 +125,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="father_country" class="col-sm-4">Father Country</label>
+            <label for="father_country" class="col-sm-4 require">Father Country of Birth</label>
             <div class="col-sm-7">
-                <select name="father_country" class="form-control" id="father_country" data-parsley-required="" >
+                <select name="father_country" class="form-control" id="father_country" >
                     <option value="">Select Country...</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->father_country) ? 'selected=""' : '' ?> value="<?= $counrty->code ?>" title="<?= $counrty->name ?>"><?= $counrty->name ?></option>
@@ -165,9 +165,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Mother Birth Place</label>
+            <label for="" class="col-sm-4 require">Mother Birth Place</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" required="" label-name="Mother Birth Place" value="<?= $apply_details[0]->mother_birth_place ?>" name="motherbirthplace" id="inputEmail3" placeholder="Father Birth Place">
+                <input type="text" class="form-control" required="" label-name="Mother Birth Place" value="<?= $apply_details[0]->mother_birth_place ?>" name="motherbirthplace" id="" placeholder="Mother Birth Place">
             </div>
         </div>
         <div class="form-group row">
@@ -223,9 +223,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 require">Spouse Birth Place</label>
+                <label for="" class="col-sm-4 require">Spouse Birth Place</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" required="" label-name="Spouse Birth Place" value="<?= $apply_details[0]->spouse_birth_place ?>" name="spousebirthplace" id="inputEmail3" placeholder="Father Birth Place">
+                    <input type="text" class="form-control" required="" label-name="Spouse Birth Place" value="<?= $apply_details[0]->spouse_birth_place ?>" name="spousebirthplace" id="" placeholder="Father Birth Place">
                 </div>
             </div>
             <div class="form-group row">
@@ -357,9 +357,9 @@
         </div>
         <div id="military_form" style="display: <?= (($apply_details[0]->military == "no") || (empty($apply_details[0]->grand_parent_pakistan))) ? 'none' : 'block' ?>;">
             <div class="form-group row">
-                <label for="morganisation" class="col-sm-4 require">Organisation</label>
+                <label for="morganisation" class="col-sm-4">Organisation</label>
                 <div class="col-sm-7">
-                    <input type="text"required="" label-name="Organisation" value="<?= $apply_details[0]->mil_organisation ?>" class="form-control" name="morganisation" id="morganisation" placeholder="">
+                    <input type="text" value="<?= $apply_details[0]->mil_organisation ?>" class="form-control" name="morganisation" id="morganisation" placeholder="">
                 </div>
             </div>				
 

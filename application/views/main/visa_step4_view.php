@@ -1,258 +1,248 @@
-<div><h4>Application Type  :  <?=$apply_details[0]->app_type;?></h4>
-                                        <h4>Application NO : <?=strtoupper($this->session->userdata('application_id'));?></h4>
+<div><h4>Application Type  :  <?= $apply_details[0]->app_type; ?></h4>
+    <h4>Application NO : <?= strtoupper($this->session->userdata('application_id')); ?></h4>
 </div>
 <div class="p10">
-    <form method="post" class="form-horizontal" action=""  enctype="multipart/form-data">
+    <form method="post" class="form-horizontal" action="" name="step4Form" id="step4Form" enctype="multipart/form-data">
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Details of Visa Sought </div>
         <div class="form-group">
             <label for="visaType" class="col-sm-4 require">Type of visa*</label>
+            <div class="col-sm-6">e-Tourist Visa</div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4">Duration of Visa (in Days)</label>
             <div class="col-sm-6">
-                 e-Tourist Visa
+                <input type="hidden" class="form-control" name="applicationid" id="applicationid" value="<?= $this->session->userdata('application_id'); ?>" >
+                <input type="text" class="form-control" name="visa_day" id="" value="30" readonly >
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Duration of Visa (in Days) *</label>
+            <label for="" class="col-sm-4 require">No. of Entries</label>
             <div class="col-sm-6">
-                <input type="hidden" class="form-control" name="applicationid" id="applicationid" value="<?=$this->session->userdata('application_id');?>" >
-                <input type="text" class="form-control" name="visa_day" id="inputEmail3" value="30" readonly >
+                <select required="" name="passportType" name="entries_no" class="form-control" id="entries_no"><option value=" Single" title="Single">Single</option></select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">No. of Entries *</label>
+            <label for="" class="col-sm-4 require">Purpose of Visit</label>
             <div class="col-sm-6">
-                <select name="passportType" name="entries_no" class="form-control" id="entries_no">
-                    <option value=" Single" title="Single"> Single  </option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Purpose of Visit*</label>
-            <div class="col-sm-6">
-                <select name="PurposeVisit" name="passportno" class="form-control" id="passportType">
-                    <option value="" selected="selected">Select......</option>
-                                            <option value="Business" title="Business"> Business</option>
-                                            <option value="Medical Treatement of Self" title="Medical Treatement of Self"> Medical Treatement of Self
-                                            </option>
-                                            <option value="Meeting friends/relatives" title="Meeting friends/relatives">
-                                                Meeting friends/relatives
-                                            </option>
-                                            <option value="Tourism" title="Tourism" selected=""> Tourism</option>
-                </select>
-            </div>
-        </div>
-         <div class="form-group">
-            <label for="visaType" class="col-sm-4 require">Application Type </label>
-            <div class="col-sm-6">
-                <select name="visaType" id="visaType" class="form-control">
+                <select name="PurposeVisit" required="" class="form-control" id="passportType">
                     <option value="">Select</option>
-                    <option value="normal" selected="">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
-                    <option value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>
+                    <option <?= ($apply_details[0]->purpose_of_visit == 'Business') ? 'selected=""' : '' ?> value="Business" title="Business"> Business</option>
+                    <option <?= ($apply_details[0]->purpose_of_visit == 'Medical Treatement of Self') ? 'selected=""' : '' ?> value="Medical Treatement of Self" title="Medical Treatement of Self"> Medical Treatement of Self </option>
+                    <option <?= ($apply_details[0]->purpose_of_visit == 'Meeting friends/relatives') ? 'selected=""' : '' ?> value="Meeting friends/relatives" title="Meeting friends/relatives"> Meeting friends/relatives </option>
+                    <option <?= ($apply_details[0]->purpose_of_visit == 'Tourism') ? 'selected=""' : '' ?> value="Tourism" title="Tourism"> Tourism</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 control-label">Expected Date journey *</label>
+            <label for="visa_type" class="col-sm-4 require">Application Type</label>
             <div class="col-sm-6">
-                <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Date of Birth" >
+                <select name="visa_type" required="" label-name="Application Type" id="visa_type" class="form-control">
+                    <option value="">Select</option>
+                    <option <?= ($apply_details[0]->visa_type == 'normal') ? 'selected=""' : '' ?> value="normal">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
+                    <option <?= ($apply_details[0]->visa_type == 'urgent') ? 'selected=""' : '' ?> value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dtp_input2" class="col-md-4 require">Expected Date journey</label>
+            <div class="col-sm-6">
+                <input type="text" required="" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Expected Date journey" value="<?= get_date($apply_details[0]->dateofjourney, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Port of Arrival in India *</label>
-            <div class="col-sm-6">
-                 <?=$apply_details[0]->portofarrival;?>
-            </div>
+            <label for="" class="col-sm-4">Port of Arrival in India</label>
+            <div class="col-sm-6"><?= $apply_details[0]->portofarrival; ?></div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Expected Port of Exit from India *</label>
+            <label for="port_of_exit" class="col-sm-4 require">Expected Port of Exit from India</label>
             <div class="col-sm-6">
-                <select name="portofexit" class="form-control" id="passportType">
-                    <option value="" selected="selected">Select ...</option>
-                    <option value="AHMEDABAD">AHMEDABAD</option>
-                    <option value="AMRITSAR">AMRITSAR</option>
-                    <option value="BENGALURU AIRPORT">BENGALURU AIRPORT</option>
-                    <option value="CHENNAI AIRPORT">CHENNAI AIRPORT</option>
-                    <option value="COCHIN AIRPORT">COCHIN AIRPORT</option>
-                    <option value="DELHI AIRPORT">DELHI AIRPORT</option>
-                    <option value="GAYA">GAYA</option>
-                    <option value="GOA AIRPORT">GOA AIRPORT</option>
-                    <option value="HYDERABAD AIRPORT">HYDERABAD AIRPORT</option>
-                    <option value="JAIPUR">JAIPUR</option>
-                    <option value="KOLKATA AIRPORT">KOLKATA AIRPORT</option>
-                    <option value="LUCKNOW">LUCKNOW</option>
-                    <option value="MUMBAI AIRPORT">MUMBAI AIRPORT</option>
-                    <option value="TIRCHY">TIRCHY</option>
-                    <option value="TRIVANDRUM AIRPORT">TRIVANDRUM AIRPORT</option>
-                    <option value="VARANASI">VARANASI</option>
+                <select name="port_of_exit" required="" label-name="Expected Port of Exit from India" class="form-control" id="passportType">
+                    <option value="">Select</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'AHMEDABAD') ? 'selected=""' : '' ?> value="AHMEDABAD">AHMEDABAD</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'AMRITSAR') ? 'selected=""' : '' ?> value="AMRITSAR">AMRITSAR</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'BENGALURU AIRPORT') ? 'selected=""' : '' ?> value="BENGALURU AIRPORT">BENGALURU AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'CHENNAI AIRPORT') ? 'selected=""' : '' ?> value="CHENNAI AIRPORT">CHENNAI AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'COCHIN AIRPORT') ? 'selected=""' : '' ?> value="COCHIN AIRPORT">COCHIN AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'DELHI AIRPORT') ? 'selected=""' : '' ?> value="DELHI AIRPORT">DELHI AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'GAYA') ? 'selected=""' : '' ?> value="GAYA">GAYA</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'GOA AIRPORT') ? 'selected=""' : '' ?> value="GOA AIRPORT">GOA AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'HYDERABAD AIRPORT') ? 'selected=""' : '' ?> value="HYDERABAD AIRPORT">HYDERABAD AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'JAIPUR') ? 'selected=""' : '' ?> value="JAIPUR">JAIPUR</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'KOLKATA AIRPORT') ? 'selected=""' : '' ?> value="KOLKATA AIRPORT">KOLKATA AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'LUCKNOW') ? 'selected=""' : '' ?> value="LUCKNOW">LUCKNOW</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'MUMBAI AIRPORT') ? 'selected=""' : '' ?> value="MUMBAI AIRPORT">MUMBAI AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'TIRCHY') ? 'selected=""' : '' ?> value="TIRCHY">TIRCHY</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'TRIVANDRUM AIRPORT') ? 'selected=""' : '' ?> value="TRIVANDRUM AIRPORT">TRIVANDRUM AIRPORT</option>
+                    <option <?= ($apply_details[0]->port_of_exit == 'VARANASI') ? 'selected=""' : '' ?> value="VARANASI">VARANASI</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Places likely to be visited *</label>
+            <label for="" class="col-sm-4 require">Places likely to be visited</label>
             <div class="col-sm-6">
-                <input type="text" name="visitedplace" class="form-control" id="inputEmail3" placeholder="visited Place">
+                <input type="text" name="visitedplace" value="<?= $apply_details[0]->places_likely_to_visit; ?>" required="" class="form-control" id="" placeholder="visited Place">
             </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;" >Previous Visa/Currently valid Visa Details </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 control-label">Have you ever visited India before?</label>
+            <label for="dtp_input2" class="col-md-4">Have you ever visited India before?</label>
             <div class="col-sm-7">
-               <label class="radio-inline">
-                  <input type="radio" name="visitedbefore" id="inlineRadio1" value="yes"> YES
+                <label class="radio-inline">
+                    <input type="radio" <?= ($apply_details[0]->visited_India == 'yes') ? 'checked=""' : '' ?> name="visitedbefore" id="inlineRadio1" value="yes"> YES
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="visitedbefore" id="inlineRadio2" checked="checked" value="no"> NO
+                    <input type="radio" name="visitedbefore" id="inlineRadio2" <?= (($apply_details[0]->visited_India == 'no') || (empty($apply_details[0]->visited_India))) ? 'checked=""' : '' ?>  value="no"> NO
                 </label>
-      </div>
-        </div>
-        <!--------------------visitedbefore Form ------------------------------------>				
-	<div id="visitedbefore_form" style="display: none;">
-		<div class="form-group row">
-		  <label for="inputPassword3" class="col-sm-4 col-form-label">Address *</label>
-		  <div class="col-sm-7">
-              <textarea class="form-control" name="visitedaddress"></textarea>
-		  </div>
-		</div>				
-		<div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Cities previously visited in India *</label>
-		  <div class="col-sm-7">
-			<textarea class="form-control" name="visitedcities"></textarea>
-		  </div>
-        </div>
-		<div class="form-group">
-			<label for="dtp_input2" class="col-md-4 control-label">Last Indian Visa No/Currently valid Indian Visa No. *</label>
-			<div class="col-sm-6">
-                <input type="text" name="visitedvisano" class="form-control" id="inputEmail3" >
             </div>
-    	</div>
-		
-		<div class="form-group row">
-		  <label for="inputPassword3" class="col-sm-4 col-form-label">Type of Visa *</label>
-		  <div class="col-sm-7">
-			<select name="visitedvisatype" class="form-control" id="visitedvisatype" data-parsley-required="" >
-				<option value="" selected="selected">Select......</option>
+        </div>
+        <div id="visitedbefore_form" style="display: <?= (($apply_details[0]->visited_India == 'no') || (empty($apply_details[0]->visited_India))) ? 'none' : 'block' ?>;">
+            <div class="form-group row">
+                <label for="" class="col-sm-4 ">Address </label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" name="visitedaddress"><?= $apply_details[0]->visited_address ?></textarea>
+                </div>
+            </div>				
+            <div class="form-group row">
+                <label for="" class="col-sm-4 require">Cities previously visited in India</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" required="" name="visitedcities"><?= $apply_details[0]->previously_visited_city ?></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-4 require">Last Indian Visa No/Currently valid Indian Visa No.</label>
+                <div class="col-sm-6">
+                    <input type="text" name="visitedvisano" required="" class="form-control" value="<?= $apply_details[0]->last_Indian_visa_no ?>">
+                </div>
+            </div>
 
-                                            <option value="ART SURROGACY VISA"> ART SURROGACY VISA</option>
-                                            <option value="BUSINESS VISA"> BUSINESS VISA</option>
-                                            <option value="BUSINESS VISA DEPENDENTS"> BUSINESS VISA DEPENDENTS</option>
-                                            <option value="BUSINESS VISA TRANSFER"> BUSINESS VISA TRANSFER</option>
-                                            <option value="CONFERENCE/SEMINARS VISA"> CONFERENCE/SEMINARS VISA</option>
-                                            <option value="DIPLOMATIC DEPENDENT VISA"> DIPLOMATIC DEPENDENT VISA
-                                            </option>
-                                            <option value="DIPLOMATIC VISA"> DIPLOMATIC VISA</option>
-                                            <option value="EMPLOYMENT  VISA"> EMPLOYMENT VISA</option>
-                                            <option value="EMPLOYMENT VISA DEPENDENTS"> EMPLOYMENT VISA DEPENDENTS
-                                            </option>
-                                            <option value="EMPLOYMENT VISA TRANSFER"> EMPLOYMENT VISA TRANSFER</option>
-                                            <option value="ENTRY VISA"> ENTRY VISA</option>
-                                            <option value="ENTRY VISA TRANSFER"> ENTRY VISA TRANSFER</option>
-                                            <option value="JOURNALIST VISA"> JOURNALIST VISA</option>
-                                            <option value="MEDICAL ATTENDANT"> MEDICAL ATTENDANT</option>
-                                            <option value="MEDICAL  VISA"> MEDICAL VISA</option>
-                                            <option value="MEDICAL VISA TRANSFER"> MEDICAL VISA TRANSFER</option>
-                                            <option value="MISSIONARY VISA"> MISSIONARY VISA</option>
-                                            <option value="MOUNTAINEERING VISA"> MOUNTAINEERING VISA</option>
-                                            <option value="OFFICIAL DEPENDENT VISA"> OFFICIAL DEPENDENT VISA</option>
-                                            <option value="OFFICIAL VISA"> OFFICIAL VISA</option>
-                                            <option value="PILGRIMES VISA"> PILGRIMES VISA</option>
-                                            <option value="PROJECT VISA"> PROJECT VISA</option>
-                                            <option value="RESEARCH VISA"> RESEARCH VISA</option>
-                                            <option value="RESEARCH VISA DEPENDENTS"> RESEARCH VISA DEPENDENTS</option>
-                                            <option value="RESEARCH VISA TRANSFER"> RESEARCH VISA TRANSFER</option>
-                                            <option value="SOUTH ASIAN UNIVERSITY"> SOUTH ASIAN UNIVERSITY</option>
-                                            <option value="SPORTS"> SPORTS</option>
-                                            <option value="STUDENT VISA"> STUDENT VISA</option>
-                                            <option value="STUDENT VISA DEPENDENTS"> STUDENT VISA DEPENDENTS</option>
-                                            <option value="STUDENT VISA TRANSFER"> STUDENT VISA TRANSFER</option>
-                                            <option value="TOURIST VISA"> TOURIST VISA</option>
-                                            <option value="TOURIST VISA TRANSFER"> TOURIST VISA TRANSFER</option>
-                                            <option value="TRANSIT VISA"> TRANSIT VISA</option>
-                                            <option value="UN OFFICIAL"> UN OFFICIAL</option>
-                                            <option value="VISIT VISA"> VISIT VISA</option>
-		   </select>
-		  </div>
-		</div>
-        <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Place of Issue * </label>
-		  <div class="col-sm-7">
-			<input type="text" class="form-control" id="inputEmail3" name="visitedplaceissue" >
-		  </div>
-        </div>
-        <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 control-label">Date of Issue * *</label>
-            <div class="col-sm-6">
-                <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="visitedissuedate" id="dob" placeholder="Date of Birth" >
+            <div class="form-group row">
+                <label for="" class="col-sm-4 require">Type of Visa</label>
+                <div class="col-sm-7">
+                    <?php
+                    $visitedvisatype = array(
+                        '' => 'Select Type of Visa',
+                        'ART SURROGACY VISA' => 'ART SURROGACY VISA',
+                        'BUSINESS VISA' => 'BUSINESS VISA',
+                        'BUSINESS VISA DEPENDENTS' => 'BUSINESS VISA DEPENDENTS',
+                        'BUSINESS VISA TRANSFER' => 'BUSINESS VISA TRANSFER',
+                        'CONFERENCE/SEMINARS VISA' => 'CONFERENCE/SEMINARS VISA',
+                        'DIPLOMATIC DEPENDENT VISA' => 'DIPLOMATIC DEPENDENT VISA',
+                        'DIPLOMATIC VISA' => 'DIPLOMATIC VISA',
+                        'EMPLOYMENT VISA' => 'EMPLOYMENT VISA',
+                        'EMPLOYMENT VISA DEPENDENTS' => 'EMPLOYMENT VISA DEPENDENTS',
+                        'EMPLOYMENT VISA TRANSFER' => 'EMPLOYMENT VISA TRANSFER',
+                        'ENTRY VISA' => 'ENTRY VISA',
+                        'ENTRY VISA TRANSFER' => 'ENTRY VISA TRANSFER',
+                        'JOURNALIST VISA' => 'JOURNALIST VISA',
+                        'MEDICAL ATTENDANT' => 'MEDICAL ATTENDANT',
+                        'MEDICAL  VISA' => 'MEDICAL  VISA',
+                        'MEDICAL VISA TRANSFER' => 'MEDICAL VISA TRANSFER',
+                        'MISSIONARY VISA' => 'MISSIONARY VISA',
+                        'MOUNTAINEERING VISA' => 'MOUNTAINEERING VISA',
+                        'OFFICIAL DEPENDENT VISA' => 'OFFICIAL DEPENDENT VISA',
+                        'OFFICIAL VISA' => 'OFFICIAL VISA',
+                        'PILGRIMES VISA' => 'PILGRIMES VISA',
+                        'PROJECT VISA' => 'PROJECT VISA',
+                        'RESEARCH VISA' => 'RESEARCH VISA',
+                        'RESEARCH VISA DEPENDENTS' => 'RESEARCH VISA DEPENDENTS',
+                        'RESEARCH VISA TRANSFER' => 'RESEARCH VISA TRANSFER',
+                        'SOUTH ASIAN UNIVERSITY' => 'SOUTH ASIAN UNIVERSITY',
+                        'SPORTS' => 'SPORTS',
+                        'STUDENT VISA' => 'STUDENT VISA',
+                        'STUDENT VISA DEPENDENTS' => 'STUDENT VISA DEPENDENTS',
+                        'STUDENT VISA TRANSFER' => 'STUDENT VISA TRANSFER',
+                        'TOURIST VISA' => 'TOURIST VISA',
+                        'TOURIST VISA TRANSFER' => 'TOURIST VISA TRANSFER',
+                        'TRANSIT VISA' => 'TRANSIT VISA',
+                        'UN OFFICIAL' => 'UN OFFICIAL',
+                        'VISIT VISA' => 'VISIT VISA'
+                        
+                    );
+                    echo form_dropdown('visitedvisatype', $visitedvisatype, $apply_details[0]->visited_type_Visa, ['id' => 'occupation', 'class' => 'form-control', 'required' => 'required', 'label-name' => 'Type of Visa']);
+                    ?>  
+                </div>
             </div>
-        </div>
-	</div>
-	<!--------------------visitedbefore Form END------------------------------------>
-        
+            <div class="form-group row">
+                <label for="" class="col-sm-4 require">Place of Issue</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" value="<?= $apply_details[0]->visited_visa_issue_place ?>" name="visitedplaceissue" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-4 require">Date of Issue</label>
+                <div class="col-sm-6">
+                    <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" value="<?= get_date($apply_details[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?>" name="visitedissuedate" id="visitedissuedate" placeholder="Date of Birth" >
+                </div>
+            </div>
+        </div> 
+
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-5 col-form-label">Has permission to visit or to extend stay in India previously been refused? </label>
+            <label for="" class="col-sm-5 ">Has permission to visit or to extend stay in India previously been refused? </label>
             <div class="col-sm-4">
                 <label class="radio-inline">
-                  <input type="radio" name="extendstay" id="inlineRadio1" value="yes"> YES
+                    <input type="radio" name="extendstay" <?= (!empty($apply_details[0]->extend_visa_details)) ? 'checked=""' : '' ?> value="yes"> YES
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="extendstay" id="inlineRadio2" checked="checked" value="no"> NO
+                    <input type="radio" name="extendstay" id="inlineRadio2" <?= (empty($apply_details[0]->extend_visa_details)) ? 'checked=""' : '' ?> value="no"> NO
                 </label>
             </div>
         </div>
-        <div class="form-group row" id="extendstaydetails" style="display: none;">
-            <label for="inputEmail3" class="col-sm-5 col-form-label">If so, when and by whom (Mention Control No. and date also) </label>
+        <div class="form-group row" id="extendstaydetails" style="display: <?= (!empty($apply_details[0]->extend_visa_details)) ? 'block' : 'none' ?>;">
+            <label for="" class="col-sm-5 ">If so, when and by whom (Mention Control No. and date also) </label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="extendstaydetails" id="inputEmail3" >
+                <input type="text" class="form-control" value="<?=$apply_details[0]->extend_visa_details?>" name="extendstaydetails" id="" >
             </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Countries Visited in Last 10 years </label>
-             <div class="col-sm-7">
-			<textarea class="form-control" name="visited10Countries"></textarea>
-		  </div>
+            <label for="" class="col-sm-4 ">Countries Visited in Last 10 years </label>
+            <div class="col-sm-7">
+                <textarea class="form-control" name="visited10Countries"><?=$apply_details[0]->visited10Countries?></textarea>
+            </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Other Information </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Reference Name in India* </label>
-		  <div class="col-sm-7">
-			<input type="text" class="form-control" id="inputEmail3" name="refindia" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Reference Name in India</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" required="" id="" name="refindia" >
+            </div>
         </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Address * </label>
-		  <div class="col-sm-7">
-			<textarea class="form-control" name="refaddress"></textarea>
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Address</label>
+            <div class="col-sm-7">
+                <textarea class="form-control" required="" name="refaddress"></textarea>
+            </div>
         </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Phone * </label>
-		  <div class="col-sm-7">
-			<input type="number" min="0" class="form-control" id="inputEmail3" name="ref_phone" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Phone </label>
+            <div class="col-sm-7">
+                <input type="number" min="0" required="" class="form-control" id="" name="ref_phone" >
+            </div>
         </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Reference Name in Home Country * </label>
-		  <div class="col-sm-7">
-			<input type="text" class="form-control" id="inputEmail3" name="ref_home" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Reference Name in Home Country</label>
+            <div class="col-sm-7">
+                <input type="text" required="" class="form-control" id="" name="ref_home" >
+            </div>
         </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Address * </label>
-		  <div class="col-sm-7">
-			<input type="text" class="form-control" id="inputEmail3" name="ref_homeaddress" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Address</label>
+            <div class="col-sm-7">
+                <input type="text" required="" class="form-control" id="" name="ref_homeaddress" >
+            </div>
         </div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Phone * </label>
-		  <div class="col-sm-7">
-			<input type="text" class="form-control" id="inputEmail3" name="ref_homephone" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Phone</label>
+            <div class="col-sm-7">
+                <input type="text" required="" class="form-control" id="" name="ref_homephone" >
+            </div>
         </div>
         <div class="col-md-12" style="background-color: #337ab7; color:white;">Image Upload</div>
-         <div class="form-group row">
-		  <label for="inputEmail3" class="col-sm-4 col-form-label">Image * </label>
-		  <div class="col-sm-7">
-			<input type="file" class="form-control view_photo" id="inputEmail3" name="image" >
-		  </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-4 require">Image</label>
+            <div class="col-sm-7">
+                <input type="file" required="" class="form-control view_photo" id="file" name="image" >
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-offset-8 col-sm-4 text-right">
@@ -261,4 +251,3 @@
         </div>
     </form>
 </div>
- 

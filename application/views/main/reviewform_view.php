@@ -1,7 +1,7 @@
 <div>
     <p>The applicant is requested to verify the particulars filled in the application Form.The applicant may face legal action(including refusal to enter India or deportation) in case of provision of wrong information.
         Please verify your Registration Details.   If all details are correct please Press "Verified and Continue".
-        For any corrections press "Modify/Edit"</p>
+        For any corrections press "Modify/Edit"</p><?= $apply_details[0]->image; ?>
     <h4>Application Type  :  <?= $apply_details[0]->app_type; ?></h4>
     <h4>Application NO : <?= strtoupper($this->session->userdata('application_id')); ?></h4>
     <img id="userPhoto" src="<?= base_url() . APPLICATION_IMG ?>/<?= $apply_details[0]->image; ?>" border="1" width="120px;" height="120px;" style="margin-left:40%">

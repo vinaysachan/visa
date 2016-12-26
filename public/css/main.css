@@ -136,20 +136,24 @@ h6, .h6 {
 }
 
 input.form-control:focus, input.form-control,textarea.form-control:focus, textarea.form-control {
-    background-color: #fcfcfc;
-    border-color: #eeeeee ;
+    background-color: #f4faff;
+    border-color: #dadada;
     border-image: none;
-    border-radius: 3px;
-    border-style: solid solid solid solid;
-    border-width: 1px 1px 1px 1px;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
     box-shadow: none;
-    color: #606060;
-    min-height: 42px;
+    color: #686868;
     font-size: 12px;
+    min-height: 33px;
+}
+.form-group {
+    margin-bottom: 5px;
 }
 select.form-control {
-    border-color: #eeeeee ;
-    border: 1px solid #eeeeee;
+    border-color: #dadada ;
+    border: 1px solid #dadada;
+    background-color: #f4faff;
     border-radius: 0;
     box-shadow: none;
     color: #606060;

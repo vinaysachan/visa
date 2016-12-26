@@ -35,7 +35,7 @@ class Operation_model extends CORE_Model {
     function app_step1() {
         $data = array(
             'app_type' => $this->input->post('visaType'),
-            'fname' => $this->input->post('fname'),
+            'fname' => $this->input->post('fname') . (!empty($this->input->post('mname'))) ? (' ' . $this->input->post('mname')) : '',
             'lname' => $this->input->post('lname'),
             'passport_type' => $this->input->post('passportType'),
             'nationality' => $this->input->post('nationality'),
@@ -66,11 +66,14 @@ class Operation_model extends CORE_Model {
         $identity_certificate = $this->input->post('ic');
         $acquire_nationality = $this->input->post('acquire_nationality');
         $applicationid = $this->input->post('applicationid');
+        $have_prev_name = $this->input->post('have_previous_name');
         $data = array(
             'lname' => $this->input->post('surname'),
             'fname' => $this->input->post('fname'),
+            'have_previous_name' => $have_prev_name,
             'sex' => $this->input->post('sex'),
             'birth_city' => $this->input->post('birthofcity'),
+            'two_year_live' => $this->input->post('two_year_live'),
             'passport_no' => $this->input->post('passportno'),
             'birth_country' => $this->input->post('birthofcountry'),
             'national_id' => $this->input->post('natinalid'),
@@ -85,6 +88,10 @@ class Operation_model extends CORE_Model {
             'last_update' => $curdate,
             'status' => 2
         );
+        if ($have_prev_name == 'y') {
+            $data['prev_name'] = $this->input->post('prev_name');
+            $data['prev_surname'] = $this->input->post('prev_surname');
+        }
         if ($identity_certificate == 'yes') {
             $data['ic_country_of_Issue'] = $this->input->post('issueofcountry');
             $data['ic_passport_no'] = $this->input->post('icpassportno');
@@ -172,7 +179,7 @@ class Operation_model extends CORE_Model {
         return $result = $query->result();
     }
 
-    function app_step4($img) {
+    function app_step4($img = NULL) {
         $curdate = date('Y-m-d');
         $visitedbefore = $this->input->post('visitedbefore');
         $extendstay = $this->input->post('extendstay');
@@ -182,7 +189,9 @@ class Operation_model extends CORE_Model {
             'durationofvisa' => $this->input->post('visa_day'),
             'No_ofentries' => $this->input->post('entries_no'),
             'purpose_of_visit' => $this->input->post('PurposeVisit'),
-            'port_of_exit' => $this->input->post('portofexit'),
+            'visa_type' => $this->input->post('visa_type'),
+            'dateofjourney' => get_date($this->input->post('dateofjourney')),
+            'port_of_exit' => $this->input->post('port_of_exit'),
             'places_likely_to_visit' => $this->input->post('visitedplace'),
             'visited_India' => $visitedbefore,
             'ref_name' => $this->input->post('refindia'),
@@ -192,20 +201,23 @@ class Operation_model extends CORE_Model {
             'ref_home_address' => $this->input->post('ref_homeaddress'),
             'ref_home_phone' => $this->input->post('ref_homephone'),
             'image' => $img,
-            'last_update' => $curdate
+            'last_update' => $curdate,
+            'visited10Countries' => $this->input->post('visited10Countries')
         );
         if ($visitedbefore == 'yes') {
-
             $data['visited_address'] = $this->input->post('visitedaddress');
             $data['previously_visited_city'] = $this->input->post('visitedcities');
             $data['last_Indian_visa_no'] = $this->input->post('visitedvisano');
             $data['visited_type_Visa'] = $this->input->post('visitedvisatype');
             $data['visited_visa_issue_place'] = $this->input->post('visitedplaceissue');
-            $data['visited_visa_issue_date'] = $this->input->post('visitedissuedate');
+            $data['visited_visa_issue_date'] = get_date($this->input->post('visitedissuedate'));
         }
         if ($extendstay == 'yes') {
             $data['extend_visa_details'] = $this->input->post('extendstaydetails');
+        }else {
+            $data['extend_visa_details'] = '';
         }
+        //
 
 
         $this->db->where('app_id', $applicationid);

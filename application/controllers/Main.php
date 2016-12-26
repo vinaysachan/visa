@@ -45,6 +45,14 @@ class Main extends FRONT_Controller {
     }
 
     function apply_visa() {
+
+//        $this->load->library('Ops_Email');
+//        $this->ops_email->content = '<p>Vinay Sachan</p>';
+//        $this->ops_email->subject = 'Email Subject';
+//        $this->ops_email->__toEmail = 'vnyscn@gmail.com';
+//        $this->ops_email->__toName = 'Vinay Sachan';
+//        $this->ops_email->__send_mail();
+ 
         if (!$this->input->post('step1') == "") {
             if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
                 echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Please Enter Correct verification code']);
@@ -122,7 +130,8 @@ class Main extends FRONT_Controller {
         if (!$this->input->post('step4') == "") {
             $app_id = $this->session->userdata('application_id');
 
-            $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
+           echo $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
+             
             $result = $this->operation_model->app_step4($img);
             if ($result) {
                 redirect(base_url('main/uploadPassport'));

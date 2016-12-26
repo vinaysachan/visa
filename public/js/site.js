@@ -116,7 +116,7 @@ $("#applyVisaFrm").validate({
     }
 });
 
-$("#searchAppFrm").validate({ 
+$("#searchAppFrm").validate({
     submitHandler: function (form) {
         var btn = $("#searchAppFrm button[type='submit']").loading('set');
         $.post($(form).attr('action'), $(form).serialize(), function (o) {
@@ -135,15 +135,22 @@ $("#searchAppFrm").validate({
 
 $("#visa_regFrm").validate({
     submitHandler: function (form) {
-        return true;   
+        return true;
     }
 });
 
 $("#step3").validate({
     submitHandler: function (form) {
-        return true;   
+        return true;
     }
-}); 
+});
+
+$("#step4Form").validate({
+    submitHandler: function (form) {
+        return true;
+    }
+});
+
 
 function acquire_naturalization(val) {
     if (val == 'Naturalization') {
@@ -160,4 +167,26 @@ $(document).ready(function () {
             $('#ic_form').hide();
         }
     });
+
+    $('select[name=religion]').change(function () {
+        var v = $(this).val() ; 
+        if (v == 'Others') {
+            $('#other_relation').prop('disabled', false).attr('placeholder','Please specify your Religion');
+        } else {
+            $('#other_relation').prop('disabled', true).attr('placeholder','');
+        }
+    });
+
 });
+
+$(document).on('click', "[name='have_previous_name']", function () {
+    var th = $(this);
+    if (th.prop('checked')) {
+        $('#previous_name').show();
+    } else {
+        $('#previous_name').hide();
+    }
+});
+
+
+

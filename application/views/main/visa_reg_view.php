@@ -6,16 +6,39 @@
 <div class="p10">
     <form name="visa_regFrm" id="visa_regFrm" method="post" class="form-horizontal" action="" >
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Surname</label>
+            <label for="surname" class="col-sm-4 require">Surname</label>
             <div class="col-sm-7">
                 <input type="hidden" class="form-control" name="applicationid" id="applicationid" value="<?= $this->session->userdata('application_id') ?>" >
                 <input type="text" class="form-control" name="surname" id="surname" value="<?= $apply_details[0]->lname; ?>" placeholder="Surname" required="" label-name="Surname">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Given Name/s</label>
+            <label for="fname" class="col-sm-4 require">Given Name/s</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" name="fname" id="fname" value="<?= $apply_details[0]->fname; ?>" placeholder="Name" required="" label-name="Given Name">
+            </div>
+        </div>
+        <div class="form-group row text-center">
+            <div class=" ">
+                <label class="inline">Have you ever changed your name? If yes,</label>
+                <label class="radio-inline">
+                    <input name="have_previous_name" value="y"  <?= ((empty($apply_details[0]->have_previous_name)) || ($apply_details[0]->have_previous_name != 'y')) ? '' : 'checked=""' ?> type="checkbox">
+                    <strong>Click the box and give details.</strong>
+                </label>
+            </div>
+        </div>
+        <div id="previous_name" style="display: <?= ((empty($apply_details[0]->have_previous_name)) || ($apply_details[0]->have_previous_name != 'y')) ? 'none' : 'block' ?>;">
+            <div class="form-group row">
+                <label for="prev_surname" class="col-sm-4">Previous Surname</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="prev_surname" id="prev_surname" value="<?= $apply_details[0]->prev_surname; ?>" placeholder="Previous Surname">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="prev_name" class="col-sm-4">Previous Name</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="prev_name" id="prev_name" value="<?= $apply_details[0]->prev_name; ?>" placeholder="Previous Name">
+                </div>
             </div>
         </div>
         <div class="form-group row">
@@ -41,7 +64,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 require">Country of birth </label>
+            <label for="nationality" class="col-sm-4 require">Country of birth </label>
             <div class="col-sm-7">
                 <select name="birthofcountry" class="form-control" id="nationality" required="" label-name="Country of birth">
                     <option value="">Select Country</option>
@@ -59,7 +82,7 @@
         </div>				
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-4 require">Religion</label>
-            <div class="col-sm-7">
+            <div class="col-sm-3">
                 <select name="religion" class="form-control" required="" label-name="Religion">
                     <option value="" selected="selected">Select Religion</option>
                     <option <?= ($apply_details[0]->religion == 'BAHAI') ? 'selected=""' : '' ?> value="BAHAI">BAHAI</option>
@@ -74,11 +97,14 @@
                     <option <?= ($apply_details[0]->religion == 'Others') ? 'selected=""' : '' ?> value="Others">Others</option>
                 </select>
             </div>
+            <div class="col-sm-4">
+                <input placeholder="" type="text" id="other_relation" name="other_relation" class="form-control" disabled="">
+            </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Visible identification marks</label>
+            <label for="identification" class="col-sm-4 require">Visible identification marks</label>
             <div class="col-sm-7">
-                <input type="text" name="identification" class="form-control" id="inputEmail3" placeholder="Visible identification marks" required="" value="<?= $apply_details[0]->visible_identification_marks ?>" label-name="Visible identification marks">
+                <input type="text" name="identification" class="form-control" id="identification" placeholder="Visible identification marks" required="" value="<?= $apply_details[0]->visible_identification_marks ?>" label-name="Visible identification marks">
             </div>
         </div>
         <div class="form-group row">
@@ -99,7 +125,7 @@
             </div>
         </div>				
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4">Nationality</label>
+            <label class="col-sm-4">Nationality</label>
             <div class="col-sm-7"><?= country_name($apply_details[0]->nationality) ?></div> 
         </div>
         <div class="form-group row">
@@ -113,26 +139,37 @@
             </div>
         </div>
         <div class="form-group row" id="prev_nationality" style="display:<?= (!empty($apply_details[0]->pre_nationality)) ? '' : 'none' ?>">
-            <label for="prev_nationality" class="col-sm-4 col-form-label">Prev. Nationality </label>
+            <label for="prev_nationality" class="col-sm-4 ">Prev. Nationality </label>
             <div class="col-sm-7">
                 <select name="prev_nationality" class="form-control" id="nationality" >
                     <option value="">Select Country...</option>
                     <?php foreach ($getCounrty as $counrty) { ?>
                         <option <?= ($apply_details[0]->pre_nationality == $counrty->code) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
-
-
                 </select>
             </div>
-        </div> 
+        </div>
+         <div class="form-group text-center row">
+            <label class="  require">
+                Have you lived for at least two years in the country from where you are applying visa?
+            </label>
+            <div class=" ">
+                <label class="radio-inline">
+                    <input name="two_year_live" checked="" required="" value="y" type="radio"> YES
+                </label>
+                <label class="radio-inline">
+                    <input name="two_year_live" required="" value="n" type="radio"> NO
+                </label>
+            </div>
+        </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 require">Passport NO</label>
+            <label for="passportno" class="col-sm-4 require">Passport NO</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" id="passportno" name="passportno" value="<?= $apply_details[0]->passport_no; ?>" placeholder="Passport No" required="" label-name="Passport No">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-require">Place of Issue</label>
+            <label for="placeofissue" class="col-sm-4 col-require">Place of Issue</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" id="placeofissue" value="<?= $apply_details[0]->pass_place_of_Issue; ?>" name="placeofissue" placeholder="Place of Issue" required="">
             </div>
@@ -150,7 +187,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Any other valid Passport/Identity Certificate(IC) held *</label>
+            <label class="col-sm-4">Any other valid Passport/Identity Certificate(IC) held *</label>
             <div class="col-sm-7">
                 <label class="radio-inline">
                     <input type="radio" name="ic" id="inlineRadio1" value="yes"> YES
@@ -164,7 +201,7 @@
         <!--------------------IC Form ------------------------------------>				
         <div id="ic_form" style="display: none;">
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 col-form-label">Country of Issue  </label>
+                <label for="inputPassword3" class="col-sm-4 ">Country of Issue  </label>
                 <div class="col-sm-7">
                     <select name="nationality" class="form-control" id="issueofcountry" data-parsley-required="" >
                         <option value="">Select Country...</option>
@@ -175,9 +212,9 @@
                 </div>
             </div>				
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Passport/IC No. </label>
+                <label for="icpassportno" class="col-sm-4 ">Passport/IC No. </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="inputEmail3" name="icpassportno" placeholder="Passport/IC No">
+                    <input type="text" class="form-control" id="icpassportno" name="icpassportno" placeholder="Passport/IC No">
                 </div>
             </div> 
             <div class="form-group">
@@ -187,13 +224,13 @@
                 </div>
             </div> 
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Place of Issue </label>
+                <label for="icplaceofissue" class="col-sm-4 ">Place of Issue </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="inputEmail3" name="icplaceofissue" placeholder="Place of Issue ">
+                    <input type="text" class="form-control" id="icplaceofissue" name="icplaceofissue" placeholder="Place of Issue ">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 col-form-label">Nationality mentioned therein  </label>
+                <label for="inputPassword3" class="col-sm-4 ">Nationality mentioned therein  </label>
                 <div class="col-sm-7">
                     <select name="icnatinality" class="form-control" id="nationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
