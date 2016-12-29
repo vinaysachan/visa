@@ -495,7 +495,7 @@
         <div class="form-group row">
             <div class="col-sm-offset-8 col-sm-4 text-right">
                 <a href="<?= base_url('main/visa_reg') ?>" class="btn btn-primary">Modify/Edit</a>
-                <a href="<?= base_url('main/payment') ?>" class="btn btn-primary">Verify/Continue</a>
+                <a href="<?= base_url('main/feepay') ?>" class="btn btn-primary">Verify/Continue</a>
             </div>
         </div>
     </form>

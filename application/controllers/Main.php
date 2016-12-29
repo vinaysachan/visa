@@ -323,5 +323,16 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
+    function feepay() {
+         
+        $data = [
+            'title' => 'title',
+            'meta_description' => 'description',
+            'meta_keywords' => 'keywords',
+            'heading' => 'e-Tourist Visa (eTV) Application',
+            'apply_details' => $this->operation_model->get_application_details()
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+    }
 
 }

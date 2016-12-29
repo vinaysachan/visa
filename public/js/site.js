@@ -48,8 +48,28 @@ $(document).ready(function () {
             $('#extendstaydetails').hide();
         }
     });
+   $('input:checkbox[name=agreement]').change(function () {
+
+        if (this.checked == true) {
+
+            $('#payment').show();
+        } else {
+
+            $('#payment').hide();
+        }
+    });
 
 });
+function agrement()
+{
+    if ($('#agreement').checked == true) {
+
+            $('#payment').show();
+        } else {
+
+            $('#payment').hide();
+        }
+}
 function sameaddress(f) {
     if (f.sameAddress.checked == true) {
         f.phouseno.value = f.houseno.value;
