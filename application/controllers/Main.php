@@ -44,6 +44,31 @@ class Main extends FRONT_Controller {
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
 
+    function mail() {
+        $data = [
+            'site_name' => SITE_NAME,
+            'logo' => base_url('public/img/logo.png'),
+            'heading' => 'Visa Application Generated',
+            'subheading' => 'Thanks for using ' . SITE_NAME,
+            'app_id' => 'ZI100223',
+            'fname' => '____________',
+            'mname' => '____________',
+            'lname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+            'fname' => '____________',
+        ];
+        $this->load->view('email/visa_aply', $data);
+//       echo $this->load->view('email/visa_aply',$data,TRUE);
+    }
+
     function apply_visa() {
 
 //        $this->load->library('Ops_Email');
@@ -59,6 +84,37 @@ class Main extends FRONT_Controller {
             } else {
                 $application_id = $this->operation_model->app_step1();
                 $this->session->set_userdata('application_id', $application_id);
+
+                /**
+                 * Send Mail : - 
+                 */
+                $name = $this->input->post('fname') . ((!empty($this->input->post('mname'))) ? (' ' . $this->input->post('mname')) : '') . ' ' . $this->input->post('lname');
+                $email = $this->input->post('email');
+                $data = [
+                    'site_name' => SITE_NAME,
+                    'logo' => base_url('public/img/logo.png'),
+                    'heading' => 'Visa Application Generated',
+                    'subheading' => 'Thanks for using ' . SITE_NAME,
+                    'app_id' => $application_id,
+                    'fname' => $this->input->post('fname'),
+                    'mname' => $this->input->post('mname'),
+                    'lname' => $this->input->post('lname'),
+                    'pass_type' => $this->input->post('passportType'),
+                    'nationality' => $this->input->post('nationality'),
+                    'portofarrival' => $this->input->post('portofarrival'),
+                    'dob' => $this->input->post('dob'),
+                    'email' => $this->input->post('email'),
+                    'date_of_arrival' => $this->input->post('date_of_arrival'),
+                    'phone' => $this->input->post('phone')
+                ];
+                $mail_html = $this->load->view('email/visa_aply', $data, TRUE);
+
+                $this->load->library('Ops_Email');
+                $this->ops_email->content = $mail_html;
+                $this->ops_email->subject = SITE_NAME . ' - Complete Pending Registration';
+                $this->ops_email->__toEmail = $this->input->post('email');
+                $this->ops_email->__toName = $name;
+                $this->ops_email->__send_mail();
                 echo json_encode([
                     'sts' => STATUS_SUCCESS,
                     'title' => 'Congratulation!',
@@ -127,6 +183,9 @@ class Main extends FRONT_Controller {
     }
 
     function visa_step4() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('apply_visa'));
+        }
         if (!$this->input->post('step4') == "") {
             $app_id = $this->session->userdata('application_id');
             $img = $this->util->fileUpload(APPLICATION_IMG, 'image', $app_id, 'jpeg|jpg|png');
@@ -134,7 +193,7 @@ class Main extends FRONT_Controller {
             $old_img = $this->input->post('old_img');
             if (empty($img)) {
                 $img = $old_img;
-            } else { 
+            } else {
                 $old_img_path = APPLICATION_IMG . $old_img;
                 if (file_exists($old_img_path)) {
                     @unlink($old_img_path);
@@ -158,6 +217,9 @@ class Main extends FRONT_Controller {
     }
 
     public function uploadPassport() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('apply_visa'));
+        }
         if (!$this->input->post('uploadpassport') == "") {
             $app_id = $this->session->userdata('application_id');
             $img = $this->util->fileUpload(PASSPORT_IMG, 'passport', $app_id, 'jpeg|jpg|png');
