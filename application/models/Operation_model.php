@@ -202,7 +202,8 @@ class Operation_model extends CORE_Model {
             'ref_home_phone' => $this->input->post('ref_homephone'),
             'image' => $img,
             'last_update' => $curdate,
-            'visited10Countries' => $this->input->post('visited10Countries')
+            'visited10Countries' => $this->input->post('visited10Countries'),
+            'status' => 4
         );
         if ($visitedbefore == 'yes') {
             $data['visited_address'] = $this->input->post('visitedaddress');

@@ -43,32 +43,7 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-
-    function mail() {
-        $data = [
-            'site_name' => SITE_NAME,
-            'logo' => base_url('public/img/logo.png'),
-            'heading' => 'Visa Application Generated',
-            'subheading' => 'Thanks for using ' . SITE_NAME,
-            'app_id' => 'ZI100223',
-            'fname' => '____________',
-            'mname' => '____________',
-            'lname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-            'fname' => '____________',
-        ];
-        $this->load->view('email/visa_aply', $data);
-//       echo $this->load->view('email/visa_aply',$data,TRUE);
-    }
-
+ 
     function apply_visa() {
         if (!$this->input->post('step1') == "") {
             if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
@@ -231,6 +206,9 @@ class Main extends FRONT_Controller {
     }
 
     public function reviewform() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('serach_app'));
+        }
         $data = [
             'title' => 'title',
             'meta_description' => 'Upload PassPort',
@@ -242,6 +220,9 @@ class Main extends FRONT_Controller {
     }
 
     function payment() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('serach_app'));
+        }
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
@@ -253,6 +234,9 @@ class Main extends FRONT_Controller {
     }
 
     function payment_success() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('serach_app'));
+        }
         $this->operation_model->payment_status(1);
         $data = [
             'title' => 'title',
@@ -265,6 +249,9 @@ class Main extends FRONT_Controller {
     }
 
     function payment_faild() {
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('serach_app'));
+        }
         $this->operation_model->payment_status(0);
         $data = [
             'title' => 'title',
@@ -317,7 +304,9 @@ class Main extends FRONT_Controller {
     }
 
     function feepay() {
-
+        if (empty($this->session->userdata('application_id'))) {
+            redirect(base_url('serach_app'));
+        }
         $data = [
             'title' => 'title',
             'meta_description' => 'description',
@@ -327,5 +316,4 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
-
 }

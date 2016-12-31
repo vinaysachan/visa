@@ -175,14 +175,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 require">Date of Issue</label>
-            <div class="col-md-7"> 
+            <label for="dtp_input2" class="col-sm-4 require">Date of Issue</label>
+            <div class="col-sm-7"> 
                 <input type="text" required="" label-name="Date of Issue" data-max_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofissue" id="dateofissue" placeholder="Date of Issue" value="<?= get_date($apply_details[0]->pass_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 require">Date of Expiry</label>
-            <div class="col-md-7"> 
+            <label for="dtp_input2" class="col-sm-4 require">Date of Expiry</label>
+            <div class="col-sm-7"> 
                 <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofexpiry" id="dateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->pass_date_of_expiry, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
@@ -218,8 +218,8 @@
                 </div>
             </div> 
             <div class="form-group">
-                <label for="dtp_input2" class="col-md-4 require">Date of Expiry</label>
-                <div class="col-md-7"> 
+                <label for="dtp_input2" class="col-sm-4 require">Date of Expiry</label>
+                <div class="col-sm-7"> 
                     <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="icdateofexpiry" id="icdateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->ic_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
                 </div>
             </div> 

@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4 require">Expected Date journey</label>
+            <label for="dtp_input2" class="col-sm-4 require">Expected Date journey</label>
             <div class="col-sm-6">
                 <input type="text" required="" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Expected Date journey" value="<?= get_date($apply_details[0]->dateofjourney, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-12 box_heading">Previous Visa/Currently valid Visa Details </div>
         <div class="form-group">
-            <label for="dtp_input2" class="col-md-4">Have you ever visited India before?</label>
+            <label for="dtp_input2" class="col-sm-4">Have you ever visited India before?</label>
             <div class="col-sm-7">
                 <label class="radio-inline">
                     <input type="radio" <?= ($apply_details[0]->visited_India == 'yes') ? 'checked=""' : '' ?> name="visitedbefore" id="inlineRadio1" value="yes"> YES
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="dtp_input2" class="col-md-4 require">Last Indian Visa No/Currently valid Indian Visa No.</label>
+                <label for="dtp_input2" class="col-sm-4 require">Last Indian Visa No/Currently valid Indian Visa No.</label>
                 <div class="col-sm-6">
                     <input type="text" name="visitedvisano" required="" class="form-control" value="<?= $apply_details[0]->last_Indian_visa_no ?>">
                 </div>
@@ -168,7 +168,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="dtp_input2" class="col-md-4 require">Date of Issue</label>
+                <label for="dtp_input2" class="col-sm-4 require">Date of Issue</label>
                 <div class="col-sm-6">
                     <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" value="<?= get_date($apply_details[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?>" name="visitedissuedate" id="visitedissuedate" placeholder="Date of Birth" >
                 </div>

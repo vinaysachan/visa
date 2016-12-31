@@ -78,8 +78,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="dtp_input2" class="col-md-4 control-label">Date of Birth</label>
-                        <div class="input-group date form_date col-md-7" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <label for="dtp_input2" class="col-sm-4 control-label">Date of Birth</label>
+                        <div class="input-group date form_date col-sm-7" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" size="16" type="text" value="" readonly>
 
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>

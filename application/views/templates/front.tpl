@@ -7,20 +7,26 @@
         <?php /* Top Menu */ $this->load->view('includes/front_header'); ?>
         <div class="container  ">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-md-9 col-xl-9">
                     <div class="page_content">
                         <h1><?= $heading ?></h1>
                         <?= $this->util->show_flash_message() ?>
                         <?php (!empty($view)) ? $this->load->view($view) : $this->load->view($this->router->fetch_class() . '/' . $this->router->fetch_method() . '_view'); ?>
                     </div>
                 </div>
-                <div class="col-sm-3 p0">
-                    <?php /* enquiry_form */ $this->load->view('web_parts/right_links'); ?>
-                    <?php /* enquiry_form */ $this->load->view('web_parts/enquiry_form'); ?>
+                <div class="col-md-3 col-xl-3 p0">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-6">
+                            <?php /* enquiry_form */ $this->load->view('web_parts/right_links'); ?>
+                        </div>
+                        <div class="col-lg-12 col-sm-6">
+                            <?php /* enquiry_form */ $this->load->view('web_parts/enquiry_form'); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-          <script type="text/javascript"> base_url = '<?= base_url() ?>';</script>
+        <script type="text/javascript"> base_url = '<?= base_url() ?>';</script>
         <?php /* Footer */ $this->load->view('includes/front_footer'); ?>
     </body>
 </html>
