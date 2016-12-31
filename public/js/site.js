@@ -170,7 +170,11 @@ $("#step4Form").validate({
         return true;
     }
 });
-
+$("#passport_uploadFrm").validate({
+    submitHandler: function (form) {
+        return true;
+    }
+});
 
 function acquire_naturalization(val) {
     if (val == 'Naturalization') {

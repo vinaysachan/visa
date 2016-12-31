@@ -190,6 +190,17 @@ class Main extends FRONT_Controller {
         if (!$this->input->post('uploadpassport') == "") {
             $app_id = $this->session->userdata('application_id');
             $img = $this->util->fileUpload(PASSPORT_IMG, 'passport', $app_id, 'jpeg|jpg|png');
+             
+            $old_img = $this->input->post('old_passport');
+            if (empty($img)) {
+                $img = $old_img;
+            } else {
+                $old_img_path = PASSPORT_IMG . $old_img;
+                if (file_exists($old_img_path)) {
+                    @unlink($old_img_path);
+                }
+            }
+             
             $result = $this->operation_model->uploadpassport($img);
             if ($result) {
                 redirect(base_url('main/reviewform'));

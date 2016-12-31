@@ -81,7 +81,7 @@
             </div>
         </div>				
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 require">Religion</label>
+            <label for="row" class="col-sm-4 require">Religion</label>
             <div class="col-sm-3">
                 <select name="religion" class="form-control" required="" label-name="Religion">
                     <option value="" selected="selected">Select Religion</option>
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 require">Educational Qualification</label>
+            <label for="row" class="col-sm-4 require">Educational Qualification</label>
             <div class="col-sm-7">
                 <select name="qualification" class="form-control" id="passportType" required="" label-name="Educational Qualification">
                     <option value="" >Select Educational Qualification</option>
@@ -150,7 +150,7 @@
             </div>
         </div>
          <div class="form-group text-center row">
-            <label class="  require">
+            <label class="require">
                 Have you lived for at least two years in the country from where you are applying visa?
             </label>
             <div class=" ">
@@ -201,7 +201,7 @@
         <!--------------------IC Form ------------------------------------>				
         <div id="ic_form" style="display: none;">
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 ">Country of Issue  </label>
+                <label for="row" class="col-sm-4 ">Country of Issue  </label>
                 <div class="col-sm-7">
                     <select name="nationality" class="form-control" id="issueofcountry" data-parsley-required="" >
                         <option value="">Select Country...</option>
@@ -230,7 +230,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-4 ">Nationality mentioned therein  </label>
+                <label for="row" class="col-sm-4 ">Nationality mentioned therein  </label>
                 <div class="col-sm-7">
                     <select name="icnatinality" class="form-control" id="nationality" data-parsley-required="" >
                         <option value="">Select Country...</option>

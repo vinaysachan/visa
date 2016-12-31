@@ -242,12 +242,12 @@
             <div class="col-sm-7">
                 <?php if (!empty($apply_details[0]->image)) : ?>
                     <input type="hidden" name="old_img" value="<?= $apply_details[0]->image ?>">
-                    <input type="file" class="form-control view_photo" id="file" name="image" >
+                    <input type="file" accept="image/.jpe,.jpg,.jpeg,.png" class="form-control view_photo" id="file" name="image" >
                     <div class="show_images mt5">
                         <img style="max-width: 150px" src="<?= base_url(APPLICATION_IMG . $apply_details[0]->image) ?>">
                     </div>
                 <?php else : ?>
-                    <input type="file" required="" class="form-control view_photo" id="file" name="image" >
+                    <input type="file" accept="image/.jpe,.jpg,.jpeg,.png" required="" class="form-control view_photo" id="file" name="image" >
                 <?php endif; ?>
             </div>
         </div>

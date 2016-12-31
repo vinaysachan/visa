@@ -35,7 +35,7 @@ class Operation_model extends CORE_Model {
     function app_step1() {
         $data = array(
             'app_type' => $this->input->post('visaType'),
-            'fname' => $this->input->post('fname') . (!empty($this->input->post('mname'))) ? (' ' . $this->input->post('mname')) : '',
+            'fname' => $this->util->get_concatenated_string([$this->input->post('fname'), $this->input->post('mname')], ' '),
             'lname' => $this->input->post('lname'),
             'passport_type' => $this->input->post('passportType'),
             'nationality' => $this->input->post('nationality'),
@@ -215,15 +215,11 @@ class Operation_model extends CORE_Model {
         }
         if ($extendstay == 'yes') {
             $data['extend_visa_details'] = $this->input->post('extendstaydetails');
-        }else {
+        } else {
             $data['extend_visa_details'] = '';
         }
-        //
-
-
         $this->db->where('app_id', $applicationid);
-        $this->db->update('applicatrion_details', $data);
-        if ($this->db->affected_rows() > 0) {
+        if ($this->db->update('applicatrion_details', $data)) {
             return 1;
         }
     }
@@ -318,7 +314,8 @@ class Operation_model extends CORE_Model {
         $application_id = $this->session->userdata('application_id');
         $data = array(
             'passport_img' => $pass_img,
-            'last_update' => $curdate
+            'last_update' => $curdate,
+            'status' => 5
         );
         $this->db->where('app_id', $application_id);
         $this->db->update('applicatrion_details', $data);

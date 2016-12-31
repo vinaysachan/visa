@@ -16,14 +16,18 @@ body {
 h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
     color: inherit;
     font-family: "Roboto Condensed",sans-serif;
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: 700; 
 }
 h6, .h6 {
     color: inherit;
     font-family: 'Lato', Helvetica, Arial, sans-serif;
     font-weight: 700;
     line-height: 1.1;
+}
+.h3, h3 {
+    font-size: 17px;
+    line-height: 30px;
+    margin-top: 5px;
 }
 .navbar {
     margin-bottom: 0px;

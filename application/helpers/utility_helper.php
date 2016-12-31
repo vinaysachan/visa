@@ -21,13 +21,15 @@ function validateDate($date, $format = 'd/m/Y') {
 }
 
 function country_name($code) {
-    $clist = [];
-    $CI = & get_instance();
-    $country = $CI->operation_model->getCounrty();
-    foreach ($country as $c) {
-        $clist[$c->code] = $c->name;
+    if (!empty($code)) {
+        $clist = [];
+        $CI = & get_instance();
+        $country = $CI->operation_model->getCounrty();
+        foreach ($country as $c) {
+            $clist[$c->code] = $c->name;
+        }
+        return (!empty($clist[$code])) ? $clist[$code] : '';
     }
-    return $clist[$code];
 }
 
 ?>
