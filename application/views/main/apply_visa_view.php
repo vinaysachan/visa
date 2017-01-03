@@ -80,7 +80,7 @@
         <div class="form-group">
             <label for="dob" class="col-sm-4 require">Date of Birth</label>
             <div class="col-sm-6">
-                <input type="text" required="" label-name="Date of Birth" data-max_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dob" id="dob" placeholder="Date of Birth" >
+                <input type="text" required="" label-name="Date of Birth" data-max_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="dob" id="dob" placeholder="Date of Birth" >
             </div>
         </div>
         <div class="form-group row">
@@ -104,7 +104,7 @@
         <div class="form-group">
             <label for="dob" class="col-sm-4 require">Expected Date of Arrival</label>
             <div class="col-sm-6">
-                <input type="text" required="" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
+                <input type="text" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>"  class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
             </div>
         </div>
         <div class="form-group row">

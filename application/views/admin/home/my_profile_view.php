@@ -49,7 +49,7 @@
                                 <label class="col-sm-4 control-label require">Profile Image</label>
                                 <div class="col-sm-8">
                                     <?= form_upload('photo', NULL, ['class' => 'view_photo mt10', 'accept' => 'image/.jpe,.jpg,.jpeg,.png']) ?>
-                                    <input type="text" name="old_photo" value="<?= $profile[0]->img ?>">
+                                    <input type="hidden" name="old_photo" value="<?= $profile[0]->img ?>">
                                     <?php
                                     $uimg = ADMIN_PHOTO_PATH . $profile[0]->img;
                                     if (!file_exists($uimg)) {

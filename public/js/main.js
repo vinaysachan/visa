@@ -223,7 +223,7 @@ $(document).on('click', '.overlay_link', function () {
     $('.load-overlay').show();
 });
 
-if ($('.date_picker').length) {
+//if ($('.date_picker').length) {
     /**
      * data-max_date Format :: YYYY,MM,DD  || number  :::: Ex : 2016,09,19  ::or:: 5
      * data-min_date Format :: YYYY,MM,DD  || number  :::: Ex : 2016,09,19 ::or:: 6
@@ -232,26 +232,20 @@ if ($('.date_picker').length) {
      * Example :- 
      * <input type="text" data-max_date="2011,10,25" class="date_picker" name="dob" placeholder="dd/mm/yyyy" >
      */
-    $(document).on('focus', '.date_picker', function () {
-        var th = $(this);
-        var maxDate = (th.attr('data-max_date')) ? (($.isNumeric(th.attr('data-max_date'))) ? th.attr('data-max_date') : new Date(th.attr('data-max_date'))) : null;
-        var minDate = (th.attr('data-min_date')) ? (($.isNumeric(th.attr('data-min_date'))) ? th.attr('data-min_date') : new Date(th.attr('data-min_date'))) : null;
-        var dateFormat = (th.attr('data-date_format')) ? th.attr('data-max_date') : 'dd/mm/yy';
-        th.datepicker({
-            changeMonth: true,
-            changeYear: true,
-            maxDate: maxDate,
-            minDate: minDate,
-            dateFormat: dateFormat,
-            beforeShow: function (input, inst) {
-                
-//                console.log(input);
-                
-//                inst.dpDiv.css({marginTop: -input.offsetHeight-200 + 'px', marginLeft: input.offsetWidth-200 + 'px'});
-            }
-        });
-    });
+//    $(document).on('focus', '.date_picker', function () {
+//        var th = $(this);
+//        var maxDate = (th.attr('data-max_date')) ? (($.isNumeric(th.attr('data-max_date'))) ? th.attr('data-max_date') : new Date(th.attr('data-max_date'))) : null;
+//        var minDate = (th.attr('data-min_date')) ? (($.isNumeric(th.attr('data-min_date'))) ? th.attr('data-min_date') : new Date(th.attr('data-min_date'))) : null;
+//        var dateFormat = (th.attr('data-date_format')) ? th.attr('data-max_date') : 'dd/mm/yy';
+//        th.datepicker({
+//            changeMonth: true,
+//            changeYear: true,
+//            maxDate: maxDate,
+//            minDate: minDate,
+//            dateFormat: dateFormat,
+//        });
+//    });
 
 
 
-}
+//}

@@ -18,7 +18,7 @@
         <div class="form-group row">
             <label for="" class="col-sm-4 require">No. of Entries</label>
             <div class="col-sm-6">
-                <select required="" name="passportType" name="entries_no" class="form-control" id="entries_no"><option value=" Single" title="Single">Single</option></select>
+                <select required="" name="entries_no" class="form-control" id="entries_no"><option value="Single" title="Single">Single</option></select>
             </div>
         </div>
         <div class="form-group row">
@@ -46,7 +46,7 @@
         <div class="form-group">
             <label for="dtp_input2" class="col-sm-4 require">Expected Date journey</label>
             <div class="col-sm-6">
-                <input type="text" required="" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Expected Date journey" value="<?= get_date($apply_details[0]->dateofjourney, 'Y-m-d', 'd/m/Y') ?>" >
+                <input type="text" required="" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Expected Date journey" value="<?= get_date($apply_details[0]->dateofjourney, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
         <div class="form-group row">
@@ -170,7 +170,7 @@
             <div class="form-group">
                 <label for="dtp_input2" class="col-sm-4 require">Date of Issue</label>
                 <div class="col-sm-6">
-                    <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" value="<?= get_date($apply_details[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?>" name="visitedissuedate" id="visitedissuedate" placeholder="Date of Birth" >
+                    <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" value="<?= get_date($apply_details[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?>" name="visitedissuedate" id="visitedissuedate" placeholder="Date of Birth" >
                 </div>
             </div>
         </div> 

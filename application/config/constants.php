@@ -103,6 +103,7 @@ define('SESSION_ADMIN', 'admin_user');
 define('STATUS_SUCCESS', 'success');
 define('STATUS_ERROR', 'error');
 define('STATUS_PENDING', 'pending');
+define('STATUS_COMPLETE', 'complete');
 define('FLAG_Y', 'Y');
 define('FLAG_N', 'N');
 define('STATUS_ACTIVE', 1);

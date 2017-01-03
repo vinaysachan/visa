@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td>No of Enties</td>
-                <td><?= $apply_details[0]->No_ofentries; ?></td>
+                <td><?= $apply_details[0]->no_of_entries; ?></td>
             </tr>
             <tr>
                 <td>Amount (USD)</td>

@@ -43,7 +43,7 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
- 
+
     function apply_visa() {
         if (!$this->input->post('step1') == "") {
             if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
@@ -190,7 +190,7 @@ class Main extends FRONT_Controller {
         if (!$this->input->post('uploadpassport') == "") {
             $app_id = $this->session->userdata('application_id');
             $img = $this->util->fileUpload(PASSPORT_IMG, 'passport', $app_id, 'jpeg|jpg|png');
-             
+
             $old_img = $this->input->post('old_passport');
             if (empty($img)) {
                 $img = $old_img;
@@ -200,7 +200,7 @@ class Main extends FRONT_Controller {
                     @unlink($old_img_path);
                 }
             }
-             
+
             $result = $this->operation_model->uploadpassport($img);
             if ($result) {
                 redirect(base_url('main/reviewform'));
@@ -287,19 +287,44 @@ class Main extends FRONT_Controller {
                     ]);
                 } else {
                     $url = base_url('visa_reg');
-                    if ($application_data[0]->status == 3) {
-                        $url = base_url('visa_step3');
+                    if ($application_data[0]->application_status == 1) {
+                        if ($application_data[0]->status == 1) {
+                            $url = base_url('visa_reg');
+                        }
+                        if ($application_data[0]->status == 2) {
+                            $url = base_url('visa_step3');
+                        }
+                        if ($application_data[0]->status == 3) {
+                            $url = base_url('visa_step4');
+                        }
+                        if ($application_data[0]->status == 4) {
+                            $url = base_url('uploadPassport');
+                        }
+                        if ($application_data[0]->status == 5) {
+                            $url = base_url('reviewform');
+                        }
+                        if (in_array($application_data[0]->status, [1, 2, 3, 4, 5])) {
+                        $this->session->set_userdata('application_id', $application_data[0]->app_id);
+                            echo json_encode([
+                                'sts' => STATUS_SUCCESS,
+                                'title' => 'Hi! ' . $application_data[0]->fname,
+                                'msg' => 'Please Your Application is not completed. please continue now.',
+                                'url' => $url
+                            ]);
+                        }
+                    } elseif ($application_data[0]->application_status == 2) {
+                        echo json_encode([
+                            'sts' => STATUS_PENDING,
+                            'title' => 'Hi ! ' . $application_data[0]->fname,
+                            'msg' => 'Your Application Form is completed, payment is done and currently Visa is under process.',
+                        ]);
+                    } elseif ($application_data[0]->application_status == 3) {
+                        echo json_encode([
+                            'sts' => STATUS_COMPLETE,
+                            'title' => 'Hi ! ' . $application_data[0]->fname,
+                            'msg' => 'Your Visa is completed.',
+                        ]);
                     }
-                    if ($application_data[0]->status == 4) {
-                        $url = base_url('visa_step4');
-                    }
-                    $this->session->set_userdata('application_id', $application_data[0]->app_id);
-                    echo json_encode([
-                        'sts' => STATUS_SUCCESS,
-                        'title' => 'Congratulation!',
-                        'msg' => 'Please complete your Application.',
-                        'url' => $url
-                    ]);
                 }
             }
             exit();
@@ -327,4 +352,69 @@ class Main extends FRONT_Controller {
         ];
         $this->load->view('templates/front.tpl', array_merge($this->data, $data));
     }
+
+    public function app_status() {
+        if (!$this->input->post('search') == "") {
+            if ($this->input->post('v_code') != $this->session->userdata('captcha')) {
+                echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Please Enter Correct verification code']);
+            } else {
+                $application_data = $this->operation_model->search_app();
+                if (empty($application_data)) {
+                    echo json_encode([
+                        'sts' => STATUS_ERROR,
+                        'msg' => 'Please enter correcty Temporary Application ID.',
+                    ]);
+                } else {
+                    $url = base_url('visa_reg');
+                    if ($application_data[0]->application_status == 1) {
+                        if ($application_data[0]->status == 1) {
+                            $url = base_url('visa_reg');
+                        }
+                        if ($application_data[0]->status == 2) {
+                            $url = base_url('visa_step3');
+                        }
+                        if ($application_data[0]->status == 3) {
+                            $url = base_url('visa_step4');
+                        }
+                        if ($application_data[0]->status == 4) {
+                            $url = base_url('uploadPassport');
+                        }
+                        if ($application_data[0]->status == 5) {
+                            $url = base_url('reviewform');
+                        }
+                        if (in_array($application_data[0]->status, [1, 2, 3, 4, 5])) {
+                        $this->session->set_userdata('application_id', $application_data[0]->app_id);
+                            echo json_encode([
+                                'sts' => STATUS_SUCCESS,
+                                'title' => 'Hi! ' . $application_data[0]->fname,
+                                'msg' => 'Please Your Application is not completed. please continue now.',
+                                'url' => $url
+                            ]);
+                        }
+                    } elseif ($application_data[0]->application_status == 2) {
+                        echo json_encode([
+                            'sts' => STATUS_PENDING,
+                            'title' => 'Hi ! ' . $application_data[0]->fname,
+                            'msg' => 'Your Application Form is completed, payment is done and currently Visa is under process.',
+                        ]);
+                    } elseif ($application_data[0]->application_status == 3) {
+                        echo json_encode([
+                            'sts' => STATUS_COMPLETE,
+                            'title' => 'Hi ! ' . $application_data[0]->fname,
+                            'msg' => 'Your Visa is completed.',
+                        ]);
+                    }
+                }
+            }
+            exit();
+        }
+        $data = [
+            'title' => 'title',
+            'meta_description' => 'description',
+            'meta_keywords' => 'keywords',
+            'heading' => 'Check Applications Status',
+        ];
+        $this->load->view('templates/front.tpl', array_merge($this->data, $data));
+    }
+
 }

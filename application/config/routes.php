@@ -68,7 +68,7 @@ $route['visa_step3'] = 'main/visa_step3';
 $route['payment'] = 'main/payment';
 $route['feepay']='main/feepay';
 $route['captcha'] = 'captcha/index';
-
+$route['app_status']='main/app_status';
 
  
 $route['(:any)'] = 'main/page/$1';

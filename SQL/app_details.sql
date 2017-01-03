@@ -75,7 +75,7 @@ CREATE TABLE `applicatrion_details` (
   `last_update` date DEFAULT NULL,
   `status` int(1) DEFAULT '0',
   `durationofvisa` varchar(200) DEFAULT NULL,
-  `No_ofentries` varchar(200) DEFAULT NULL,
+  `no_of_entries` varchar(200) DEFAULT NULL,
   `purpose_of_visit` varchar(200) DEFAULT NULL,
   `visa_type` varchar(200) DEFAULT NULL,
   `dateofjourney` date DEFAULT NULL,

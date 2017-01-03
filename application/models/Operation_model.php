@@ -45,7 +45,8 @@ class Operation_model extends CORE_Model {
             'expected_date_arrival' => get_date($this->input->post('date_of_arrival')),
             'email' => $this->input->post('email'),
             'phone' => $this->input->post('phone'),
-            'status' => 1
+            'status' => 1,
+            'application_status' => 1
         );
         $this->db->insert('applicatrion_details', $data);
         $id = $this->db->insert_id();
@@ -98,6 +99,12 @@ class Operation_model extends CORE_Model {
             $data['ic_date_of_Issue'] = get_date($this->input->post('icdateofexpiry'));
             $data['ic_place_of_Issue'] = $this->input->post('icplaceofissue');
             $data['ic_nationality'] = $this->input->post('icnatinality');
+        } else {
+            $data['ic_country_of_Issue'] = '';
+            $data['ic_passport_no'] = '';
+            $data['ic_date_of_Issue'] = '';
+            $data['ic_place_of_Issue'] = '';
+            $data['ic_nationality'] = '';
         }
         if ($acquire_nationality == 'Naturalization') {
             $data['pre_nationality'] = $this->input->post('prev_nationality');
@@ -187,7 +194,7 @@ class Operation_model extends CORE_Model {
         $applicationid = $this->input->post('applicationid');
         $data = array(
             'durationofvisa' => $this->input->post('visa_day'),
-            'No_ofentries' => $this->input->post('entries_no'),
+            'no_of_entries' => $this->input->post('entries_no'),
             'purpose_of_visit' => $this->input->post('PurposeVisit'),
             'visa_type' => $this->input->post('visa_type'),
             'dateofjourney' => get_date($this->input->post('dateofjourney')),
@@ -295,7 +302,8 @@ class Operation_model extends CORE_Model {
         if ($result) {
             $data = array(
                 'payment_status' => $status,
-                'last_update' => $curdate
+                'last_update' => $curdate,
+                'application_status' => 2
             );
             $this->db->where('app_id', $application_id);
             $this->db->update('applicatrion_details', $data);
@@ -304,7 +312,7 @@ class Operation_model extends CORE_Model {
 
     function search_app() {
         $appid = $this->input->post('appID');
-        $sql = 'SELECT * FROM applicatrion_details   WHERE app_id ="' . $appid . '"';
+        $sql = 'SELECT * FROM applicatrion_details WHERE app_id ="' . $appid . '"';
         $query = $this->db->query($sql);
         return $query->result();
     }

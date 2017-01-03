@@ -85,7 +85,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-red">
                     <span class="step">Step 3</span>
-                    <a href="">
+                    <a href="<?= base_url('serach_app') ?>">
                         <div class="mt5">Make Payment For</div>
                         <h4 class="fs18 m0 p0 mt5">Completed Form</h4>
                     </a>
@@ -94,7 +94,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box bg-blue">
                     <span class="step">Step 4</span>
-                    <a href="">
+                    <a href="<?= base_url('app_status') ?>">
                         <div class="mt5">Check Applications</div>
                         <h4 class="fs18 m0 p0 mt5">Status</h4>
                     </a>

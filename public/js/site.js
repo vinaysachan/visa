@@ -48,7 +48,7 @@ $(document).ready(function () {
             $('#extendstaydetails').hide();
         }
     });
-   $('input:checkbox[name=agreement]').change(function () {
+    $('input:checkbox[name=agreement]').change(function () {
 
         if (this.checked == true) {
 
@@ -58,17 +58,16 @@ $(document).ready(function () {
             $('#payment').hide();
         }
     });
-
 });
 function agrement()
 {
     if ($('#agreement').checked == true) {
 
-            $('#payment').show();
-        } else {
+        $('#payment').show();
+    } else {
 
-            $('#payment').hide();
-        }
+        $('#payment').hide();
+    }
 }
 function sameaddress(f) {
     if (f.sameAddress.checked == true) {
@@ -105,8 +104,6 @@ $(document).ready(function () {
         }
     });
 });
-
-
 $("#applyVisaFrm").validate({
     onkeyup: function (element) {
         if ((element.name == 'v_code'))
@@ -135,36 +132,68 @@ $("#applyVisaFrm").validate({
         return false;
     }
 });
-
 $("#searchAppFrm").validate({
     submitHandler: function (form) {
-        var btn = $("#searchAppFrm button[type='submit']").loading('set');
+        var btn = $("#searchAppstsFrm button[type='submit']").loading('set');
         $.post($(form).attr('action'), $(form).serialize(), function (o) {
             if (o.sts == 'success') {
                 $.alert({title: o.title, content: o.msg, confirm: function () {
                         window.location.href = o.url;
                     }});
+            } else if (o.sts == 'pending') {
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
+            } else if (o.sts == 'complete') {
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
             } else
-                $.alert({title: 'Sorry!', content: o.msg});
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
         }, 'json').always(function () {
             btn.loading('reset');
         });
         return false;
     }
 });
-
+$("#searchAppstsFrm").validate({
+    submitHandler: function (form) {
+        var btn = $("#searchAppstsFrm button[type='submit']").loading('set');
+        $.post($(form).attr('action'), $(form).serialize(), function (o) {
+            if (o.sts == 'success') {
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.href = o.url;
+                    }});
+            } else if (o.sts == 'pending') {
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
+            } else if (o.sts == 'complete') {
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
+            } else
+                $.alert({title: o.title, content: o.msg, confirm: function () {
+                        window.location.reload();
+                    }});
+        }, 'json').always(function () {
+            btn.loading('reset');
+        });
+        return false;
+    }
+});
 $("#visa_regFrm").validate({
     submitHandler: function (form) {
         return true;
     }
 });
-
 $("#step3").validate({
     submitHandler: function (form) {
         return true;
     }
 });
-
 $("#step4Form").validate({
     submitHandler: function (form) {
         return true;
@@ -175,7 +204,6 @@ $("#passport_uploadFrm").validate({
         return true;
     }
 });
-
 function acquire_naturalization(val) {
     if (val == 'Naturalization') {
         $('#prev_nationality').show();
@@ -191,18 +219,15 @@ $(document).ready(function () {
             $('#ic_form').hide();
         }
     });
-
     $('select[name=religion]').change(function () {
-        var v = $(this).val() ; 
+        var v = $(this).val();
         if (v == 'Others') {
-            $('#other_relation').prop('disabled', false).attr('placeholder','Please specify your Religion');
+            $('#other_relation').prop('disabled', false).attr('placeholder', 'Please specify your Religion');
         } else {
-            $('#other_relation').prop('disabled', true).attr('placeholder','');
+            $('#other_relation').prop('disabled', true).attr('placeholder', '');
         }
     });
-
 });
-
 $(document).on('click', "[name='have_previous_name']", function () {
     var th = $(this);
     if (th.prop('checked')) {
@@ -212,5 +237,9 @@ $(document).on('click', "[name='have_previous_name']", function () {
     }
 });
 
-
-
+$(function () {
+    $('.date_picker').datetimepicker({
+//        viewMode: 'years',
+        format: 'DD/MM/YYYY' 
+    });
+});

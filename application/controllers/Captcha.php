@@ -10,7 +10,7 @@ class Captcha extends CORE_Controller {
     }
 
     public function index() {
-        $captcha = $this->util->random_string(4);
+        $captcha = $this->util->random_string(4,'numeric');
         $this->session->set_userdata('captcha', $captcha);
         $data = [
             'captcha' => $captcha

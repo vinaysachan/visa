@@ -177,36 +177,36 @@
         <div class="form-group">
             <label for="dtp_input2" class="col-sm-4 require">Date of Issue</label>
             <div class="col-sm-7"> 
-                <input type="text" required="" label-name="Date of Issue" data-max_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofissue" id="dateofissue" placeholder="Date of Issue" value="<?= get_date($apply_details[0]->pass_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
+                <input type="text" required="" label-name="Date of Issue" data-max_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="dateofissue" id="dateofissue" placeholder="Date of Issue" value="<?= get_date($apply_details[0]->pass_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
         <div class="form-group">
             <label for="dtp_input2" class="col-sm-4 require">Date of Expiry</label>
             <div class="col-sm-7"> 
-                <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="dateofexpiry" id="dateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->pass_date_of_expiry, 'Y-m-d', 'd/m/Y') ?>" >
+                <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="dateofexpiry" id="dateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->pass_date_of_expiry, 'Y-m-d', 'd/m/Y') ?>" >
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-4">Any other valid Passport/Identity Certificate(IC) held *</label>
             <div class="col-sm-7">
                 <label class="radio-inline">
-                    <input type="radio" name="ic" id="inlineRadio1" value="yes"> YES
+                    <input type="radio" name="ic" id="inlineRadio1" <?= (empty($apply_details[0]->ic_country_of_Issue)) ? '' : 'checked="checked"' ?> value="yes"> YES
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="ic" id="inlineRadio2" checked="checked" value="no"> NO
+                    <input type="radio" name="ic" id="inlineRadio2" <?= (empty($apply_details[0]->ic_country_of_Issue)) ? 'checked="checked"' : '' ?> value="no"> NO
                 </label>
             </div>
         </div>
 
         <!--------------------IC Form ------------------------------------>				
-        <div id="ic_form" style="display: none;">
+        <div id="ic_form" style="display: <?= (empty($apply_details[0]->ic_country_of_Issue)) ? 'none' : 'block' ?>">
             <div class="form-group row">
-                <label for="row" class="col-sm-4 ">Country of Issue  </label>
-                <div class="col-sm-7">
-                    <select name="nationality" class="form-control" id="issueofcountry" data-parsley-required="" >
+                <label for="row" class="col-sm-4 ">Country of Issue</label>
+                <div class="col-sm-7"> 
+                    <select name="issueofcountry" class="form-control" id="issueofcountry">
                         <option value="">Select Country...</option>
                         <?php foreach ($getCounrty as $counrty) { ?>
-                            <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                            <option <?= ($apply_details[0]->ic_country_of_Issue == $counrty->code) ? 'selected=""' : '' ?>  value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -214,19 +214,19 @@
             <div class="form-group row">
                 <label for="icpassportno" class="col-sm-4 ">Passport/IC No. </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="icpassportno" name="icpassportno" placeholder="Passport/IC No">
+                    <input type="text" class="form-control" id="icpassportno" name="icpassportno" placeholder="Passport/IC No" value="<?=$apply_details[0]->ic_passport_no?>">
                 </div>
             </div> 
             <div class="form-group">
                 <label for="dtp_input2" class="col-sm-4 require">Date of Expiry</label>
                 <div class="col-sm-7"> 
-                    <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" readonly="" class="form-control date_picker" name="icdateofexpiry" id="icdateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->ic_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
+                    <input type="text" required="" label-name="Date of Expiry" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="icdateofexpiry" id="icdateofexpiry" placeholder="Date of Expiry" value="<?= get_date($apply_details[0]->ic_date_of_Issue, 'Y-m-d', 'd/m/Y') ?>" >
                 </div>
             </div> 
             <div class="form-group row">
                 <label for="icplaceofissue" class="col-sm-4 ">Place of Issue </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="icplaceofissue" name="icplaceofissue" placeholder="Place of Issue ">
+                    <input type="text" class="form-control" id="icplaceofissue" name="icplaceofissue" placeholder="Place of Issue" value="<?=$apply_details[0]->ic_place_of_Issue?>"  >
                 </div>
             </div>
             <div class="form-group row">
@@ -235,7 +235,7 @@
                     <select name="icnatinality" class="form-control" id="nationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
                         <?php foreach ($getCounrty as $counrty) { ?>
-                            <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                            <option <?= ($apply_details[0]->ic_nationality == $counrty->code) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
                 </div>

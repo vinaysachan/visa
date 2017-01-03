@@ -40,38 +40,56 @@ class Home extends Admin_Controller {
         ];
         $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
     }
-    function applicationDetails()
-    {
-        $heading = '<i class="fa fa-envelope-o mr10"></i> New Application';
-         
+
+    function applicationDetails($page = NULL) {
+        $heading = '<i class="fa fa-envelope-o mr10"></i> Visa Applications';
+
+        $this->load->library('paginator');
+        $this->paginator->initialize([
+            'base_url' => base_url('admin/home/applicationDetails'),
+            'total_items' => (int) $this->global_model->getApplication(NULL, NULL, 'count'),
+            'current_page' => $page
+        ]);
+        $limit = $this->paginator->limit_end;
+        $offset = $this->paginator->limit_start;
         $data = [
             'heading' => $heading,
+            'page' => $offset,
             'sub_heading' => '',
-             
-            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'applicationDetails'],
-            'application' => $this->global_model->getApplication()
+            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Visa Applications'],
+            'application' => $this->global_model->getApplication($offset, $limit, NULL)
         ];
         $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
     }
-    function appDetails($app_id)
-    {
-        $heading = '<i class="fa fa-envelope-o mr10"></i> New Application';
-         
+
+    function appDetails($app_id) {
+        $heading = '<i class="fa fa-envelope-o mr10"></i> Application Detail : ' . $app_id;
+
         $data = [
             'heading' => $heading,
             'sub_heading' => '',
-             
             'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'applicationDetails'],
             'application' => $this->global_model->getAppDetails($app_id)
         ];
         $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
     }
+
     public function change_sts() {
         if ($this->global_model->change_status($this->input->post('sts'), $this->input->post('id'))) {
             $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Enquiry status changre successfully.']);
             echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Enquiry status changre successfully.']);
         } else {
             echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Enquiry status.']);
+        }
+        exit();
+    }
+
+    public function close_sts() {
+        if ($this->global_model->close_status($this->input->post('app_id'))) {
+            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Application status changre successfully.']);
+            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Application status changre successfully.']);
+        } else {
+            echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Application status.']);
         }
         exit();
     }
@@ -108,14 +126,14 @@ class Home extends Admin_Controller {
         redirect(base_url('admin/login'));
         exit();
     }
-    
+
     public function my_profile() {
         $this->append_jc(['js' => ['public/js/admin/profile.js']]);
 //        Update Admin Profile
         if (!empty($this->input->post('update_profile'))) {
             $post = $this->input->post();
             unset($post['update_profile']);
-            if ($this->operation_model->update_account($post,$this->session->userdata(SESSION_ADMIN)['id'])) {
+            if ($this->operation_model->update_account($post, $this->session->userdata(SESSION_ADMIN)['id'])) {
                 $this->session->set_flashdata(SUCCESS_MSG, 'You have successfully updated your profile.');
                 redirect(base_url('admin/home/my_profile'));
             }
@@ -124,7 +142,7 @@ class Home extends Admin_Controller {
         if (!empty($this->input->post('update_password'))) {
             $post = $this->input->post();
             unset($post['update_password']);
-            echo json_encode($this->operation_model->update_account_password($post,$this->session->userdata(SESSION_ADMIN)['id']));
+            echo json_encode($this->operation_model->update_account_password($post, $this->session->userdata(SESSION_ADMIN)['id']));
             exit();
         }
         $data = [
