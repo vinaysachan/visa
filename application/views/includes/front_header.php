@@ -11,21 +11,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a title="<?= SITE_NAME ?>" href="<?= base_url() ?>" class="navbar-brand">
-                        <img alt="<?= SITE_NAME ?>" class="img-responsive" style="max-height: 60px;" src="<?= base_url('public/img/logo.png') ?>">
+                        <img alt="<?= SITE_NAME ?>" class="img-responsive" style="max-height: 87px;" src="<?= base_url('public/img/logo.png') ?>">
                     </a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
                     <div class="text-right">
-                        <span>
-                            <i class="fa fa-phone fs20 mr10"></i>
-                            <img src="http://e-indianvisa.com/assets/images/uk.png" style="margin-bottom: 5px;" width="20px">
-                            02036033930
-                        </span>
-                        <span class="ml25">
-                            <i class="fa fa-phone fs20 mr10"></i>
-                            <img src="http://e-indianvisa.com/assets/images/us.png" style="margin-bottom: 5px;" width="20px">
-                            12483852014
-                        </span>                         
+                        <span><i class="fa fa-phone fs20 mr10"></i><?= CONTACT_NO1 ?></span>
+                        <span class="ml25"><i class="fa fa-envelope fs20 mr10"></i><?= CONTACT_EMAIL1 ?></span>                          
                     </div>
                     <ul class="nav navbar-nav navbar-right primary-nav">
                         <li class="<?= ($class == 'main' && $method == 'index') ? 'active' : '' ?>"> 
@@ -40,6 +32,9 @@
                             endif;
                         endforeach;
                         ?>
+                        <li class="<?= ($class == 'main' && $method == 'contact_us') ? 'active' : '' ?>"> 
+                            <a title="<?= SITE_NAME ?>" href="<?= base_url('contact_us') ?>">Contact Us</a>
+                        </li>
                     </ul>
                 </div>
             </div>

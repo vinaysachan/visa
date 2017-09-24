@@ -1,4 +1,4 @@
-<div><h4>Application Type  :  <?= $apply_details[0]->app_type; ?></h4>
+<div><h4>Application Type  :  <?= apptype($apply_details[0]->app_type)?></h4>
     <h4>Application NO : <?= strtoupper($this->session->userdata('application_id')); ?></h4>
 </div>
 <div class="p10">
@@ -12,13 +12,13 @@
             <label for="" class="col-sm-4">Duration of Visa (in Days)</label>
             <div class="col-sm-6">
                 <input type="hidden" class="form-control" name="applicationid" id="applicationid" value="<?= $this->session->userdata('application_id'); ?>" >
-                <input type="text" class="form-control" name="visa_day" id="" value="30" readonly >
+                <input type="text" class="form-control" name="visa_day" id="" value="60" readonly >
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4 require">No. of Entries</label>
             <div class="col-sm-6">
-                <select required="" name="entries_no" class="form-control" id="entries_no"><option value="Single" title="Single">Single</option></select>
+                <select required="" name="entries_no" class="form-control" id="entries_no"><option value="Double" title="Double">Double</option></select>
             </div>
         </div>
         <div class="form-group row">
@@ -34,12 +34,20 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="visa_type" class="col-sm-4 require">Application Type</label>
+            <label for="app_type" class="col-sm-4 require">Application Type</label>
             <div class="col-sm-6">
-                <select name="visa_type" required="" label-name="Application Type" id="visa_type" class="form-control">
+                <select name="app_type" required="" label-name="Application Type" class="form-control">
                     <option value="">Select</option>
-                    <option <?= ($apply_details[0]->visa_type == 'normal') ? 'selected=""' : '' ?> value="normal">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
-                    <option <?= ($apply_details[0]->visa_type == 'urgent') ? 'selected=""' : '' ?> value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>
+                    <?php
+                    if (!empty($application_type->mata_value)) :
+                        $m = json_decode($application_type->mata_value);
+                        foreach ($m as $a) :
+                            ?>
+                            <option <?= ($apply_details[0]->app_type == $a->type) ? 'selected=""' : '' ?> value="<?= $a->type ?>"><?= $a->text?> </option>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
                 </select>
             </div>
         </div>

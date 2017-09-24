@@ -133,7 +133,7 @@ class setting extends Admin_Controller {
             $heading = '<i class="fa fa-television"></i> Add Page Detail';
             $page_data = '';
         }
-         $this->load->library('pages');
+        $this->load->library('pages');
         if (!empty($this->input->post('save_page'))) {
             $post = $this->input->post();
             $post['menu_location'] = json_encode($post['menu_location']);
@@ -179,6 +179,25 @@ class setting extends Admin_Controller {
             $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Page Deleted successfully']);
             redirect('admin/setting/page');
         }
+    }
+
+    public function application_type() {
+        $data = [
+            'heading' => '<i class="fa fa-television"></i> Application Type',
+            'sub_heading' => '',
+            'application_type' => $this->setting_model->get_meta_value('app_type'),
+            'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Application Type']
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+
+    function edit_application_type() {
+        if ($this->setting_model->save_application_type()) {
+            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Application Types change successfully.']);
+        } else {
+            echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Application Types.']);
+        }
+        exit();
     }
 
 }

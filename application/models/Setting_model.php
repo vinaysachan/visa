@@ -126,4 +126,28 @@ class Setting_model extends CORE_Model {
         }
     }
 
+    public function get_meta_value($meta_key = 'app_type') {
+        $sql = 'SELECT * FROM setting WHERE meta_key = "' . $meta_key . '"';
+        if ($query = $this->db->query($sql)) {
+            return $query->first_row();
+        }
+        return FALSE;
+    }
+
+    public function save_application_type() {
+        $data = $this->input->post();
+        $at = [];
+        foreach ($data['app_type_key'] as $k => $d) {
+            $at[$d] = [
+                'type' => $d,
+                'text' => $data['app_type'][$k],
+                'price' => $data['app_price'][$k]
+            ];
+        }
+        $adata = "'" . json_encode($at) . "'";
+        if ($this->db->update('setting', ['mata_value' => json_encode($at)], ['meta_key' => 'app_type']))
+            return TRUE;
+        return FALSE;
+    }
+
 }

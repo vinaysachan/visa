@@ -25,8 +25,8 @@ class Ops_Email {
     protected $econfig;
     private $data = [];
     private $host = 'ssl://smtp.zoho.com';
-    private $username = 'admin@onlinephpstudy.com';
-    private $password = '2007cs105';
+    private $username = 'alerts@e-touristvisa.com';
+    private $password = 'e-touristvisa.com';
     private $port = '465';
 
     public function __construct() {

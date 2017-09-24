@@ -31,7 +31,7 @@
                 <div class="form-group mt5">
                     <label class="col-sm-4 control-label require">Page Heading</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" maxlength="100" name="heading"  label-name="Page Heading" value="<?= (!empty($page_data[0]->heading)) ? $page_data[0]->heading : NULL ?>" required="" placeholder="Enter Page Heading" >
+                        <input type="text" class="form-control" maxlength="300" name="heading"  label-name="Page Heading" value="<?= (!empty($page_data[0]->heading)) ? $page_data[0]->heading : NULL ?>" required="" placeholder="Enter Page Heading" >
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label require">Meta Title</label>
                     <div class="col-sm-8">
-                        <textarea name="title" id="title" maxlength="100" rows="3" class="form-control" label-name="Meta Title" required><?= (!empty($page_data[0]->title)) ? $page_data[0]->title : NULL ?></textarea>
+                        <textarea name="title" id="title" maxlength="300" rows="3" class="form-control" label-name="Meta Title" required><?= (!empty($page_data[0]->title)) ? $page_data[0]->title : NULL ?></textarea>
                     </div>
                 </div>
             </div>
@@ -47,11 +47,11 @@
         <div class="form-group">
             <label class="col-sm-2 control-label require">Meta Description</label>
             <div class="col-sm-4">
-                <textarea name="description" id="description" maxlength="400" rows="5" class="form-control" label-name="Meta Description" required><?= (!empty($page_data[0]->description)) ? $page_data[0]->description : NULL ?></textarea>
+                <textarea name="description" id="description" rows="5" class="form-control" label-name="Meta Description" required><?= (!empty($page_data[0]->description)) ? $page_data[0]->description : NULL ?></textarea>
             </div>
             <label class="col-sm-2 control-label require">Meta Keywords</label>
             <div class="col-sm-4">
-                <textarea name="keywords" id="keywords" rows="5" maxlength="400" class="form-control" label-name="Meta Keywords" required><?= (!empty($page_data[0]->keywords)) ? $page_data[0]->keywords : NULL ?></textarea>
+                <textarea name="keywords" id="keywords" rows="5" class="form-control" label-name="Meta Keywords" required><?= (!empty($page_data[0]->keywords)) ? $page_data[0]->keywords : NULL ?></textarea>
             </div>
         </div>
         <div class="form-group">

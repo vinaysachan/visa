@@ -5,8 +5,19 @@
             <div class="col-sm-6">
                 <select name="visaType" id="visaType" required="" label-name="Application Type" class="form-control">
                     <option value="">Select</option>
-                    <option value="normal" selected="">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
-                    <option value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>
+                    <?php
+                    if (!empty($application_type->mata_value)) :
+                        $m = json_decode($application_type->mata_value);
+                        foreach ($m as $a) :
+                            ?>
+                            <option value="<?= $a->type ?>"><?= $a->text ?></option>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
+                            
+<!--                    <option value="normal" selected="">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
+                    <option value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>-->
                 </select>
             </div>
         </div>

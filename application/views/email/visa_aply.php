@@ -264,7 +264,7 @@
                                             <td width="50">&nbsp;</td>
                                             <td width="200">&nbsp;</td>
                                             <td style="text-align: left" width="300" height="30">
-                                                <a target='_blank' href="[CLIENTS.WEBSITE]" style="color:#fff;text-decoration:none;font-family:Helvetica, Arial, sans-serif;font-size:16px; background-color: #337ab7; height: 100%; padding: 10px 70px;  ">Continue</a>
+                                                <a target='_blank' href="<?=$apply_link?>" style="color:#fff;text-decoration:none;font-family:Helvetica, Arial, sans-serif;font-size:16px; background-color: #337ab7; height: 100%; padding: 10px 70px;  ">Continue</a>
                                             </td>
                                             <td width="50">&nbsp;</td>
                                         </tr>

@@ -56,8 +56,10 @@ class Home extends Admin_Controller {
             'heading' => $heading,
             'page' => $offset,
             'sub_heading' => '',
+            'getCounrty' => $this->operation_model->getCounrty(),
             'breadcrumb' => [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Visa Applications'],
-            'application' => $this->global_model->getApplication($offset, $limit, NULL)
+            'application' => $this->global_model->getApplication($offset, $limit, NULL),
+            'application_type' => $this->setting_model->get_meta_value('app_type')
         ];
         $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
     }

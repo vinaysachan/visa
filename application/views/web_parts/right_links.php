@@ -12,5 +12,5 @@
             endforeach;
             ?>
         </ul>
-    </div> 
-</div> 
+    </div>
+</div>

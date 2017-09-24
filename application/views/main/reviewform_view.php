@@ -202,7 +202,7 @@
 </div>
 <div class="row">
     <label class="col-sm-5">Spouse Country of Birth</label>
-    <div class="col-sm-6"><?= $apply_details[0]->spouse_birth_country; ?></div>
+    <div class="col-sm-6"><?= country_name($apply_details[0]->spouse_birth_country)?></div>
 </div>
 <div class="row">
     <label class="col-sm-5">Grandparent details yes/no</label>
@@ -339,11 +339,7 @@
 <div class="row">
     <label class="col-sm-5">Address of Sponsor in Home Country</label>
     <div class="col-sm-6"><?= $apply_details[0]->ref_home_address; ?></div>
-</div>
-<div class="row">
-    <label class="col-sm-5">Phone of Sponsor in Home Country</label>
-    <div class="col-sm-6"><?= $apply_details[0]->ref_phone; ?></div>
-</div>
+</div> 
 <div class="row">
     <label class="col-sm-5">Passport Image</label>
     <div class="col-sm-6"><img src="<?= base_url(PASSPORT_IMG . $apply_details[0]->passport_img) ?>" style="height:120px;"></div>

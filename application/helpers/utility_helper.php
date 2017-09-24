@@ -32,4 +32,13 @@ function country_name($code) {
     }
 }
 
+function apptype($type = 'up', $get = 'text') {
+    $CI = & get_instance();
+    $application_type = $CI->setting_model->get_meta_value('app_type');
+    if (!empty($application_type->mata_value)) {
+        $m = json_decode($application_type->mata_value);
+        return $m->$type->$get;
+    }
+}
+
 ?>

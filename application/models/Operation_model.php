@@ -181,7 +181,6 @@ class Operation_model extends CORE_Model {
     }
 
     public function getCounrty() {
-
         $query = $this->db->get('country');
         return $result = $query->result();
     }
@@ -196,7 +195,7 @@ class Operation_model extends CORE_Model {
             'durationofvisa' => $this->input->post('visa_day'),
             'no_of_entries' => $this->input->post('entries_no'),
             'purpose_of_visit' => $this->input->post('PurposeVisit'),
-            'visa_type' => $this->input->post('visa_type'),
+            'app_type' => $this->input->post('app_type'),
             'dateofjourney' => get_date($this->input->post('dateofjourney')),
             'port_of_exit' => $this->input->post('port_of_exit'),
             'places_likely_to_visit' => $this->input->post('visitedplace'),
@@ -300,11 +299,19 @@ class Operation_model extends CORE_Model {
         );
         $result = $this->db->insert('payment', $data);
         if ($result) {
-            $data = array(
-                'payment_status' => $status,
-                'last_update' => $curdate,
-                'application_status' => 2
-            );
+            if ($status == 1) { // On Successfull Payment :-
+                $data = array(
+                    'payment_status' => $status,
+                    'last_update' => $curdate,
+                    'application_status' => 2
+                );
+            } else { // Payment Fail
+                $data = array(
+                    'payment_status' => 2,
+                    'last_update' => $curdate,
+                    'application_status' => 2
+                );
+            }
             $this->db->where('app_id', $application_id);
             $this->db->update('applicatrion_details', $data);
         }
