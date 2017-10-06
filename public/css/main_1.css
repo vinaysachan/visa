@@ -40,7 +40,8 @@ h6, .h6 {
 }
 
 .navbar-brand {
-    padding: 0 15px 15px;
+    padding: 0px 15px 0px;
+    height: inherit;
 }
 
 #header .navbar-default .navbar-nav {
