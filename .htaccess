@@ -6,9 +6,3 @@ RewriteRule ^ index.php [QSA,L]
  
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
-
-
-<IfModule pagespeed_module>
-   ModPagespeed on
-   ModPagespeedEnableFilters extend_cache
-</IfModule>

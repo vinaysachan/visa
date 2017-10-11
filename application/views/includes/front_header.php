@@ -51,7 +51,7 @@
         <div class="carousel-inner" role="listbox">
             <?php foreach ($banners as $k => $b) : ?>
                 <div class="item <?= ($k == 0) ? 'active' : '' ?>">
-                    <img  class="img-responsive" style="height: 300px; width: 100% " title="<?= $b->title ?>" alt="<?= $b->title ?>" src="<?= base_url(BANNER_PATH . $b->img) ?>">
+                    <img class="banner" title="<?= $b->title ?>" alt="<?= $b->title ?>" src="<?= base_url(BANNER_PATH . $b->img) ?>">
                 </div>
             <?php endforeach; ?>
         </div>

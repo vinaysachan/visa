@@ -27,7 +27,7 @@ class FRONT_Controller extends CORE_Controller {
                 'public/jquery-ui/jquery-ui.theme.css',
                 'public/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
                 'public/plugins/jq-confirm/jquery-confirm.css',
-                'public/css/main.css'
+                'public/css/main.min.css'
             ]
         ]);
 
