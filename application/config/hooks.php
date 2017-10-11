@@ -13,9 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |
  */
 
-$hook['display_override'][] = array(
-    'class' => 'compress',
-    'function' => 'get_compress',
-    'filename' => 'compress.php',
-    'filepath' => 'hooks'
-);
+$hook['display_override'][] =  [
+    'class'         =>  'Compress',
+    'function'      =>  'get_compress',
+    'filename'      =>  'Compress.php',
+    'filepath'      =>  'hooks'
+];
