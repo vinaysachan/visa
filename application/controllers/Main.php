@@ -174,6 +174,7 @@ class Main extends FRONT_Controller {
             }
             $data = [
                 'title' => 'Apply Online for Indian VISA',
+                'heading' => 'Complete Partially Filled Form',
                 'meta_description' => $this->meta_description,
                 'meta_keywords' => $this->meta_keywords,
                 'getCounrty' => $this->operation_model->getCounrty(),
