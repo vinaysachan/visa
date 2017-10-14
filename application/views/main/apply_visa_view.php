@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-offset-8 col-sm-4 text-right">
+            <div class="col-sm-offset-4 col-sm-4">
                 <button type="submit" class="btn btn-primary" name="step1" value="Continue">Continue</button>
             </div>
         </div>

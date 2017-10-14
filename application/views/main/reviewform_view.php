@@ -348,7 +348,7 @@
     <div class="col-sm-4 text-right">
         <a href="<?= base_url('main/visa_reg') ?>" class="btn btn-primary">Modify/Edit</a>
     </div>
-    <div class="col-sm-offset-2 col-sm-4 text-right">
+    <div class="col-sm-offset-2 col-sm-4">
         <a href="<?= base_url('main/feepay') ?>" class="btn btn-primary">Verify/Continue</a>
     </div>
 </div> 

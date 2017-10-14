@@ -260,7 +260,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-offset-8 col-sm-4 text-right">
+            <div class="col-sm-offset-4 col-sm-4">
                 <input type="submit" class="btn btn-primary" name="step4" value="Continue" />
             </div>
         </div>

@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-offset-4 col-sm-4 text-right">
+            <div class="col-sm-offset-4 col-sm-4">
                 <button type="submit" class="btn btn-block btn-primary" name="search" value="Continue">Continue</button>
             </div>
         </div>
