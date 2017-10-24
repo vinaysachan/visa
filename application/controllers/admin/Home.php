@@ -78,8 +78,8 @@ class Home extends Admin_Controller {
 
     public function change_sts() {
         if ($this->global_model->change_status($this->input->post('sts'), $this->input->post('id'))) {
-            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Enquiry status changre successfully.']);
-            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Enquiry status changre successfully.']);
+            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Enquiry status change successfully.']);
+            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Enquiry status change successfully.']);
         } else {
             echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Enquiry status.']);
         }
@@ -88,8 +88,8 @@ class Home extends Admin_Controller {
 
     public function close_sts() {
         if ($this->global_model->close_status($this->input->post('app_id'))) {
-            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Application status changre successfully.']);
-            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Application status changre successfully.']);
+            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Application status change successfully.']);
+            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Application status change successfully.']);
         } else {
             echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Application status.']);
         }

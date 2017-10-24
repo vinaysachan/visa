@@ -49,8 +49,8 @@ class Global_model extends CORE_Model {
         $this->db->from('applicatrion_details');
 
         if (!empty($this->input->get('name'))) {
-            $this->db->like('fname', $this->input->get('name'));
-            $this->db->like('lname', $this->input->get('name'));
+            $this->db->or_like('fname', $this->input->get('name'));
+            $this->db->or_like('lname', $this->input->get('name'));
         }
 
         if (!empty($this->input->get('app_id')))
@@ -81,9 +81,6 @@ class Global_model extends CORE_Model {
                 $this->db->where('application_status', 3);
             }
         }
-
-
-
 
         if (!empty($count)) {
             return $this->db->get()->num_rows();
