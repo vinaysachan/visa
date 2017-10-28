@@ -88,6 +88,7 @@
                                 </a><br/>
                                 <b>Application Type : </b><?= apptype($app->app_type) ?><br/>
                                 <b>Application Time : </b><?= date('d-m-Y H:i:s', strtotime($app->date_created)) ?>
+                                <b>Date of Arrival : </b><?= $app->expected_date_arrival ?>
                             </td>
                             <td>
                                 <b>First Name :</b><?= $app->fname ?> <?= $app->lname ?><br/> 

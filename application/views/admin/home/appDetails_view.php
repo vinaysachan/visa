@@ -27,7 +27,7 @@
                         <td> <?= $application[0]->passport_type ?></td>
                     </tr>    
                     <tr>
-                        <td>Part of Arrival</td>
+                        <td>Port of Arrival</td>
                         <td> <?= $application[0]->portofarrival ?></td>
                     </tr>
                     <tr>

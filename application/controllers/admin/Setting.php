@@ -199,5 +199,75 @@ class setting extends Admin_Controller {
         }
         exit();
     }
+    
+    public function country() {
+         $data                  =   [
+            'heading'               =>  '<i class="fa fa-map"></i> List of countries',
+            'sub_heading'           =>  '',
+            'country'               =>  $this->setting_model->get_country(),
+            'breadcrumb'            =>  [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Country']
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+     
+    public function change_country_sts() {
+        if ($this->setting_model->change_country_status($this->input->post('sts'), $this->input->post('id'))) {
+            $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Your Country changre successfully.']);
+            echo json_encode(['sts' => STATUS_SUCCESS, 'msg' => 'Your Country status changre successfully.']);
+        } else {
+            echo json_encode(['sts' => STATUS_ERROR, 'msg' => 'Unable to change Country status.']);
+        }
+        exit();
+    }
+    
+    public function arrival_port() {
+        $data                   =   [
+            'heading'               =>  '<i class="fa fa-plane"></i> Port Of Arrival',
+            'sub_heading'           =>  '',
+            'ports'                 =>  $this->setting_model->get_arrival_port(),
+            'breadcrumb'            =>  [base_url('admin') => '<i class="fa fa-dashboard"></i> Home', 'Port Of Arrival']
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+    
+    public function arrival_port_ae($id=NULL) {
+        if (!empty($this->input->post('submit'))) {
+            $post           =   $this->input->post();
+            if ($post['submit'] == 'add') {
+                unset($post['submit']);
+                if ($this->setting_model->save_arrival_port($post)) {
+                    $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Port Of Arrival Save successfully']);
+                    redirect('admin/setting/arrival_port');
+                }
+            } elseif ($post['submit'] == 'update') {
+                $post['status'] = ($post['status'] == STATUS_ACTIVE) ? STATUS_ACTIVE : STATUS_IN_ACTIVE;
+                unset($post['submit']);
+                if ($this->setting_model->update_arrival_port($post, $id)) {
+                    $this->session->set_flashdata(SUCCESS_MSG, ['Congratulaton!', 'Port Of Arrival Update successfully']);
+                    redirect('admin/setting/arrival_port');
+                }
+            }
+        }
+        if (!empty($id)) {
+            $heading            =   'Update Port Of Arrival';
+            $port               =   $this->setting_model->get_arrival_port(['where' => ['id' => $id]]);
+        } else {
+            $heading            =   'Add New Port Of Arrival';
+            $port               =   '';
+        }
+        $data                   =   [
+            'heading'               =>  $heading,
+            'sub_heading'           =>  '',
+            'breadcrumb'            =>  [
+                base_url('admin')                               => '<i class="fa fa-dashboard"></i> Home',
+                base_url('admin/setting/arrival_port')          => 'Arrival Ports',
+                $heading
+            ],
+            'port'              =>  $port
+        ];
+        $this->load->view('templates/admin.tpl', array_merge($this->data, $data));
+    }
+    
+    
 
 }

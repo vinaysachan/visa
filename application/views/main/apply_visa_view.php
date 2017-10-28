@@ -115,7 +115,7 @@
         <div class="form-group">
             <label for="dob" class="col-sm-4 require">Expected Date of Arrival</label>
             <div class="col-sm-6">
-                <input type="text" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>"  class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
+                <input type="text" label-name="Expected Date of Arrival" data-min_date="<?= date('Y,m,d', strtotime("+1 day")) ?>"  class="form-control date_picker" name="date_of_arrival" id="date_of_arrival" placeholder="Expected Date of Arrival" >
             </div>
         </div>
         <div class="form-group row">

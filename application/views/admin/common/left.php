@@ -20,16 +20,12 @@
 			<li class="<?= ($class == 'home' && $method == 'applicationDetails') ? 'active' : '' ?>">
                 <?= anchor(base_url('admin/home/applicationDetails/'), '<i class="fa fa-envelope"></i> <span>Application Details</span>') ?>
             </li>
-            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index', 'banner', 'banner_ae','page', 'page_ae']))) ? 'active' : '' ?>">  
+            <li class="treeview <?= ((in_array($class, ['setting'])) && (in_array($method, ['index', 'banner', 'banner_ae','page', 'page_ae','country','arrival_port','arrival_port_ae']))) ? 'active' : '' ?>">  
                 <a href="javascript:void(0)">
                     <i class="fa fa-internet-explorer"></i>
                     <span>Website Management</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                
-                
-                
-                
                 <ul class="treeview-menu">
                     <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['banner', 'banner_ae']))) ? 'active' : '' ?>">
                         <?= anchor(base_url('admin/setting/banner'), '<i class="fa fa-image"></i> <span>Manage Banner</span>') ?>
@@ -39,6 +35,12 @@
                     </li>
                     <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['application_type']))) ? 'active' : '' ?>">
                         <?= anchor(base_url('admin/setting/application_type'), '<i class="fa fa-television"></i> <span>Application Types</span>') ?>
+                    </li>
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['country']))) ? 'active' : '' ?>">
+                        <?= anchor(base_url('admin/setting/country'), '<i class="fa fa-television"></i> <span>Countries</span>') ?>
+                    </li>
+                    <li class="<?= ((in_array($class, ['setting'])) && (in_array($method, ['arrival_port','arrival_port_ae']))) ? 'active' : '' ?>">
+                        <?= anchor(base_url('admin/setting/arrival_port'), '<i class="fa fa-plane"></i> <span>Arrival Port in India</span>') ?>
                     </li>
                 </ul>
             </li>

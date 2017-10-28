@@ -41,4 +41,14 @@ function apptype($type = 'up', $get = 'text') {
     }
 }
 
+function port_name($p_id) {
+    $clist          =   [];
+    $CI             =   & get_instance();
+    $ap             =   $CI->setting_model->get_arrival_port_cache();
+    foreach ($ap as $p) {
+        $clist[$p->id] = $p->name;
+    }
+    return (!empty($clist[$p_id])) ? $clist[$p_id] : '';
+}
+
 ?>

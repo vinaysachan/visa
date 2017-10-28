@@ -225,7 +225,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-4 require">Spouse Birth Place</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" required="" label-name="Spouse Birth Place" value="<?= $apply_details[0]->spouse_birth_place ?>" name="spousebirthplace" id="" placeholder="Father Birth Place">
+                    <input type="text" class="form-control" required="" label-name="Spouse Birth Place" value="<?= $apply_details[0]->spouse_birth_place ?>" name="spousebirthplace" id="" placeholder="Spouse Birth Place">
                 </div>
             </div>
             <div class="form-group row">

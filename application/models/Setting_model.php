@@ -149,5 +149,67 @@ class Setting_model extends CORE_Model {
             return TRUE;
         return FALSE;
     }
+    
+      public function get_country($data=NULL) {
+        $this->db->select();
+        $this->db->from(TBL_COUNTRY);
+
+        if (!empty($data['where']['id'])) {
+            $this->db->where('id', $data['where']['id']);
+        }
+        if (!empty($data['where']['status'])) {
+            $this->db->where('status', $data['where']['status']);
+        }
+        return $this->db->get()->result();
+    }
+    
+    public function get_country_cache($data=NULL) {
+        $this->db->cache_on();
+        $result = $this->get_country($data); 
+        $this->db->cache_off();
+        return $result;
+    }
+    
+    public function change_country_status($status, $id) {
+        $this->db->cache_delete_all();
+        if ($this->db->update(TBL_COUNTRY, ['status' => $status], ['id' => $id]))
+            return TRUE;
+        return FALSE;
+    }
+    
+    public function get_arrival_port($data=NULL) {
+        $this->db->select();
+        $this->db->from(TBL_ARRIVAL_PORT);
+
+        if (!empty($data['where']['id'])) {
+            $this->db->where('id', $data['where']['id']);
+        }
+        if (!empty($data['where']['status'])) {
+            $this->db->where('status', $data['where']['status']);
+        }
+        return $this->db->get()->result();
+    }
+    
+    public function get_arrival_port_cache($data=NULL){
+        $this->db->cache_on();
+        $result = $this->get_arrival_port($data);
+        $this->db->cache_off();
+        return $result;
+    }
+
+    public function save_arrival_port($data) {
+        $this->db->cache_delete_all();
+        if ($this->db->insert(TBL_ARRIVAL_PORT, $data))
+            return TRUE;
+        return FALSE;
+    }
+
+
+    public function update_arrival_port($data, $id) {
+        $this->db->cache_delete_all();
+        if ($this->db->update(TBL_ARRIVAL_PORT, $data, ['id' => $id]))
+            return TRUE;
+        return FALSE;
+    }
 
 }
