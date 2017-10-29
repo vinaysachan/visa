@@ -20,15 +20,24 @@ function validateDate($date, $format = 'd/m/Y') {
     return $d && $d->format($format) == $date;
 }
 
-function country_name($code) {
+function country_name($code=NULL,$id=NULL) {
     if (!empty($code)) {
         $clist = [];
         $CI = & get_instance();
-        $country = $CI->operation_model->getCounrty();
+        $country = $CI->setting_model->get_country_cache();
         foreach ($country as $c) {
             $clist[$c->code] = $c->name;
         }
         return (!empty($clist[$code])) ? $clist[$code] : '';
+    }
+    if (!empty($id)) {
+        $clist = [];
+        $CI = & get_instance();
+        $country = $CI->setting_model->get_country_cache();
+        foreach ($country as $c) {
+            $clist[$c->id] = $c->name;
+        }
+        return (!empty($clist[$id])) ? $clist[$id] : '';
     }
 }
 

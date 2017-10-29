@@ -32,7 +32,5 @@
             <input type="image" name="submit" border="0" src="<?= base_url('public/img/paypal.png') ?>" alt="PayPal - The safer, easier way to pay online" width="24%" height="66"/>
             <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
         </form>
-
- 
     </div>
 </div>  

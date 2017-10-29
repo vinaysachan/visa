@@ -41,7 +41,7 @@
 </div>
 <div class="row">
     <label class="col-sm-5">Country of birth</label>
-    <div class="col-sm-6"><?= country_name($apply_details[0]->birth_country) ?></div>
+    <div class="col-sm-6"><?= country_name(NULL,$apply_details[0]->birth_country) ?></div>
 </div>
 <div class="row">
     <label class="col-sm-5">Citizenship/National Id No.</label>
@@ -61,7 +61,7 @@
 </div>
 <div class="row">
     <label class="col-sm-5">Nationality</label>
-    <div class="col-sm-6"><?= country_name($apply_details[0]->nationality) ?></div>
+    <div class="col-sm-6"><?= country_name(NULL,$apply_details[0]->nationality) ?></div>
 </div>
 <div class="row">
     <label class="col-sm-5">Acquire Nationality by</label>
@@ -69,7 +69,7 @@
 </div>
 <div class="row">
     <label class="col-sm-5">Previous Nationality</label>
-    <div class="col-sm-6"><?= country_name($apply_details[0]->pre_nationality) ?></div>
+    <div class="col-sm-6"><?= country_name(NULL,$apply_details[0]->pre_nationality) ?></div>
 </div>
 <div class="col-md-12 box_heading">Passport Details</div>
 <div class="row">

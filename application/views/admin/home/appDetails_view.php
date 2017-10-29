@@ -24,11 +24,11 @@
                     </tr>
                     <tr>
                         <td>Passport Type</td>
-                        <td> <?= $application[0]->passport_type ?></td>
+                        <td><?= $application[0]->passport_type ?></td>
                     </tr>    
                     <tr>
                         <td>Port of Arrival</td>
-                        <td> <?= $application[0]->portofarrival ?></td>
+                        <td><?= port_name($application[0]->portofarrival) ?></td>
                     </tr>
                     <tr>
                         <td>Expected Port of Exit from India</td>
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td>Nationality</td>
-                        <td> <?= country_name($application[0]->nationality) ?></td>
+                        <td><?= country_name(NULL,$application[0]->nationality) ?></td>
                     </tr>
                     <tr>
                         <td>Date Of Birth</td>
@@ -48,11 +48,11 @@
                     </tr>
                     <tr>
                         <td>Email ID</td>
-                        <td> <?= $application[0]->email ?></td>
+                        <td><?= $application[0]->email ?></td>
                     </tr>
                     <tr>
                         <td>Phone No</td>
-                        <td> <?= $application[0]->phone ?></td>
+                        <td><?= $application[0]->phone ?></td>
                     </tr>
                     <tr>
                         <td>Expected Date of Arrival</td>
@@ -60,15 +60,15 @@
                     </tr> 
                     <tr>
                         <td>First Name</td>
-                        <td> <?= $application[0]->fname ?></td>
+                        <td><?= $application[0]->fname ?></td>
                     </tr>
                     <tr>
                         <td>Last name</td>
-                        <td> <?= $application[0]->lname ?></td>
+                        <td><?= $application[0]->lname ?></td>
                     </tr>
                     <tr>
                         <td>Previous Name</td>
-                        <td> <?= $application[0]->prev_name ?></td>
+                        <td><?= $application[0]->prev_name ?></td>
                     </tr>
                     <tr>
                         <td>Previous Surname</td>
@@ -81,58 +81,58 @@
                     </tr>
                     <tr>
                         <td>Religion</td>
-                        <td> <?= $application[0]->religion ?></td>
+                        <td><?= $application[0]->religion ?></td>
 
                     </tr>
                     <tr>
                         <td>City Of Birth</td>
-                        <td> <?= $application[0]->birth_city ?></td>
+                        <td><?= $application[0]->birth_city ?></td>
 
                     </tr>
                     <tr>
                         <td>Country of Birth</td>
-                        <td> <?= country_name($application[0]->birth_country) ?></td>
+                        <td><?= country_name(NULL,$application[0]->birth_country) ?></td>
 
                     </tr>
                     <tr>
                         <td>National Id Number</td>
-                        <td> <?= $application[0]->national_id ?></td>
+                        <td><?= $application[0]->national_id ?></td>
 
                     </tr>
                     <tr>
                         <td>Education Qulification</td>
-                        <td> <?= $application[0]->qualification ?></td>
+                        <td><?= $application[0]->qualification ?></td>
 
                     </tr>
                     <tr>
                         <td>Visible Identification Marks</td>
-                        <td> <?= $application[0]->visible_identification_marks ?></td>
+                        <td><?= $application[0]->visible_identification_marks ?></td>
 
                     </tr>
                     <tr>
                         <td>Nationality By Birth</td>
-                        <td> <?= country_name($application[0]->acquire_nationality) ?></td>
+                        <td><?=$application[0]->acquire_nationality?></td>
 
                     </tr>
                     <tr>
                         <td>Pre Nationality</td>
-                        <td> <?= country_name($application[0]->pre_nationality) ?></td>
+                        <td><?= country_name($application[0]->pre_nationality) ?></td>
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">Passport Details </td>
                     </tr>
                     <tr>
                         <td>Passport Type</td>
-                        <td> <?= $application[0]->passport_type ?></td>
+                        <td><?= $application[0]->passport_type ?></td>
 
                     </tr>
                     <tr>
                         <td>Passport Number</td>
-                        <td> <?= $application[0]->passport_no ?></td> 
+                        <td><?= $application[0]->passport_no ?></td> 
                     </tr>
                     <tr>
                         <td>Passport Issue Place</td>
-                        <td> <?= $application[0]->pass_place_of_Issue ?></td> 
+                        <td><?= $application[0]->pass_place_of_Issue ?></td> 
                     </tr>
                     <tr>
                         <td>Passport Issue Date</td>
@@ -144,7 +144,7 @@
                     </tr>
                     <tr>
                         <td>Issue of Other Passport</td>
-                        <td> <?= $application[0]->ic_passport_no ?></td> 
+                        <td><?= $application[0]->ic_passport_no ?></td> 
                     </tr>
                     <tr>
                         <td>Country of Issue of Other Passport</td>
@@ -156,7 +156,7 @@
                     </tr>
                     <tr>
                         <td>Date of Expiry</td>
-                        <td> <?= get_date($application[0]->ic_date_of_Issue, 'Y-m-d', 'd/m/Y') ?></td> 
+                        <td><?= get_date($application[0]->ic_date_of_Issue, 'Y-m-d', 'd/m/Y') ?></td> 
                     </tr>
                     <tr>
                         <td>Nationality Described Therein</td>
@@ -167,60 +167,60 @@
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td> <?= $application[0]->houseno ?></td>
+                        <td><?= $application[0]->houseno ?></td>
 
                     </tr>
                     <tr>
                         <td>City</td>
-                        <td> <?= $application[0]->city ?></td>
+                        <td><?= $application[0]->city ?></td>
 
                     </tr>
                     <tr>
                         <td>State</td>
-                        <td> <?= $application[0]->district ?></td>
+                        <td><?= $application[0]->district ?></td>
                     </tr>
                     <tr>
                         <td>Zip Code</td>
-                        <td> <?= $application[0]->zipcode ?></td>
+                        <td><?= $application[0]->zipcode ?></td>
 
                     </tr>
                     <tr>
                         <td>Country</td>
-                        <td> <?= $application[0]->adress_country ?></td>
+                        <td><?= $application[0]->adress_country ?></td>
                     </tr>
                     <tr>
                         <td>Mobile Number</td>
-                        <td> <?= $application[0]->mobileno ?></td>
+                        <td><?= $application[0]->mobileno ?></td>
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">Permanent Address </td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td> <?= $application[0]->perma_houseno ?></td>
+                        <td><?= $application[0]->perma_houseno ?></td>
                     </tr>
                     <tr>
                         <td>District</td>
-                        <td> <?= $application[0]->perma_district ?></td>
+                        <td><?= $application[0]->perma_district ?></td>
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">Father Details</td>
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td> <?= $application[0]->father_name ?></td>
+                        <td><?= $application[0]->father_name ?></td>
                     </tr>
                     <tr>
                         <td>Nationality</td>
-                        <td> <?= country_name($application[0]->father_nationality) ?></td>
+                        <td><?= country_name($application[0]->father_nationality) ?></td>
                     </tr>
                     <tr>
                         <td>Father Previous Nationality</td>
-                        <td> <?= country_name($application[0]->father_prenationality) ?></td>
+                        <td><?= country_name($application[0]->father_prenationality) ?></td>
                     </tr>
                     <tr>
                         <td>Birth Place</td>
-                        <td> <?= $application[0]->father_birth_place ?></td>
+                        <td><?= $application[0]->father_birth_place ?></td>
                     </tr>
                     <tr>
                         <td>Birth Country</td>
@@ -231,7 +231,7 @@
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td> <?= $application[0]->mother_name ?></td>
+                        <td><?= $application[0]->mother_name ?></td>
                     </tr>
                     <tr>
                         <td>Nationality</td>
@@ -243,7 +243,7 @@
                     </tr>
                     <tr>
                         <td>Birth Place</td>
-                        <td> <?= $application[0]->mother_birth_place ?></td>
+                        <td><?= $application[0]->mother_birth_place ?></td>
 
                     </tr>
                     <tr>
@@ -255,12 +255,12 @@
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td> <?= $application[0]->marital_status ?></td>
+                        <td><?= $application[0]->marital_status ?></td>
 
                     </tr>
                     <tr>
                         <td>Spouse name</td>
-                        <td> <?= $application[0]->spouse_name ?></td>
+                        <td><?= $application[0]->spouse_name ?></td>
                     </tr>
                     <tr>
                         <td>Spouse nationality</td>
@@ -272,7 +272,7 @@
                     </tr>
                     <tr>
                         <td>Spouse Birth Place</td>
-                        <td> <?= $application[0]->spouse_birth_place ?></td>
+                        <td><?= $application[0]->spouse_birth_place ?></td>
                     </tr>
                     <tr>
                         <td>Spouse Country of Birth</td>
@@ -280,129 +280,111 @@
                     </tr> 
                     <tr>
                         <td>Spouse Pre Nationality</td>
-                        <td> <?= $application[0]->spouse_prenationality ?></td>
+                        <td><?= $application[0]->spouse_prenationality ?></td>
 
                     </tr>
                     <tr>
                         <td>Grand parent pakistan nationals</td>
-                        <td> <?= $application[0]->grand_parent_pakistan ?></td>
+                        <td><?= $application[0]->grand_parent_pakistan ?></td>
                     </tr>
                     <tr>
                         <td>Grand parent Details</td>
-                        <td> <?= $application[0]->pakistan_nationality_detail ?></td>
-
+                        <td><?= $application[0]->pakistan_nationality_detail ?></td>
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">Occupation Details</td>
-
-
                     </tr>
                     <tr>
                         <td>Occupation</td>
-                        <td> <?= $application[0]->present_occupation ?></td>
-
+                        <td><?= $application[0]->present_occupation ?></td>
                     </tr>
                     <tr>
                         <td>Employer Name/Business</td>
-                        <td> <?= $application[0]->Employer_or_business ?></td>
+                        <td><?= $application[0]->Employer_or_business ?></td>
                     </tr>
                     <tr>
                         <td>Employer Name</td>
-                        <td> <?= $application[0]->designation ?></td>
+                        <td><?= $application[0]->designation ?></td>
                     </tr>
                     <tr>
                         <td>Employer Address</td>
-                        <td> <?= $application[0]->address ?></td>
+                        <td><?= $application[0]->address ?></td>
                     </tr>
                     <tr>
                         <td>Employer Phone</td>
-                        <td> <?= $application[0]->prof_phone ?></td>
+                        <td><?= $application[0]->prof_phone ?></td>
                     </tr>
                     <tr>
                         <td>Previous Occupation</td>
-                        <td> <?= $application[0]->past_occupation ?></td>
+                        <td><?= $application[0]->past_occupation ?></td>
                     </tr>
                     <tr>
                         <td>Security Agency/Organisation</td>
-                        <td> <?= $application[0]->military ?></td>
+                        <td><?= $application[0]->military ?></td>
                     </tr> 
                     <tr>
                         <td>Militry Organization </td>
-                        <td> <?= $application[0]->mil_organisation ?></td>
-
+                        <td><?= $application[0]->mil_organisation ?></td>
                     </tr>
                     <tr>
                         <td>Militry Designation</td>
-                        <td> <?= $application[0]->mil_designation ?></td>
-
+                        <td><?= $application[0]->mil_designation ?></td>
                     </tr>
                     <tr>
                         <td>Militry Rank</td>
-                        <td> <?= $application[0]->mil_rank ?></td>
-
+                        <td><?= $application[0]->mil_rank ?></td>
                     </tr>
                     <tr>
                         <td>Militry Last Posting</td>
-                        <td> <?= $application[0]->mil_place_of_posting ?></td>
-
+                        <td><?= $application[0]->mil_place_of_posting ?></td>
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">Previous Visa/currently Valid Visa Details </td>
-
                     </tr> 
                     <tr>
                         <td>Visited India Before</td>
-                        <td> <?= $application[0]->visited_India ?></td>
-
+                        <td><?= $application[0]->visited_India ?></td>
                     </tr>
                     <tr>
                         <td>Indian Address</td>
-                        <td> <?= $application[0]->visited_address ?></td>
-
+                        <td><?= $application[0]->visited_address ?></td>
                     </tr>
                     <tr>
                         <td>indian Visited City</td>
-                        <td> <?= $application[0]->previously_visited_city ?></td>
-
+                        <td><?= $application[0]->previously_visited_city ?></td>
                     </tr>
                     <tr>
                         <td>Last Indian Visa NO</td>
-                        <td> <?= $application[0]->last_Indian_visa_no ?></td>
-
+                        <td><?= $application[0]->last_Indian_visa_no ?></td>
                     </tr>
                     <tr>
                         <td>Type Of Visa </td>
-                        <td> <?= $application[0]->visited_type_Visa ?></td>
-
+                        <td><?= $application[0]->visited_type_Visa ?></td>
                     </tr>
                     <tr>
                         <td>Last Indian visa Issue Place</td>
-                        <td> <?= $application[0]->visited_visa_issue_place ?></td>
-
+                        <td><?= $application[0]->visited_visa_issue_place ?></td>
                     </tr>
                     <tr>
                         <td>Last Indian visa Issue Date</td>
                         <td><?= get_date($application[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?></td>
-
                     </tr>
                     <tr>
                         <td>Has Permission visit or extend Stay</td>
-                        <td> <?= $application[0]->extend_visa ?></td>
+                        <td><?= $application[0]->extend_visa ?></td>
 
                     </tr>
                     <tr>
                         <td>Last India Visa extend by whom</td>
-                        <td> <?= $application[0]->extend_visa_details ?></td>
-
+                        <td><?= $application[0]->extend_visa_details ?></td>
                     </tr>
                     <tr>
                         <td>Last Indian visa Issue Place</td>
-                        <td> <?= $application[0]->visited_visa_issue_date ?></td>
-
+                        <td><?= $application[0]->visited_visa_issue_date ?></td>
                     </tr>
                     <tr>
                         <td>Other Country visited in 10 years</td>
-                        <td> <?= $application[0]->countries_visitedlast; ?></td> 
+                        <td><?= $application[0]->countries_visitedlast; ?></td> 
                     </tr>
                     <tr class="info-bar" >
                         <td colspan="2">References</td>
@@ -464,10 +446,7 @@
                             ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tr><td></td><td></td></tr>
                 </tbody>
             </table>
         </div>

@@ -1,10 +1,10 @@
-<div><h4>Application Type  :  <?= apptype($apply_details[0]->app_type)?></h4>
+<div><h4>Application Type  :  <?= apptype($apply_details[0]->app_type) ?></h4>
     <h4>Application NO : <?= strtoupper($this->session->userdata('application_id')); ?></h4>
 </div>
 <div class="p10">
     <form method="post" class="form-horizontal" action="" name="step4Form" id="step4Form" enctype="multipart/form-data">
         <div class="col-md-12 box_heading">Details of Visa Sought </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="visaType" class="col-sm-4 require">Type of visa*</label>
             <div class="col-sm-6">e-Tourist Visa</div>
         </div>
@@ -33,12 +33,12 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="app_type" class="col-sm-4 require">Application Type</label>
             <div class="col-sm-6">
                 <select name="app_type" required="" label-name="Application Type" class="form-control">
                     <option value="">Select</option>
-                    <?php
+                            <?php
                     if (!empty($application_type->mata_value)) :
                         $m = json_decode($application_type->mata_value);
                         foreach ($m as $a) :
@@ -51,7 +51,7 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="dtp_input2" class="col-sm-4 require">Expected Date journey</label>
             <div class="col-sm-6">
                 <input type="text" required="" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" name="dateofjourney" id="dob" placeholder="Expected Date journey" value="<?= get_date($apply_details[0]->dateofjourney, 'Y-m-d', 'd/m/Y') ?>" >
@@ -59,29 +59,16 @@
         </div>
         <div class="form-group row">
             <label for="" class="col-sm-4">Port of Arrival in India</label>
-            <div class="col-sm-6"><?= $apply_details[0]->portofarrival; ?></div>
+            <div class="col-sm-6"><?= port_name($apply_details[0]->portofarrival) ?></div>
         </div>
         <div class="form-group row">
             <label for="port_of_exit" class="col-sm-4 require">Expected Port of Exit from India</label>
             <div class="col-sm-6">
                 <select name="port_of_exit" required="" label-name="Expected Port of Exit from India" class="form-control" id="passportType">
                     <option value="">Select</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'AHMEDABAD') ? 'selected=""' : '' ?> value="AHMEDABAD">AHMEDABAD</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'AMRITSAR') ? 'selected=""' : '' ?> value="AMRITSAR">AMRITSAR</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'BENGALURU AIRPORT') ? 'selected=""' : '' ?> value="BENGALURU AIRPORT">BENGALURU AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'CHENNAI AIRPORT') ? 'selected=""' : '' ?> value="CHENNAI AIRPORT">CHENNAI AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'COCHIN AIRPORT') ? 'selected=""' : '' ?> value="COCHIN AIRPORT">COCHIN AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'DELHI AIRPORT') ? 'selected=""' : '' ?> value="DELHI AIRPORT">DELHI AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'GAYA') ? 'selected=""' : '' ?> value="GAYA">GAYA</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'GOA AIRPORT') ? 'selected=""' : '' ?> value="GOA AIRPORT">GOA AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'HYDERABAD AIRPORT') ? 'selected=""' : '' ?> value="HYDERABAD AIRPORT">HYDERABAD AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'JAIPUR') ? 'selected=""' : '' ?> value="JAIPUR">JAIPUR</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'KOLKATA AIRPORT') ? 'selected=""' : '' ?> value="KOLKATA AIRPORT">KOLKATA AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'LUCKNOW') ? 'selected=""' : '' ?> value="LUCKNOW">LUCKNOW</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'MUMBAI AIRPORT') ? 'selected=""' : '' ?> value="MUMBAI AIRPORT">MUMBAI AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'TIRCHY') ? 'selected=""' : '' ?> value="TIRCHY">TIRCHY</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'TRIVANDRUM AIRPORT') ? 'selected=""' : '' ?> value="TRIVANDRUM AIRPORT">TRIVANDRUM AIRPORT</option>
-                    <option <?= ($apply_details[0]->port_of_exit == 'VARANASI') ? 'selected=""' : '' ?> value="VARANASI">VARANASI</option>
+                    <?php foreach ($ports as $p) : ?>
+                        <option value="<?= $p->id; ?>" title="<?= $p->name; ?>"> <?= $p->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -92,7 +79,7 @@
             </div>
         </div>
         <div class="col-md-12 box_heading">Previous Visa/Currently valid Visa Details </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="dtp_input2" class="col-sm-4">Have you ever visited India before?</label>
             <div class="col-sm-7">
                 <label class="radio-inline">
@@ -116,7 +103,7 @@
                     <textarea class="form-control" required="" name="visitedcities"><?= $apply_details[0]->previously_visited_city ?></textarea>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label for="dtp_input2" class="col-sm-4 require">Last Indian Visa No/Currently valid Indian Visa No.</label>
                 <div class="col-sm-6">
                     <input type="text" name="visitedvisano" required="" class="form-control" value="<?= $apply_details[0]->last_Indian_visa_no ?>">
@@ -175,7 +162,7 @@
                     <input type="text" class="form-control" value="<?= $apply_details[0]->visited_visa_issue_place ?>" name="visitedplaceissue" >
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label for="dtp_input2" class="col-sm-4 require">Date of Issue</label>
                 <div class="col-sm-6">
                     <input type="text" data-min_date="<?= date('Y,m,d', strtotime("-0 year")) ?>" class="form-control date_picker" value="<?= get_date($apply_details[0]->visited_visa_issue_date, 'Y-m-d', 'd/m/Y') ?>" name="visitedissuedate" id="visitedissuedate" placeholder="Date of Birth" >

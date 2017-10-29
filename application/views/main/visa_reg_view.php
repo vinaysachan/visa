@@ -68,9 +68,9 @@
             <div class="col-sm-7">
                 <select name="birthofcountry" class="form-control" id="nationality" required="" label-name="Country of birth">
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
-                        <option <?= ($apply_details[0]->birth_country == $counrty->code) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
-                    <?php } ?>
+                    <?php foreach ($getAllCounrty as $counrty) : ?>
+                    <option <?=($apply_details[0]->birth_country == $counrty->id) ? 'selected=""' :''?> value="<?= $counrty->id; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>

@@ -32,25 +32,25 @@ class Operation_model extends CORE_Model {
         }
     }
 
-    function app_step1() {
-        $data = array(
-            'app_type' => $this->input->post('visaType'),
-            'fname' => $this->util->get_concatenated_string([$this->input->post('fname'), $this->input->post('mname')], ' '),
-            'lname' => $this->input->post('lname'),
-            'passport_type' => $this->input->post('passportType'),
-            'nationality' => $this->input->post('nationality'),
-            'portofarrival' => $this->input->post('portofarrival'),
-            'passport_no' => $this->input->post('passportno'),
-            'dob' => get_date($this->input->post('dob')),
-            'expected_date_arrival' => get_date($this->input->post('date_of_arrival')),
-            'email' => $this->input->post('email'),
-            'phone' => $this->input->post('phone'),
-            'status' => 1,
-            'application_status' => 1
+    function app_step1($nationality_code) {
+        $data                       = array(
+            'app_type'                  =>  $this->input->post('visaType'),
+            'fname'                     =>  $this->util->get_concatenated_string([$this->input->post('fname'), $this->input->post('mname')], ' '),
+            'lname'                     =>  $this->input->post('lname'),
+            'passport_type'             =>  $this->input->post('passportType'),
+            'nationality'               =>  $this->input->post('nationality'),
+            'portofarrival'             =>  $this->input->post('portofarrival'),
+            'passport_no'               =>  $this->input->post('passportno'),
+            'dob'                       =>  get_date($this->input->post('dob')),
+            'expected_date_arrival'     =>  get_date($this->input->post('date_of_arrival')),
+            'email'                     =>  $this->input->post('email'),
+            'phone'                     =>  $this->input->post('phone'),
+            'status'                    =>  1,
+            'application_status'        =>  1
         );
         $this->db->insert('applicatrion_details', $data);
-        $id = $this->db->insert_id();
-        $application = $this->input->post('nationality') . $id;
+        $id                         =   $this->db->insert_id();
+        $application                =   $nationality_code . $id;
         $this->db->where('id', $id)->update('applicatrion_details', ['app_id' => $application]);
         return $application;
     }

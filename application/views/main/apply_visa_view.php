@@ -15,9 +15,6 @@
                         endforeach;
                     endif;
                     ?>
-                            
-<!--                    <option value="normal" selected="">Normal Processing (Visa Delivery Time 4 to 5 Business Days)</option>
-                    <option value="urgent">Urgent Processing (Visa Delivery Time 12 To 16 Business Hours)</option>-->
                 </select>
             </div>
         </div>
@@ -52,9 +49,9 @@
             <div class="col-sm-6">
                 <select name="nationality" required="" label-name="Nationality" class="form-control" id="nationality">
                     <option value="">Select Nationality...</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
-                        <option value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
-                    <?php } ?>
+                    <?php foreach ($getCounrty as $counrty)  : ?>                    
+                        <option value="<?= $counrty->id ?>" title="<?= $counrty->name ?>"> <?= $counrty->name ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -63,22 +60,9 @@
             <div class="col-sm-6">
                 <select name="portofarrival" required="" label-name="Port Of Arrival" class="form-control" id="portofarrival">
                     <option value="" selected="selected">Select ...</option>
-                    <option value="AHMEDABAD">AHMEDABAD</option>
-                    <option value="AMRITSAR">AMRITSAR</option>
-                    <option value="BENGALURU AIRPORT">BENGALURU AIRPORT</option>
-                    <option value="CHENNAI AIRPORT">CHENNAI AIRPORT</option>
-                    <option value="COCHIN AIRPORT">COCHIN AIRPORT</option>
-                    <option value="DELHI AIRPORT">DELHI AIRPORT</option>
-                    <option value="GAYA">GAYA</option>
-                    <option value="GOA AIRPORT">GOA AIRPORT</option>
-                    <option value="HYDERABAD AIRPORT">HYDERABAD AIRPORT</option>
-                    <option value="JAIPUR">JAIPUR</option>
-                    <option value="KOLKATA AIRPORT">KOLKATA AIRPORT</option>
-                    <option value="LUCKNOW">LUCKNOW</option>
-                    <option value="MUMBAI AIRPORT">MUMBAI AIRPORT</option>
-                    <option value="TIRCHY">TIRCHY</option>
-                    <option value="TRIVANDRUM AIRPORT">TRIVANDRUM AIRPORT</option>
-                    <option value="VARANASI">VARANASI</option>
+                    <?php foreach ($ports as $p) : ?>
+                        <option value="<?= $p->id; ?>" title="<?= $p->name; ?>"> <?= $p->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>

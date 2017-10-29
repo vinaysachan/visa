@@ -87,12 +87,12 @@
                                     <b>Application ID : <?= $app->app_id ?></b>
                                 </a><br/>
                                 <b>Application Type : </b><?= apptype($app->app_type) ?><br/>
-                                <b>Application Time : </b><?= date('d-m-Y H:i:s', strtotime($app->date_created)) ?>
+                                <b>Application Time : </b><?= date('d-m-Y H:i:s', strtotime($app->date_created)) ?><br/>
                                 <b>Date of Arrival : </b><?= $app->expected_date_arrival ?>
                             </td>
                             <td>
                                 <b>First Name :</b><?= $app->fname ?> <?= $app->lname ?><br/> 
-                                <b>Nationality : </b><?= country_name($app->nationality) ?> <br/>
+                                <b>Nationality : </b><?= country_name(NULL,$app->nationality) ?> <br/>
                                 <b>Date of Birth : </b><?= $app->dob ?><br/>
                                 <b>Sex : </b><?= $app->sex ?>
                             </td>

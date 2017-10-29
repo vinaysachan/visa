@@ -42,7 +42,7 @@
             <div class="col-sm-7">
                 <select name="adress_country" required="" label-name="Country" class="form-control" id="adress_country" data-parsley-required="" >
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->adress_country) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
@@ -101,7 +101,7 @@
             <div class="col-sm-7">
                 <select name="father_nationality" class="form-control" required="" label-name="Father Nationality"  id="father_nationality" >
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->father_nationality) ? 'selected=""' : '' ?> value="<?= $counrty->code ?>" title="<?= $counrty->name ?>"> <?= $counrty->name ?></option>
                     <?php } ?>
                 </select>
@@ -112,7 +112,7 @@
             <div class="col-sm-7">
                 <select name="father_prenationality" class="form-control" id="father_prenationality" >
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->father_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
@@ -129,7 +129,7 @@
             <div class="col-sm-7">
                 <select name="father_country" class="form-control" id="father_country" >
                     <option value="">Select Country...</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->father_country) ? 'selected=""' : '' ?> value="<?= $counrty->code ?>" title="<?= $counrty->name ?>"><?= $counrty->name ?></option>
                     <?php } ?>
                 </select>
@@ -147,7 +147,7 @@
             <div class="col-sm-7">
                 <select name="mothernationality" class="form-control" id="mothernationality" >
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->mother_nationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
@@ -158,7 +158,7 @@
             <div class="col-sm-7">
                 <select name="motherprenationality" class="form-control" id="motherprenationality" >
                     <option value="">Select Country...</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option <?= ($counrty->code == $apply_details[0]->mother_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
@@ -175,7 +175,7 @@
             <div class="col-sm-7">
                 <select name="mothercountry" class="form-control" id="mothercountry" >
                     <option value="">Select Country</option>
-                    <?php foreach ($getCounrty as $counrty) { ?>
+                    <?php foreach ($getAllCounrty as $counrty) { ?>
                         <option value="<?= $counrty->code; ?>" <?= ($counrty->code == $apply_details[0]->mother_country) ? 'selected=""' : '' ?> title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                     <?php } ?>
                 </select>
@@ -205,7 +205,7 @@
                 <div class="col-sm-7">
                     <select name="spousenationality" class="form-control" id="spousenationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
-                        <?php foreach ($getCounrty as $counrty) { ?>
+                        <?php foreach ($getAllCounrty as $counrty) { ?>
                             <option <?= ($counrty->code == $apply_details[0]->spouse_nationlity) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
@@ -216,7 +216,7 @@
                 <div class="col-sm-7">
                     <select name="spouseprenationality" class="form-control" id="spouseprenationality" data-parsley-required="" >
                         <option value="">Select Country...</option>
-                        <?php foreach ($getCounrty as $counrty) { ?>
+                        <?php foreach ($getAllCounrty as $counrty) { ?>
                             <option <?= ($counrty->code == $apply_details[0]->spouse_prenationality) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>
@@ -233,7 +233,7 @@
                 <div class="col-sm-7">
                     <select name="spousecountry" class="form-control" id="spousecountry" data-parsley-required="" >
                         <option value="">Select Country...</option>
-                        <?php foreach ($getCounrty as $counrty) { ?>
+                        <?php foreach ($getAllCounrty as $counrty) { ?>
                             <option <?= ($counrty->code == $apply_details[0]->spouse_birth_country) ? 'selected=""' : '' ?> value="<?= $counrty->code; ?>" title="<?= $counrty->name; ?>"> <?= $counrty->name; ?></option>
                         <?php } ?>
                     </select>

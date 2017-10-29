@@ -187,6 +187,7 @@ class Setting_model extends CORE_Model {
         if (!empty($data['where']['status'])) {
             $this->db->where('status', $data['where']['status']);
         }
+        $this->db->order_by("name", "ASC");
         return $this->db->get()->result();
     }
     
